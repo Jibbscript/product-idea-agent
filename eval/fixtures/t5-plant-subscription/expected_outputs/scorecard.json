@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "idea_name": "PlantBox AI",
+  "evaluated_date": "2024-12-26",
+
+  "scores": {
+    "problem_severity": {
+      "score": 5,
+      "max": 10,
+      "weight": 0.20,
+      "evidence": "Plants dying is frustrating but not critical pain; mostly a learning/convenience problem; low stakes"
+    },
+    "demand_signals": {
+      "score": 7,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "r/houseplants 2.5M members; strong Instagram/TikTok plant communities; 'plant parent' trend post-pandemic"
+    },
+    "competitive_intensity": {
+      "score": 7,
+      "max": 10,
+      "weight": 0.10,
+      "evidence": "Bloomscape ($90M raised), The Sill, Horti, many subscription boxes; crowded D2C plant market",
+      "note": "Lower score = better (less competition)"
+    },
+    "market_size": {
+      "score": 6,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "US houseplant market ~$2B; subscription segment smaller; D2C plant delivery ~$500M"
+    },
+    "execution_difficulty": {
+      "score": 7,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Physical goods logistics complex; plant survival during shipping; AI personalization requires data",
+      "note": "Lower score = better (easier to execute)"
+    },
+    "gtm_viability": {
+      "score": 6,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Instagram/TikTok reach possible but expensive; influencer partnerships viable; high CAC for physical subscriptions"
+    },
+    "timing": {
+      "score": 6,
+      "max": 10,
+      "weight": 0.10,
+      "evidence": "Houseplant boom peaked during pandemic; still elevated but growth slowing; subscription fatigue risk"
+    }
+  },
+
+  "composite_score": 58,
+  "max_composite": 100,
+  "calculation_method": "weighted_average",
+
+  "revenue_potential": {
+    "indicator": "$$",
+    "range": "$1M-$10M ARR",
+    "confidence": "low"
+  },
+
+  "recommendation": {
+    "verdict": "PIVOT",
+    "rationale": "Crowded market with well-funded competitors (Bloomscape). Physical goods logistics create execution complexity and margin pressure. AI personalization is differentiator but may not justify full subscription. Consider pivoting to: (1) software-only plant care app, (2) B2B selling to existing retailers, or (3) focusing on specific underserved niche.",
+    "next_steps": [
+      "Validate AI plant care recommendations standalone (no physical goods)",
+      "Interview Bloomscape/The Sill customers about gaps and churn reasons",
+      "Explore B2B partnership with nurseries or retailers"
+    ]
+  }
+}

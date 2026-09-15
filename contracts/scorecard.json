@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Artifact Contract: scorecard.json",
+  "description": "Multi-dimensional opportunity scorecard for product idea validation",
+
+  "producer": "scorecard-generator skill",
+  "consumers": ["validation-report", "idea-validation-orchestrator"],
+
+  "template": {
+    "version": "1.0",
+    "idea_name": "[name from idea brief]",
+    "evaluated_date": "[ISO 8601 date]",
+
+    "scores": {
+      "problem_severity": {
+        "score": 8,
+        "max": 10,
+        "weight": 0.20,
+        "evidence": "[key evidence supporting this score]"
+      },
+      "demand_signals": {
+        "score": 7,
+        "max": 10,
+        "weight": 0.15,
+        "evidence": "[key evidence from signals.md]"
+      },
+      "competitive_intensity": {
+        "score": 6,
+        "max": 10,
+        "weight": 0.10,
+        "evidence": "[competitor count and threat levels]",
+        "note": "Lower score = better (less competition)"
+      },
+      "market_size": {
+        "score": 8,
+        "max": 10,
+        "weight": 0.15,
+        "evidence": "[TAM/SAM figures from market_size.md]"
+      },
+      "execution_difficulty": {
+        "score": 5,
+        "max": 10,
+        "weight": 0.15,
+        "evidence": "[technical complexity factors]",
+        "note": "Lower score = better (easier to execute)"
+      },
+      "gtm_viability": {
+        "score": 7,
+        "max": 10,
+        "weight": 0.15,
+        "evidence": "[channel availability and CAC estimates]"
+      },
+      "timing": {
+        "score": 8,
+        "max": 10,
+        "weight": 0.10,
+        "evidence": "[why now factors - trends, technology, regulation]"
+      }
+    },
+
+    "composite_score": 72,
+    "max_composite": 100,
+    "calculation_method": "weighted_average",
+
+    "revenue_potential": {
+      "indicator": "$$",
+      "range": "$1M-$10M ARR",
+      "confidence": "medium"
+    },
+
+    "recommendation": {
+      "verdict": "GO",
+      "rationale": "[1-2 sentence justification based on scores]",
+      "next_steps": [
+        "[Immediate action item 1]",
+        "[Immediate action item 2]"
+      ]
+    }
+  },
+
+  "field_definitions": {
+    "version": "Schema version, always '1.0'",
+    "idea_name": "Name from idea_brief.md",
+    "evaluated_date": "ISO 8601 format (YYYY-MM-DD)",
+    "scores": "Object containing all dimension scores",
+    "composite_score": "Weighted average of all scores (0-100)",
+    "revenue_potential.indicator": "One of: $ ($100K-1M), $$ ($1M-10M), $$$ ($10M+)",
+    "recommendation.verdict": "One of: GO, NO-GO, PIVOT"
+  },
+
+  "scoring_rubrics": {
+    "problem_severity": {
+      "9-10": "Hair-on-fire problem, active spending to solve",
+      "7-8": "Significant pain, some existing solutions",
+      "5-6": "Moderate frustration, workarounds exist",
+      "3-4": "Minor inconvenience",
+      "1-2": "Nice-to-have, not a real problem"
+    },
+    "demand_signals": {
+      "9-10": "High search volume, active communities, strong growth",
+      "7-8": "Good signals, engaged communities",
+      "5-6": "Moderate interest, niche communities",
+      "3-4": "Limited signals, small audiences",
+      "1-2": "No measurable demand"
+    },
+    "competitive_intensity": {
+      "1-2": "Blue ocean, no direct competitors",
+      "3-4": "Few competitors, clear differentiation possible",
+      "5-6": "Moderate competition, gaps exist",
+      "7-8": "Crowded market, hard to differentiate",
+      "9-10": "Red ocean, dominated by incumbents"
+    },
+    "market_size": {
+      "9-10": "TAM > $10B, SAM > $1B",
+      "7-8": "TAM $1-10B, SAM $100M-1B",
+      "5-6": "TAM $100M-1B, SAM $10-100M",
+      "3-4": "TAM $10-100M, niche market",
+      "1-2": "TAM < $10M, very small market"
+    },
+    "execution_difficulty": {
+      "1-2": "Simple app, proven tech, solo buildable",
+      "3-4": "Standard complexity, small team needed",
+      "5-6": "Moderate complexity, some novel components",
+      "7-8": "Complex system, specialized skills required",
+      "9-10": "Frontier technology, major R&D required"
+    },
+    "gtm_viability": {
+      "9-10": "Clear channels, low CAC, viral potential",
+      "7-8": "Good channels available, reasonable CAC",
+      "5-6": "Some channels, moderate CAC",
+      "3-4": "Limited channels, high CAC",
+      "1-2": "No clear path to customers"
+    },
+    "timing": {
+      "9-10": "Perfect timing - enabling tech just matured, regulation favorable",
+      "7-8": "Good timing - market ready, trends supportive",
+      "5-6": "Neutral timing - no major headwinds or tailwinds",
+      "3-4": "Challenging timing - market not ready or shifting away",
+      "1-2": "Bad timing - too early or too late"
+    }
+  },
+
+  "verdict_thresholds": {
+    "GO": "Composite score >= 65 AND no dimension below 4",
+    "PIVOT": "Composite score 50-64 OR 1-2 dimensions below 4",
+    "NO-GO": "Composite score < 50 OR 3+ dimensions below 4"
+  }
+}

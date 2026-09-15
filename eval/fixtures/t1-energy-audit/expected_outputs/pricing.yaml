@@ -1,0 +1,67 @@
+pricing:
+  version: "1.0"
+
+  competitor_benchmarks:
+    - competitor: "FLIR ONE Pro"
+      model: "onetime"
+      low: 200
+      high: 400
+      notes: "One-time hardware purchase; high upfront cost barrier"
+
+    - competitor: "Professional Energy Auditors"
+      model: "onetime"
+      low: 300
+      high: 500
+      notes: "One-time service fee; expensive for repeat assessments"
+
+    - competitor: "Sense Home Monitor"
+      model: "onetime"
+      low: 299
+      high: 349
+      notes: "Hardware + free app; no recurring revenue model"
+
+    - competitor: "Energy Auditing Apps (competitors)"
+      model: "freemium"
+      low: 0
+      high: 10
+      notes: "Basic apps with premium features; low conversion rates"
+
+  value_ladder:
+    - tier: "Free"
+      offering: "Basic thermal scan with 3 rooms per month, generic tips"
+      price: 0
+      purpose: "acquisition"
+
+    - tier: "Home Plan"
+      offering: "Unlimited scans, full home audit workflow, savings calculator, priority support"
+      price: 30
+      billing: "annual"
+      purpose: "conversion"
+
+    - tier: "Pro Plan"
+      offering: "Everything in Home + contractor matching, detailed reports for rebate applications, multi-property support"
+      price: 60
+      billing: "annual"
+      purpose: "expansion"
+
+  unit_economics:
+    target_arpc: 4.50  # $30/year ÷ 12 months + referral revenue
+    estimated_cac: 15  # App store + content marketing
+    ltv_cac_ratio: 4.8  # Based on 24-month retention
+    payback_months: 3.5
+    gross_margin: 0.85  # Software margins
+
+  wtp_evidence:
+    - source: "Reddit r/homeimprovement thread"
+      insight: "Users express willingness to pay $30-50 for one-time audit alternative"
+    - source: "App store reviews of competitor apps"
+      insight: "Complaints about $5-10/month subscriptions suggest annual pricing preference"
+    - source: "Contractor referral value"
+      insight: "Home improvement contractors pay 5-15% for qualified leads; energy efficiency projects average $2,000-5,000"
+
+  recommendation:
+    model: "freemium"
+    entry_price: 30
+    rationale: "Annual subscription at $30 positions below professional audit cost
+      ($300-500) and hardware alternatives ($200-400) while capturing recurring
+      revenue. Contractor referrals provide additional revenue per engaged user."

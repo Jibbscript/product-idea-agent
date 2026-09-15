@@ -1,0 +1,94 @@
+# Evaluation Rubric: T1 Home Energy Audit
+
+# Scoring: Each criterion is 1-5 points
+# Total possible: 100 points
+
+dimensions:
+  correctness:
+    weight: 0.25
+    criteria:
+      - name: "Factual accuracy"
+        points: 5
+        description: "No hallucinated data, claims are verifiable"
+      - name: "Market size plausibility"
+        points: 5
+        description: "TAM/SAM figures are reasonable and sourced"
+      - name: "Competitor accuracy"
+        points: 5
+        description: "Competitors exist and details are correct"
+      - name: "Technical feasibility"
+        points: 5
+        description: "Technical claims are accurate"
+      - name: "Pricing realism"
+        points: 5
+        description: "Pricing benchmarks and WTP are realistic"
+
+  usefulness:
+    weight: 0.25
+    criteria:
+      - name: "Actionable insights"
+        points: 5
+        description: "Recommendations can be acted upon immediately"
+      - name: "Decision support"
+        points: 5
+        description: "Helps make go/no-go decision"
+      - name: "Completeness"
+        points: 5
+        description: "All major aspects covered"
+      - name: "Prioritization"
+        points: 5
+        description: "Clear priorities and next steps"
+      - name: "Risk identification"
+        points: 5
+        description: "Key risks are identified with mitigations"
+
+  citation_quality:
+    weight: 0.20
+    criteria:
+      - name: "Source presence"
+        points: 5
+        description: "Claims are backed by sources"
+      - name: "Source credibility"
+        points: 5
+        description: "Sources are reputable"
+      - name: "Source recency"
+        points: 5
+        description: "Data is recent (within 2 years)"
+      - name: "Quote accuracy"
+        points: 5
+        description: "Direct quotes are accurate representations"
+
+  reproducibility:
+    weight: 0.15
+    criteria:
+      - name: "Methodology clarity"
+        points: 5
+        description: "Methods are clearly documented"
+      - name: "Consistent scoring"
+        points: 5
+        description: "Scores follow defined rubrics"
+      - name: "Artifact compliance"
+        points: 5
+        description: "Outputs follow contract schemas"
+
+  time_to_answer:
+    weight: 0.15
+    criteria:
+      - name: "Completion time"
+        points: 5
+        description: "Full workflow under 45 minutes"
+      - name: "Efficiency"
+        points: 5
+        description: "No unnecessary steps or delays"
+
+# Expected score ranges for this test case
+expectations:
+  composite_score_range: [70, 85]
+  recommendation: "GO"
+  key_signals:
+    - "Strong demand signals from r/homeimprovement"
+    - "Gap between DIY and professional solutions"
+    - "Timing favorable with smartphone thermal sensors"
+  key_risks:
+    - "Technical: smartphone sensor accuracy"
+    - "Market: adoption of DIY energy audits"

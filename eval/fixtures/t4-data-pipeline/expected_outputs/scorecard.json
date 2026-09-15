@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "idea_name": "PipelineWatch",
+  "evaluated_date": "2024-12-26",
+
+  "scores": {
+    "problem_severity": {
+      "score": 7,
+      "max": 10,
+      "weight": 0.20,
+      "evidence": "Data teams cite pipeline failures as top pain; bad data reaching dashboards erodes trust; on-call burden is real"
+    },
+    "demand_signals": {
+      "score": 7,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Active data engineering communities (dbt Slack 50K+, r/dataengineering); strong conference interest; 'data observability' trending"
+    },
+    "competitive_intensity": {
+      "score": 7,
+      "max": 10,
+      "weight": 0.10,
+      "evidence": "Monte Carlo, Bigeye, Atlan are funded and established; open source alternatives (Great Expectations) exist",
+      "note": "Lower score = better (less competition)"
+    },
+    "market_size": {
+      "score": 7,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Data observability market ~$1B; modern data stack growing 20%+ CAGR; mid-market underserved by enterprise tools"
+    },
+    "execution_difficulty": {
+      "score": 6,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Many integrations required (Airflow, dbt, Fivetran, etc.); ML for anomaly detection; data security concerns",
+      "note": "Lower score = better (easier to execute)"
+    },
+    "gtm_viability": {
+      "score": 7,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Data engineers reachable via dbt Slack, Twitter, newsletters (Data Council); product-led possible; conference presence valuable"
+    },
+    "timing": {
+      "score": 8,
+      "max": 10,
+      "weight": 0.10,
+      "evidence": "Modern data stack adoption accelerating; data teams expanding; enterprise tools too expensive for mid-market creating gap"
+    }
+  },
+
+  "composite_score": 68,
+  "max_composite": 100,
+  "calculation_method": "weighted_average",
+
+  "revenue_potential": {
+    "indicator": "$$",
+    "range": "$1M-$10M ARR",
+    "confidence": "medium"
+  },
+
+  "recommendation": {
+    "verdict": "GO",
+    "rationale": "Strong market with clear mid-market gap between expensive enterprise tools (Monte Carlo) and complex open source (Great Expectations). Timing favorable with modern data stack adoption. Key is differentiated positioning on simplicity/no-code and usage-based pricing.",
+    "next_steps": [
+      "Build MVP with 3 key integrations (dbt, Airflow, Snowflake)",
+      "Beta with 5-10 mid-market data teams",
+      "Establish presence in dbt Slack and data engineering communities"
+    ]
+  }
+}

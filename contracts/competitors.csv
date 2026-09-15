@@ -1,0 +1,39 @@
+# Artifact Contract: competitors.csv
+
+# Purpose: Structured competitive landscape data for analysis.
+# Producer: competitive-landscape skill
+# Consumers: pricing-wtp, solution-wedge, market-sizing, scorecard-generator
+
+# CSV Schema (header row required):
+# name,url,category,pricing_model,price_low,price_high,founded,funding,key_features,strengths,weaknesses,market_position,threat_level
+
+# Column Definitions:
+# | Column | Type | Required | Description |
+# |--------|------|----------|-------------|
+# | name | string | Yes | Company/product name |
+# | url | string | Yes | Primary website URL |
+# | category | enum | Yes | direct, indirect, alternative |
+# | pricing_model | enum | Yes | subscription, onetime, freemium, usage, free |
+# | price_low | number | Yes | Minimum price point (0 if free) |
+# | price_high | number | Yes | Maximum price point |
+# | founded | number | No | Year founded |
+# | funding | string | No | Total funding raised or "bootstrapped" |
+# | key_features | string | Yes | Semicolon-separated list of main features |
+# | strengths | string | Yes | Semicolon-separated competitive advantages |
+# | weaknesses | string | Yes | Semicolon-separated gaps or disadvantages |
+# | market_position | enum | Yes | leader, challenger, niche, emerging |
+# | threat_level | number | Yes | 1-10 competitive threat score |
+
+# Example Data:
+name,url,category,pricing_model,price_low,price_high,founded,funding,key_features,strengths,weaknesses,market_position,threat_level
+"Example Corp","https://example.com","direct","subscription",29,299,2019,"$10M","Feature A; Feature B; Feature C","Strong brand; Large user base","Poor mobile experience; Limited integrations","leader",8
+"Alt Solution","https://altsolution.io","indirect","freemium",0,99,2021,"$2M","Core feature; Basic analytics","Free tier; Easy onboarding","Limited features; Small team","challenger",5
+"DIY Approach","https://github.com/diy","alternative","free",0,0,2020,"bootstrapped","Open source; Customizable","Free; Community support","Requires technical skill; No support","niche",3
+
+# Validation Rules:
+# 1. At least 3 competitors required
+# 2. At least 1 direct competitor
+# 3. threat_level must be integer 1-10
+# 4. All URLs must be valid format
+# 5. category must be: direct, indirect, or alternative
+# 6. market_position must be: leader, challenger, niche, or emerging

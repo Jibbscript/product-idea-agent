@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "idea_name": "Home Energy Leak Mapper",
+  "evaluated_date": "2024-12-26",
+
+  "scores": {
+    "problem_severity": {
+      "score": 7,
+      "max": 10,
+      "weight": 0.20,
+      "evidence": "Homeowners waste $200-500/year on energy; active Reddit discussions show frustration with $300-500 audit costs"
+    },
+    "demand_signals": {
+      "score": 7,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "22K monthly searches for 'home energy audit'; 4.2M member r/homeimprovement community actively discussing; +25-45% YoY growth on key terms"
+    },
+    "competitive_intensity": {
+      "score": 4,
+      "max": 10,
+      "weight": 0.10,
+      "evidence": "FLIR and Seek require hardware ($200-400); professional auditors expensive ($300-500); no smartphone-native competitor",
+      "note": "Lower score = better (less competition)"
+    },
+    "market_size": {
+      "score": 7,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "TAM $4.5B home energy management; SAM $750M for DIY smartphone segment; 15% CAGR"
+    },
+    "execution_difficulty": {
+      "score": 5,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Technical: thermal sensor accuracy unknown; ML model training needed; contractor marketplace is complex",
+      "note": "Lower score = better (easier to execute)"
+    },
+    "gtm_viability": {
+      "score": 8,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Clear channels: SEO/content ($8-12 CAC), YouTube, App Store; ICP actively searching; r/homeimprovement is accessible"
+    },
+    "timing": {
+      "score": 8,
+      "max": 10,
+      "weight": 0.10,
+      "evidence": "iPhone 15 Pro thermal sensor just released (new capability); energy costs at multi-year highs; DIY trend continues post-pandemic"
+    }
+  },
+
+  "composite_score": 75,
+  "max_composite": 100,
+  "calculation_method": "weighted_average",
+
+  "revenue_potential": {
+    "indicator": "$$",
+    "range": "$1M-$10M ARR",
+    "confidence": "medium"
+  },
+
+  "recommendation": {
+    "verdict": "GO",
+    "rationale": "Strong demand signals, clear differentiation opportunity, favorable timing with new smartphone thermal capabilities, and accessible GTM channels. Technical risk around sensor accuracy is manageable with early prototyping.",
+    "next_steps": [
+      "Build prototype to validate iPhone thermal sensor accuracy for air leak detection",
+      "Create landing page to test pricing and waitlist interest",
+      "Begin content creation for SEO foundation"
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "idea_name": "SynthCollective",
+  "evaluated_date": "2024-12-26",
+
+  "scores": {
+    "problem_severity": {
+      "score": 6,
+      "max": 10,
+      "weight": 0.20,
+      "evidence": "Collectors frustrated with eBay fraud and no authentication, but workarounds exist; problem is annoying not critical"
+    },
+    "demand_signals": {
+      "score": 5,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Niche communities exist (r/synthesizers 500K, vintage synth forums); limited search volume for marketplace solutions"
+    },
+    "competitive_intensity": {
+      "score": 5,
+      "max": 10,
+      "weight": 0.10,
+      "evidence": "Reverb.com is established for music gear; eBay is default; fragmented Facebook groups exist",
+      "note": "Lower score = better (less competition)"
+    },
+    "market_size": {
+      "score": 3,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Very niche: ~50K serious vintage synth collectors globally; average transaction $2-5K; TAM < $50M"
+    },
+    "execution_difficulty": {
+      "score": 4,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Marketplace development is standard; authentication requires expert network; escrow is solved problem",
+      "note": "Lower score = better (easier to execute)"
+    },
+    "gtm_viability": {
+      "score": 6,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Community is identifiable and concentrated; forums and subreddits accessible; word-of-mouth strong in niche"
+    },
+    "timing": {
+      "score": 5,
+      "max": 10,
+      "weight": 0.10,
+      "evidence": "Vintage synth interest stable; no major tailwinds or headwinds; market neither growing nor shrinking dramatically"
+    }
+  },
+
+  "composite_score": 52,
+  "max_composite": 100,
+  "calculation_method": "weighted_average",
+
+  "revenue_potential": {
+    "indicator": "$",
+    "range": "$100K-$1M ARR",
+    "confidence": "medium"
+  },
+
+  "recommendation": {
+    "verdict": "PIVOT",
+    "rationale": "Market is too small for venture-scale returns. While the community is passionate and the differentiation (authentication) is real, TAM < $50M limits opportunity. Consider as lifestyle business or pivot to broader vintage audio/music equipment marketplace.",
+    "next_steps": [
+      "Evaluate broader vintage audio equipment market size",
+      "Assess if authentication can expand to other collectible categories",
+      "Consider as lifestyle business with modest investment if passionate about space"
+    ]
+  }
+}

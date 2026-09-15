@@ -1,0 +1,77 @@
+# Artifact Contract: pricing.yaml
+
+# Purpose: Documents pricing research, value ladder, and unit economics.
+# Producer: pricing-wtp skill
+# Consumers: scorecard-generator, validation-report
+
+# Schema Definition:
+# ---
+pricing:
+  version: "1.0"
+
+  competitor_benchmarks:
+    - competitor: "[name]"
+      model: "[subscription/usage/onetime]"
+      low: 0  # lowest price point
+      high: 100  # highest price point
+      notes: "[key insight about their pricing]"
+
+  value_ladder:
+    - tier: "Free/Lead Magnet"
+      offering: "[description of free tier]"
+      price: 0
+      purpose: "acquisition"
+
+    - tier: "Starter"
+      offering: "[description of starter tier]"
+      price: 29
+      billing: "monthly"
+      purpose: "conversion"
+
+    - tier: "Pro"
+      offering: "[description of pro tier]"
+      price: 99
+      billing: "monthly"
+      purpose: "expansion"
+
+    - tier: "Enterprise"
+      offering: "[description of enterprise tier]"
+      price: "custom"
+      billing: "annual"
+      purpose: "retention"
+
+  unit_economics:
+    target_arpc: 50  # Average Revenue Per Customer (monthly)
+    estimated_cac: 100  # Customer Acquisition Cost
+    ltv_cac_ratio: 3.0  # LTV:CAC ratio (3:1+ is healthy)
+    payback_months: 6  # Months to recover CAC
+    gross_margin: 0.80  # Gross margin percentage
+
+  wtp_evidence:
+    - source: "[where found - survey, competitor, forum]"
+      insight: "[what they said about willingness to pay]"
+
+  recommendation:
+    model: "[recommended pricing model]"
+    entry_price: 29
+    rationale: "[justification for recommendation]"
+
+# Field Requirements:
+# - competitor_benchmarks: At least 2 competitors
+# - value_ladder: At least 2 tiers (free + paid, or starter + pro)
+# - unit_economics: All fields required
+# - wtp_evidence: At least 2 sources
+# - recommendation: All fields required
+
+# Validation Rules:
+# 1. ltv_cac_ratio should be >= 3.0 for healthy economics
+# 2. payback_months should be <= 12 for SaaS
+# 3. Value ladder prices should increase with each tier
+# 4. Competitor benchmarks should inform recommendation
+
+# Pricing Model Options:
+# - subscription: Recurring monthly/annual payments
+# - usage: Pay per use (API calls, transactions)
+# - onetime: Single purchase
+# - freemium: Free tier with paid upgrades
+# - hybrid: Combination of above

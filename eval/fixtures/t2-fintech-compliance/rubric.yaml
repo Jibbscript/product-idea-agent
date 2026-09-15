@@ -1,0 +1,77 @@
+# Evaluation Rubric: T2 Fintech Compliance
+
+dimensions:
+  correctness:
+    weight: 0.25
+    criteria:
+      - name: "Factual accuracy"
+        points: 5
+        description: "SOC 2 requirements and process accurately described"
+      - name: "Market size plausibility"
+        points: 5
+        description: "Fintech startup market sizing is reasonable"
+      - name: "Competitor accuracy"
+        points: 5
+        description: "Vanta, Drata, Secureframe correctly positioned"
+      - name: "Technical feasibility"
+        points: 5
+        description: "Integration claims are realistic"
+      - name: "Pricing realism"
+        points: 5
+        description: "Pricing vs competitors is accurate"
+
+  usefulness:
+    weight: 0.25
+    criteria:
+      - name: "Actionable insights"
+        points: 5
+      - name: "Decision support"
+        points: 5
+      - name: "Completeness"
+        points: 5
+      - name: "Prioritization"
+        points: 5
+      - name: "Risk identification"
+        points: 5
+
+  citation_quality:
+    weight: 0.20
+    criteria:
+      - name: "Source presence"
+        points: 5
+      - name: "Source credibility"
+        points: 5
+      - name: "Source recency"
+        points: 5
+      - name: "Quote accuracy"
+        points: 5
+
+  reproducibility:
+    weight: 0.15
+    criteria:
+      - name: "Methodology clarity"
+        points: 5
+      - name: "Consistent scoring"
+        points: 5
+      - name: "Artifact compliance"
+        points: 5
+
+  time_to_answer:
+    weight: 0.15
+    criteria:
+      - name: "Completion time"
+        points: 5
+      - name: "Efficiency"
+        points: 5
+
+expectations:
+  composite_score_range: [55, 70]
+  recommendation: "PIVOT"
+  key_signals:
+    - "Strong demand from startup CTOs"
+    - "Well-funded incumbents in market"
+    - "Regulatory tailwinds for compliance"
+  key_risks:
+    - "Competitive: Well-funded players (Vanta raised $200M+)"
+    - "Technical: Audit acceptance of automated evidence"
+    - "Market: Small segment focus limits TAM"

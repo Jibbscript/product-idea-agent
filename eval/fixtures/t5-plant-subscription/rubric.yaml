@@ -1,0 +1,78 @@
+# Evaluation Rubric: T5 Plant Subscription
+
+dimensions:
+  correctness:
+    weight: 0.25
+    criteria:
+      - name: "Factual accuracy"
+        points: 5
+        description: "Houseplant market trends accurately described"
+      - name: "Market size plausibility"
+        points: 5
+        description: "D2C plant market sizing reasonable"
+      - name: "Competitor accuracy"
+        points: 5
+        description: "Bloomscape, The Sill correctly positioned"
+      - name: "Technical feasibility"
+        points: 5
+        description: "AI care recommendations realistic"
+      - name: "Pricing realism"
+        points: 5
+        description: "Subscription pricing and unit economics realistic"
+
+  usefulness:
+    weight: 0.25
+    criteria:
+      - name: "Actionable insights"
+        points: 5
+      - name: "Decision support"
+        points: 5
+      - name: "Completeness"
+        points: 5
+      - name: "Prioritization"
+        points: 5
+      - name: "Risk identification"
+        points: 5
+
+  citation_quality:
+    weight: 0.20
+    criteria:
+      - name: "Source presence"
+        points: 5
+      - name: "Source credibility"
+        points: 5
+      - name: "Source recency"
+        points: 5
+      - name: "Quote accuracy"
+        points: 5
+
+  reproducibility:
+    weight: 0.15
+    criteria:
+      - name: "Methodology clarity"
+        points: 5
+      - name: "Consistent scoring"
+        points: 5
+      - name: "Artifact compliance"
+        points: 5
+
+  time_to_answer:
+    weight: 0.15
+    criteria:
+      - name: "Completion time"
+        points: 5
+      - name: "Efficiency"
+        points: 5
+
+expectations:
+  composite_score_range: [55, 70]
+  recommendation: "PIVOT"
+  key_signals:
+    - "Strong houseplant trend post-pandemic"
+    - "High engagement in plant communities"
+    - "Differentiation through AI personalization"
+  key_risks:
+    - "Execution: Plant logistics and survival rates"
+    - "Financial: High CAC for physical goods subscription"
+    - "Competitive: Well-funded players like Bloomscape"
+    - "Churn: Subscription fatigue in crowded market"

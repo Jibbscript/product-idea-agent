@@ -1,0 +1,62 @@
+icp:
+  version: "1.0"
+
+  primary_segment:
+    name: "DIY-Oriented Suburban Homeowners"
+    description: "Cost-conscious homeowners with older homes who enjoy DIY projects
+      and are motivated by both financial savings and environmental responsibility."
+
+    demographics:
+      age_range: "35-55"
+      gender: "55% male, 45% female"
+      location: "US suburban areas, particularly Northeast and Midwest (higher heating costs)"
+      income_level: "$75K-$150K household"
+
+    psychographics:
+      goals:
+        - "Reduce monthly utility bills by 15-20%"
+        - "Improve home comfort (eliminate drafts)"
+        - "Increase home value before selling"
+        - "Reduce environmental footprint"
+      frustrations:
+        - "High energy bills with no clear cause"
+        - "Professional audits are expensive and hard to schedule"
+        - "Thermal cameras are expensive for one-time use"
+        - "Conflicting advice online about DIY energy improvements"
+      values:
+        - "Self-reliance and DIY capability"
+        - "Cost-effectiveness over convenience"
+        - "Environmental responsibility"
+        - "Data-driven decision making"
+
+    behaviors:
+      information_sources:
+        - "YouTube home improvement channels (This Old House, Home RenoVision DIY)"
+        - "Reddit r/homeimprovement, r/HomeOwners"
+        - "Home Depot and Lowe's website/apps"
+        - "Local utility company resources"
+      purchase_triggers:
+        - "Unexpectedly high heating/cooling bill"
+        - "Preparing home for sale"
+        - "Noticeable drafts or temperature inconsistencies"
+        - "Friend/neighbor discusses energy improvements"
+      objections:
+        - "Will the phone sensor really be accurate enough?"
+        - "Can I actually interpret the results myself?"
+        - "Is this worth it for a one-time audit?"
+
+  problem_severity: 7
+  problem_evidence: "Average US household spends $2,000/year on energy; 25-30%
+    is wasted through leaks and poor insulation. Reddit posts show homeowners
+    paying $300-500 for audits or $200+ for thermal cameras."
+
+  secondary_segments:
+    - name: "Eco-Conscious Young Homeowners"
+      priority: 2
+      description: "First-time homeowners 28-40 focused on sustainability,
+        less price-sensitive but still DIY-inclined"
+
+    - name: "Real Estate Flippers"
+      priority: 3
+      description: "Investors who renovate homes for resale, need quick
+        assessments of energy efficiency improvements"

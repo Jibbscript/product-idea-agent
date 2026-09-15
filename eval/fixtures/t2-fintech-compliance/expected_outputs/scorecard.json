@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "idea_name": "FinComply Auto",
+  "evaluated_date": "2024-12-26",
+
+  "scores": {
+    "problem_severity": {
+      "score": 8,
+      "max": 10,
+      "weight": 0.20,
+      "evidence": "SOC 2 is blocking requirement for enterprise sales; current process costs $50K+ and 6 months"
+    },
+    "demand_signals": {
+      "score": 7,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Active discussions in startup communities about compliance burden; strong search volume for 'SOC 2 automation'"
+    },
+    "competitive_intensity": {
+      "score": 8,
+      "max": 10,
+      "weight": 0.10,
+      "evidence": "Vanta ($200M+ raised), Drata ($328M), Secureframe ($79M) - well-funded incumbents dominating",
+      "note": "Lower score = better (less competition)"
+    },
+    "market_size": {
+      "score": 6,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Fintech seed-stage is narrow segment; GRC market large but focused slice is ~$500M"
+    },
+    "execution_difficulty": {
+      "score": 6,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "Complex integrations required; deep compliance expertise needed; auditor acceptance uncertainty",
+      "note": "Lower score = better (easier to execute)"
+    },
+    "gtm_viability": {
+      "score": 6,
+      "max": 10,
+      "weight": 0.15,
+      "evidence": "CTOs are reachable via LinkedIn/Twitter; content marketing viable but CAC higher for B2B"
+    },
+    "timing": {
+      "score": 7,
+      "max": 10,
+      "weight": 0.10,
+      "evidence": "Regulatory requirements increasing; remote work expanding security surface; compliance becoming table stakes"
+    }
+  },
+
+  "composite_score": 62,
+  "max_composite": 100,
+  "calculation_method": "weighted_average",
+
+  "revenue_potential": {
+    "indicator": "$$",
+    "range": "$1M-$10M ARR",
+    "confidence": "medium"
+  },
+
+  "recommendation": {
+    "verdict": "PIVOT",
+    "rationale": "Strong problem severity but crowded market with well-funded competitors (Vanta, Drata, Secureframe). Narrow segment focus (seed-stage fintech) limits TAM. Recommend pivoting to either: (1) different underserved vertical, (2) different stage companies, or (3) complementary vs. competitive positioning.",
+    "next_steps": [
+      "Interview 20 CTOs about competitor gaps and pain points",
+      "Explore adjacent verticals underserved by current players",
+      "Consider partnership/integration approach vs. direct competition"
+    ]
+  }
+}

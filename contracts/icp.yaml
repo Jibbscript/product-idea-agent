@@ -1,0 +1,73 @@
+# Artifact Contract: icp.yaml
+
+# Purpose: Defines ideal customer profile (ICP) with demographic,
+# firmographic, and psychographic details.
+
+# Producer: problem-segment skill
+# Consumers: market-sizing, pricing-wtp, solution-wedge, gtm-channels
+
+# Schema Definition:
+# ---
+icp:
+  version: "1.0"
+
+  primary_segment:
+    name: "[Segment Name]"
+    description: "[2-3 sentence description]"
+
+    demographics:
+      age_range: "[range, e.g., 25-45]"
+      gender: "[distribution, e.g., 60% male, 40% female]"
+      location: "[geographic scope, e.g., US urban areas]"
+      income_level: "[range, e.g., $75K-$150K household]"
+
+    firmographics:  # For B2B, omit for B2C
+      company_size: "[employee range, e.g., 50-500]"
+      industry: "[industry/vertical]"
+      role_titles:
+        - "[title 1]"
+        - "[title 2]"
+      tech_stack: "[relevant technologies]"
+
+    psychographics:
+      goals:
+        - "[goal 1]"
+        - "[goal 2]"
+      frustrations:
+        - "[frustration 1]"
+        - "[frustration 2]"
+      values:
+        - "[value 1]"
+
+    behaviors:
+      information_sources:
+        - "[source 1, e.g., Reddit, LinkedIn]"
+      purchase_triggers:
+        - "[trigger 1]"
+      objections:
+        - "[objection 1]"
+
+  problem_severity: 8  # 1-10 scale
+  problem_evidence: "[citation or quote supporting severity score]"
+
+  secondary_segments:
+    - name: "[Segment 2]"
+      priority: 2
+      description: "[brief description]"
+
+# Field Requirements:
+# - primary_segment.name: Required, max 50 chars
+# - primary_segment.description: Required, 2-3 sentences
+# - demographics: Required for B2C, optional for B2B
+# - firmographics: Required for B2B, omit for B2C
+# - psychographics: Required, at least 2 goals and 2 frustrations
+# - behaviors: Required, at least 1 item per category
+# - problem_severity: Required, integer 1-10
+# - problem_evidence: Required, include source citation
+# - secondary_segments: Optional, max 3
+
+# Validation Rules:
+# 1. problem_severity must be justified by problem_evidence
+# 2. At least 2 goals and 2 frustrations required
+# 3. Information sources should be specific and reachable
+# 4. Role titles should use standard industry terminology
