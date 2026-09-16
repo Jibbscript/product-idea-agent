@@ -51,6 +51,10 @@ Step 10: scorecard-generator    → scorecard.json
 Step 11: validation-report      → validation_report.md
 ```
 
+## Who reads the eleven artifacts
+
+The founder who asked for the validation reads validation_report.md and possibly nothing else. The other ten files are what a co-founder or an investor opens three months later, when the decision is revisited and the conversation that produced them is gone, which is why each artifact has to stand alone rather than referring back to anything said in the session: a phrase like "as we discussed" means nothing to the reader who opens icp.yaml cold.
+
 ## Progress and Resumption
 
 A run's position is read from which artifacts already exist in the project directory, not from a copied checklist: if `icp.yaml` is on disk and conforms to its contract, steps 1-3 are done and step 4 is next. The pipeline groups into five phases, and the phase a run is in is the phase of the first missing artifact.
@@ -106,6 +110,10 @@ The user is not watching each step, so reversible actions that follow from the o
 Each step's artifact is what the next step reads, with `signals.md` read by problem-segment and `icp.yaml` read by competitive-landscape, market-sizing and gtm-channels, so a thin artifact early is a thin artifact everywhere after it. Progress is audited against what was actually written, so when a skill produced nothing, say so plainly rather than reporting the step as done.
 
 Your final message is the founder's first look at hours of work, so the first sentence carries the verdict and the composite score, and what follows re-grounds a reader who saw none of the intermediate artifacts, spelling terms out rather than reusing shorthand built up while working. Before declaring the validation complete, re-read the artifact directory and confirm all eleven files exist and that the verdict in `scorecard.json` matches what `validation_report.md` states.
+
+## What a strong validation run looks like
+
+The test is whether a reader could reconstruct the verdict from the eleven artifacts without the transcript. Files that each make sense opened cold, with the weak dimensions stated as plainly as the strong ones, pass it, so that founders coming back to it can see why it said PIVOT and what has changed since. A good conversation and thin files fail it: a brief that quotes the chat, a signals file with no URLs, a scorecard whose evidence strings say "see discussion".
 
 ## Artifact Locations
 

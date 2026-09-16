@@ -14,7 +14,7 @@ Calculates multi-dimensional validation scores and generates opportunity scoreca
 
 ## Outcome
 
-`scorecard.json` carries seven dimension scores, each with the evidence that produced it, combined by fixed weights into a 0-100 composite, a revenue-potential band, and a GO / PIVOT / NO-GO recommendation with rationale and next steps. A finished scorecard is auditable: a reader can open any prior artifact, find the number the score cites, and see why it landed where it did.
+`scorecard.json` carries seven dimension scores, each with the evidence that produced it, combined by fixed weights into a 0-100 composite, a revenue-potential band, and a GO / PIVOT / NO-GO recommendation with rationale and next steps.
 
 ## Inputs Required
 
@@ -28,6 +28,12 @@ Calculates multi-dimensional validation scores and generates opportunity scoreca
   - `mvp_spec.md`
   - `gtm_plan.md`
   - `risks.md`
+
+## Who reads scorecard.json
+
+validation-report lifts the verdict into the first line of the report and the dimension table into its section 7, and idea-validation-orchestrator reports the composite as the outcome of the whole run. For most readers the composite number is the validation, since the founder reads the verdict and the investor reads the table, and few of either open the nine artifacts behind them.
+
+The evidence string on each dimension therefore matters more than the digit next to it, because an evidence string that does not name the artifact and the figure it came from leaves the verdict unfalsifiable, and a verdict nobody can argue with is a verdict nobody trusts.
 
 ## What scorecard.json Must Cover
 
@@ -166,6 +172,10 @@ Revenue potential reads market_size.md and pricing.yaml directly and does not wa
 ## Constraints
 
 Every dimension score cites the artifact and the specific figure or line that supports it. The composite is computed from the stated weights with the arithmetic shown, so a reader can recompute it. A dimension with no evidence in any artifact is recorded as unscored with the reason, rather than given a middling default that would quietly distort the composite. The revenue band and the recommendation each carry a rationale in terms of the evidence. Next steps are concrete enough to act on this week. The finished `scorecard.json` conforms to `contracts/scorecard.json`.
+
+## What a strong scorecard.json looks like
+
+Each dimension score has to stand or fall on its own, so a reader can disagree with one of them without rejecting the whole scorecard. That takes an evidence string per dimension that points back at the artifact and the figure it came from ("Market Size 6: SAM $45M per market_size.md bottom-up estimate, confidence medium"), so that a founder who thinks the SAM is wrong knows which file to reopen and what a corrected score would do to the composite. Seven numbers, a composite and a verdict, with evidence strings that restate the scale ("moderate competition"), fall short, since there is nothing in them to disagree with. The composite is shown with its arithmetic because a 64 has to be checkable as a 64 and not a rounding that crossed the GO threshold.
 
 ## Output Format
 

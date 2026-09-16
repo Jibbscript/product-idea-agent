@@ -69,6 +69,10 @@ What the artifact is and what a finished one looks like.
 - What artifacts or information needed
 - Optional inputs
 
+## Who reads <artifact>
+
+Which downstream skills open this file, what each decides with it, and what vagueness here costs them.
+
 ## What <artifact> Must Cover
 
 ### <Domain Area>
@@ -86,6 +90,10 @@ Which parts depend on which, what is independent, and what counts as enough.
 ## Constraints
 
 The requirements the finished artifact must satisfy.
+
+## What a strong <artifact> looks like
+
+The quality bar in this skill's own terms: what a strong artifact does that a weak one does not.
 
 ## Output Format
 
@@ -121,7 +129,7 @@ The Working passage is written in each skill's own vocabulary (its artifact, col
 
 #### Instructions
 - Keep SKILL.md under 500 lines
-- Behavioral sections (Outcome, How to Work, Constraints) state the outcome and its constraints in prose, with the reason beside each requirement
+- Behavioral sections (Outcome, Who reads <artifact>, How to Work, Constraints, What a strong <artifact> looks like) state the outcome and its constraints in prose, with the reason beside each requirement
 - Reference data (scoring scales, field lists, query templates, tables) stays structured as lists and tables
 - Include concrete examples
 - Document edge cases

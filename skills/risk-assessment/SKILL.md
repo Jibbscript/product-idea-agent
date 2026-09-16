@@ -14,12 +14,18 @@ Identifies risks, constraints, dependencies, and mitigation strategies.
 
 ## Outcome
 
-`risks.md` holds every material risk to the idea, scored on severity and likelihood, with the critical ones worked through to a mitigation and a contingency, plus the assumptions that must hold, the constraints the team operates under, and the external dependencies that could fail. A finished assessment reads the eight artifacts before it and turns each one's weak spots into named risks.
+`risks.md` holds every material risk to the idea, scored on severity and likelihood, with the critical ones worked through to a mitigation and a contingency, plus the assumptions that must hold, the constraints the team operates under, and the external dependencies that could fail. A finished assessment is built from the eight artifacts before it.
 
 ## Inputs Required
 
 - All prior artifacts (aggregated context)
 - Particularly: `mvp_spec.md`, `gtm_plan.md`, `competitors.csv`
+
+## Who reads risks.md
+
+scorecard-generator counts the risks scoring 15 or above and reads the technical picture, alongside mvp_spec.md, into its Execution Difficulty dimension; validation-report carries the critical risks into its Risks & Mitigations section, which is where an investor scanning for the deal-breaker goes first. Neither re-derives a score.
+
+In that count, a risk named "competition" weighs the same as one naming a specific incumbent with a specific timeline, and the second is worth ten times as much, since the count feeds the composite either way but only the specific one gives the founder something to de-risk and the investor something to weigh. The specificity is the work.
 
 ## What risks.md Must Cover
 
@@ -118,6 +124,10 @@ Assumptions, constraints, and dependencies are gathered alongside the category s
 
 Every one of the five categories is covered or explicitly recorded as not applicable with the reason. Every risk carries both a severity and a likelihood on the stated 1-5 scales, and the risk matrix table shows their product. Every critical risk (score of 15 or more) carries a mitigation and a contingency. Must-be-true assumptions each name a validation method. Dependencies each state what breaks if they fail. The finished `risks.md` conforms to `contracts/risks.md`.
 
+## What a strong risks.md looks like
+
+The top three rows are the whole document for most of its readers, so they have to be actionable before anyone reaches the matrix. What separates a strong assessment from a weak assessment is not the matrix but the wording of each row: named concretely enough to carry an owner and an early-warning indicator, with the observation that would make the risk real spelled out ("if the two pilot customers have not signed by Day 60, the demand assumption is wrong"), rather than the five category headings listed back as the risks and scored 3 and 3 apiece. A register where everything is critical fails as well, because it ranks nothing.
+
 ## Output Format
 
 Create `risks.md` following the artifact contract in `contracts/risks.md`.
@@ -131,7 +141,7 @@ Required sections:
 
 ## Working the Risk Register
 
-Regulatory research, third-party dependency checks and competitor-response scenarios are independent investigations, so run them as parallel sub-agents. Detail is proportional to score, so risks at 15 or above earn a full mitigation and contingency, while cataloguing every low-score risk at the same length buries the ones that matter. Likelihood scores are judgments and should read as judgments, so a regulatory requirement confirmed by a named rule cites that rule while a risk resting on a market belief is marked as an assumption.
+Regulatory research, third-party dependency checks and competitor-response scenarios are independent investigations, so run them as parallel sub-agents. Detail is proportional to score, so cataloguing every low-score risk at the same length buries the ones that matter. Likelihood scores are judgments and should read as judgments, so a regulatory requirement confirmed by a named rule cites that rule while a risk resting on a market belief is marked as an assumption.
 
 The risk that matters is usually the one absent from the category list, so ask what would change the verdict if it landed next quarter and write down the second-order consequence rather than the first. `risks.md` is consumed by scorecard-generator, which counts critical risks into Execution Difficulty, and by validation-report's risk section, so a risk softened here softens the final recommendation too, and an assessment that finds nothing is a finding to be suspicious of. Lead with the risk that could end this, not with the matrix.
 

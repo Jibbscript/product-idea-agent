@@ -14,13 +14,19 @@ Researches pricing models, competitor benchmarks, and customer willingness-to-pa
 
 ## Outcome
 
-A finished `pricing.yaml` recommends a pricing model and value ladder for this product, backed by what competitors charge, what adjacent markets charge, what the product is worth to the customer, and what customers have said they will pay, and ends in unit economics (ARPC, CAC, LTV:CAC, payback). Every price in it traces to a benchmark, a quote, or a stated value assumption.
+A finished `pricing.yaml` recommends a pricing model and value ladder for this product, backed by what competitors charge, what adjacent markets charge, what the product is worth to the customer, and what customers have said they will pay, and ends in unit economics (ARPC, CAC, LTV:CAC, payback).
 
 ## Inputs Required
 
 - `idea_brief.md` (from idea-brief-creator)
 - `competitors.csv` (from competitive-landscape) - for pricing benchmarks
 - `icp.yaml` (from problem-segment) - for buyer context
+
+## Who reads pricing.yaml
+
+scorecard-generator pulls the LTV:CAC ratio and the unit economics into its GTM Viability dimension, and validation-report presents the value ladder as the revenue story in its Business Model section. No skill between here and the report re-benchmarks a price, and the first price a founder quotes on a sales call is whatever the value ladder said, as relayed through that section.
+
+The LTV:CAC an investor eventually sees is this file's arithmetic carried through scorecard.json, so a tier priced on feel becomes, two artifacts later, a revenue projection nobody can trace back to a benchmark or a value calculation.
 
 ## What pricing.yaml Must Cover
 
@@ -72,6 +78,12 @@ Competitor pricing, adjacent-market pricing, and willingness-to-pay evidence are
 ## Constraints
 
 Competitor prices carry the URL and the date observed, because pricing pages change without notice. The value figure states the assumption it rests on. Every ladder tier names its price, its buyer, and what it excludes. At least two competitor benchmarks and two willingness-to-pay sources are cited. The recommendation names a pricing model from the options table below and gives its rationale in terms of the evidence gathered. The finished `pricing.yaml` conforms to `contracts/pricing.yaml`.
+
+## What a strong pricing.yaml looks like
+
+The test is whether a reader can see why Pro costs what it costs. A strong pricing file ties each tier to either a named competitor benchmark or a stated value calculation, and says which one it used; a weak one lists round numbers that feel right and a 3:1 LTV:CAC that was chosen rather than computed. The difference shows in the recommendation: "Pro at $79 because Competitor A charges $99 for a comparable tier and the ROI estimate supports 15% of $6,000 in annual value" can be argued with, while "Pro at $79" cannot.
+
+The value ladder has to survive being summarised in one paragraph of validation_report.md and one number in scorecard.json, because that compressed form is all founders ever see of it.
 
 ## Output Format
 

@@ -21,6 +21,12 @@ A finished `icp.yaml` names one primary customer segment, chosen on evidence fro
 - `idea_brief.md` (from idea-brief-creator)
 - `signals.md` (optional, enhances analysis)
 
+## Who reads icp.yaml
+
+Four skills take this file as input and none of them re-interviews a customer. market-sizing turns the segment definition into the percentages of its SAM formula; pricing-wtp reads the buyer context to decide who signs the cheque and which budget line it comes from; solution-wedge ranks jobs-to-be-done against the frustrations recorded here; and gtm-channels reads the information-sources field almost literally, treating each named blog, podcast and community as a candidate channel.
+
+A segment defined loosely makes the SAM arithmetic meaningless two artifacts later, because a percentage is only a percentage of something you can name: "30% of small businesses" is not a number, "30% of US logistics firms with 50-200 employees" is.
+
 ## What icp.yaml Must Cover
 
 ### Candidate Segments
@@ -106,6 +112,12 @@ Characteristics, psychographics, and behaviors are three independent research pa
 ## Constraints
 
 Three to five candidate segments are compared before one is chosen. Severity is scored with cited evidence rather than asserted from intuition. The primary segment is named in the file with the runners-up kept as secondary segments (up to three) so a later pivot has somewhere to go. Demographics or firmographics are filled according to whether the buyer is a person or a company; when that is unclear, both are sketched and the ambiguity is noted. The finished `icp.yaml` conforms to `contracts/icp.yaml`.
+
+## What a strong icp.yaml looks like
+
+A salesperson handed this profile should know which list to buy and which title to call first. Every field in a strong profile is specific enough to be falsified with one interview, so the founder can tell within five conversations whether the segment was wrong; a weak profile describes a demographic nobody could look up ("tech-savvy professionals who value efficiency") and survives every interview unchanged, which is the failure rather than the success.
+
+Read through validation_report.md, the profile is where investors see whether the founder knows the customer by name or only by category.
 
 ## Output Format
 

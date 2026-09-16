@@ -33,7 +33,7 @@ Each has its own `AGENTS.md`.
 ### Working In This Directory
 - Directory name, frontmatter `name`, and the skill's self-references must all match. Renaming a skill means updating the orchestrator's step list, `README.md`, `docs/USAGE.md`, and any contract that names it as producer or consumer.
 - Adding a skill: copy the section structure from `docs/CONTRIBUTING.md`, add a contract under `contracts/` if it emits a new artifact, and wire it into `idea-validation-orchestrator/SKILL.md`.
-- `SKILL.md` hard limit is 500 lines. Current files run 101–294 lines. Push detail down into `references/`.
+- `SKILL.md` hard limit is 500 lines. Current files run 120–313 lines. Push detail down into `references/`.
 - The `description` field is what triggers the skill. It must state both what the skill does and when to use it, in third person.
 - Do not add `scripts/` or `assets/` dirs unless a skill actually needs deterministic code; none do today.
 
@@ -42,7 +42,7 @@ Each has its own `AGENTS.md`.
 - Check the `allowed-tools` line still covers every tool the coverage and How to Work sections rely on.
 
 ### Common Patterns
-- Section order in every `SKILL.md`: Outcome → Inputs Required → What <artifact> Must Cover → How to Work → Constraints → Output Format → Working <domain> → Edge Cases → References. `idea-validation-orchestrator` documents the pipeline instead and keeps its own section order.
+- Section order in every `SKILL.md`: Outcome → Inputs Required → Who reads <artifact> → What <artifact> Must Cover → How to Work → Constraints → What a strong <artifact> looks like → Output Format → Working <domain> → Edge Cases → References. `idea-validation-orchestrator` documents the pipeline instead and keeps its own section order.
 - Edge Cases always covers missing data, conflicting data, and the "too much / too little" case for that skill's domain.
 - Outputs carry a confidence level and cite sources by URL. Research skills flag anything unverifiable as low confidence rather than dropping it. The sourced / estimated / unverified marking introduced in each skill's Working section is the same discipline applied per figure rather than per artifact.
 - Scores in artifacts use fixed scales: 1–10 for signal and dimension scores, 1–5 × 1–5 for risk severity × likelihood.

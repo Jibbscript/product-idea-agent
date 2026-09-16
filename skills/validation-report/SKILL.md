@@ -21,6 +21,12 @@ Generates comprehensive validation reports synthesizing all research and analysi
 - All prior artifacts
 - `scorecard.json` (from scorecard-generator) - required
 
+## Who reads validation_report.md
+
+Unlike every other artifact in the pack, this one is not consumed by another skill. It is read by a founder deciding whether to spend the next quarter on this idea, or by an investor deciding whether to take the meeting, and by nobody else in the pipeline. Both readers open it the same way: the first page gets read, the rest gets skimmed for the one number or risk that would change the decision, and the appendix gets opened only if they are already interested.
+
+That reading pattern is the reason the verdict belongs above the evidence rather than after it. A report that builds to its conclusion the way an essay does has, for this audience, buried the only line they came for.
+
 ## What validation_report.md Must Cover
 
 ### Evidence From All Artifacts
@@ -131,6 +137,12 @@ Only the executive summary depends on all eight main sections, so it is written 
 ## Constraints
 
 The verdict and composite score appear in the executive summary and in the header, not only at the end. Every figure and claim in the report traces to a named artifact. Sections with thin underlying evidence say so instead of padding, since a reader who discovers the gap later trusts nothing else in the report. Borderline verdicts are called borderline, with the deciding factors named. The finished `validation_report.md` follows the structure shown under Output Format.
+
+## What a strong validation_report.md looks like
+
+The test this report has to pass is a five-minute read by someone who has seen none of the eleven artifacts. A strong report puts the verdict and the one number that drove it in its first three lines and lets the reader close the file there with the decision in hand; every claim in the executive summary can be traced to a named artifact, so that a reader who doubts the market figure knows to open market_size.md rather than distrust the whole document. A weak report opens with methodology, restates each artifact in order, and makes the reader hunt for the answer, which in a five-minute read is the same as not answering.
+
+The close call is where the two diverge most. A borderline verdict stated as borderline, with the deciding factor named, reads as more credible than a confident GO that the dimension table quietly contradicts, because the reader can see the table.
 
 ## Output Format
 

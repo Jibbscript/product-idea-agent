@@ -14,7 +14,7 @@ Identifies acquisition channels, growth strategies, and launch plans.
 
 ## Outcome
 
-`gtm_plan.md` is a plan for reaching the ICP that names one primary channel, ranks the supporting ones, estimates what a customer costs to acquire through each, and lays out a launch sequence with 90-day milestones. The most common weakness is a plan that lists five channels as equals; the useful plan commits.
+`gtm_plan.md` is a plan for reaching the ICP that names one primary channel, ranks the supporting ones, estimates what a customer costs to acquire through each, and lays out a launch sequence with 90-day milestones.
 
 ## Inputs Required
 
@@ -22,6 +22,12 @@ Identifies acquisition channels, growth strategies, and launch plans.
 - `icp.yaml` (from problem-segment) - where customers are
 - `market_size.md` (from market-sizing) - for scale planning
 - `mvp_spec.md` (from solution-wedge) - for positioning
+
+## Who reads gtm_plan.md
+
+risk-assessment reads this plan for the go-to-market risks (a single channel, a CAC that only works at scale, a launch that depends on one partner); scorecard-generator turns the channel shortlist into its GTM Viability dimension at 15% of the composite; and validation-report carries the launch strategy into its Go-to-Market section. This plan reaches whoever is being asked for money only through validation_report.md and through GTM Viability in scorecard.json; what they see is whether a founder knows where to start on Monday.
+
+That is why a plan listing eight channels scores no better than one listing three: the dimension measures whether the first move has been chosen, so the eight-channel version reads as a plan not yet made.
 
 ## What gtm_plan.md Must Cover
 
@@ -134,6 +140,12 @@ Customer presence determines which channels are even candidates, so it is mapped
 ## Constraints
 
 The plan names one primary channel rather than ranking five equally. Every CAC figure is labelled sourced, estimated, or unverified and carries its source when it has one. The 90-day milestones are dated and measurable. The channel table covers 3-5 channels and the top 2-3 get a deep dive, matching the sections the contract expects. The finished `gtm_plan.md` conforms to `contracts/gtm_plan.md`.
+
+## What a strong gtm_plan.md looks like
+
+This plan earns its name when a founder can start the first channel this week on the budget they actually have. A strong plan names three channels, gives a CAC estimate for each with the benchmark it came from, and says why the ICP is there (the subreddit, the conference, the newsletter, by name), with the first channel marked as first and the Day 30 number that would show it working. A weak plan gives CAC as "varies", which means a reader can only guess what happens on Monday, and so could the founder.
+
+The launch sequence weighs most with investors, since a launch with a waitlist number and a date is a commitment and one without is a hope.
 
 ## Output Format
 

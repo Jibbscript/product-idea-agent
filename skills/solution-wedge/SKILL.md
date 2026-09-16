@@ -22,6 +22,12 @@ Defines MVP scope, technical approach, and differentiation strategy.
 - `competitors.csv` (from competitive-landscape) - for gap identification
 - `icp.yaml` (from problem-segment) - for prioritization
 
+## Who reads mvp_spec.md
+
+gtm-channels lifts the positioning statement out of this file into its messaging and reads the platform choice to know which surface the launch lands on; risk-assessment reads the technical approach and the build-versus-buy decisions to find the technical risks; and validation-report describes the product from this file alone, without going back to the brief. None of them fills in a gap this spec leaves open.
+
+That is why a platform choice left as "web or mobile, to be decided" reappears two skills later as an Execution Difficulty that scorecard-generator cannot score: risk-assessment has no stack to assess, so the dimension gets a guess.
+
 ## What mvp_spec.md Must Cover
 
 ### User Jobs
@@ -101,6 +107,12 @@ User jobs bound the scope, so they come first. Technical approach, the wedge, an
 ## Constraints
 
 The wedge is one sentence in the positioning format above. Everything cut from v1 is listed under Won't Have rather than omitted silently, so the reader knows it was considered. Every P0 feature ties back to a named user job. Success criteria are numeric and time-boxed. The finished `mvp_spec.md` conforms to `contracts/mvp_spec.md`.
+
+## What a strong mvp_spec.md looks like
+
+The test is whether an engineer could estimate a first sprint from it and a marketer could write a landing page from it, using the same document, without either asking a question the other would answer differently. A strong spec passes because the P0 list is short enough to ship and the Won't Have list is as specific as the P0 list; an unstated exclusion is the scope that creeps back in during the first sprint, since nobody can point to the line that ruled it out. A weak spec lists features, never says what is deliberately out, and describes the platform as a menu.
+
+The Won't Have list is the clearest evidence a reader gets that the founder knows what the product is, and it is the founder who has to live with the cut.
 
 ## Output Format
 
