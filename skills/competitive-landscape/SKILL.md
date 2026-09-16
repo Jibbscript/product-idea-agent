@@ -30,7 +30,7 @@ That trust is the reason a blank cell is never neutral. A blank price column rea
 ## What competitors.csv Must Cover
 
 ### Direct Competitors
-The companies a buyer would compare against this product in a purchasing decision: they solve the same core problem and target the same customer segment. The searches that surface them are "[problem] software", "[solution type] tool", and "[competitor name] alternatives", alongside listings on Product Hunt, G2, and Capterra. Three to five is the useful range; beyond that the profiles get thin and the intensity judgment gets no sharper.
+The companies a buyer would compare against this product in a purchasing decision: they solve the same core problem and target the same customer segment. The searches that surface them are "[problem] software", "[solution type] tool", and "[competitor name] alternatives", alongside listings on Product Hunt, G2, and Capterra. One search in that pass goes to funded startups in the space the idea brief's solution hypothesis actually describes, which after a corrected assumption can differ from the space the original pitch named, because the most direct competitor is often a company a year or two old that ranks for none of the generic queries and has no G2 page yet, and a landscape that misses it labels adjacent players direct and asserts a gap the startup already fills. Three to five is the useful range; beyond that the profiles get thin and the intensity judgment gets no sharper.
 
 ### Indirect Alternatives
 The adjacent solutions customers reach for today when no direct competitor fits: a different approach to the same problem, broader tools with relevant features, professional services alternatives, and DIY/manual approaches. The status quo is often the real competitor, which is why spreadsheets and consultants belong here as rows and not as footnotes.
@@ -125,6 +125,8 @@ The deliverable is `competitors.csv`; choosing the positioning response to these
 "best [category] tools"
 "[competitor] alternatives"
 "[competitor] vs"
+"[problem] startup raises"
+"site:techcrunch.com [category]"
 ```
 
 ### Review Sites
