@@ -20,7 +20,6 @@ Human-facing guides for installing, using, extending, and securing the skill pac
 ### Working In This Directory
 - `CONTRIBUTING.md` holds the authoritative `SKILL.md` template. Keep it in sync with what the 12 skills actually look like; if you change section order in the skills, change it here.
 - `USAGE.md` restates each skill's trigger phrases and outputs. Renaming a skill or artifact means editing it.
-- `INSTALLATION.md` has a placeholder clone URL (`your-org`). Replace it when the repo has a public home.
 - These are plain markdown, no build step, no link checker.
 
 ### Testing Requirements

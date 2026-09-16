@@ -14,7 +14,7 @@ Copy all skills to your Claude Code skills directory:
 
 ```bash
 # Clone or download this repository
-git clone https://github.com/your-org/product-idea-agent.git
+git clone https://github.com/Jibbscript/product-idea-agent.git
 cd product-idea-agent
 
 # Copy all skills to Claude Code
