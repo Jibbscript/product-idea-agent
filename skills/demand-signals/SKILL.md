@@ -21,6 +21,12 @@ Analyzes search trends, community discussions, and market interest indicators to
 - `idea_brief.md` in the project artifacts directory
 - OR direct description of the product idea
 
+## Who reads signals.md
+
+scorecard-generator reads the 1-10 signal score straight into its Demand Signals dimension, which carries 15% of the composite; market-sizing reads the trend direction as a check on whether the TAM it finds elsewhere is growing or shrinking; and validation-report quotes the user quotes verbatim in its Customer Evidence section. None of the three re-runs a search.
+
+That matters because a score with no URL behind it moves a GO/NO-GO verdict by exactly as much as a sourced one. An unsourced 8 is worse than an honest 4, since the 4 tells founders where the demand is thin and the 8 tells them nothing they can act on.
+
 ## What signals.md Must Cover
 
 ### Keywords
@@ -56,6 +62,12 @@ Keyword extraction feeds every search, so it comes first. The trends, community,
 
 Every quote carries a source URL and a date. Every trend figure names the tool or query it came from. The signal score uses the stated 1-10 scale and is justified by the evidence above it rather than by general impressions of the market. Where a platform or query returns nothing, the file records that as insufficient data with low confidence instead of omitting the row, because an empty result is itself a signal about where demand is not. The finished `signals.md` conforms to `contracts/signals.md`.
 
+## What a strong signals.md looks like
+
+The bar for this file is that a reader can paste one of these searches and land on the same thread it quoted. What passes it is the provenance sitting next to each figure: the link and the date it was pulled beside every volume number, the subreddit and its post count in place of "active communities", and real users quoted in their own words with a link to the comment. "Strong interest" with no number, no source and no recency fails it, which means the score has to be taken on the researcher's word.
+
+Recency is part of the bar: a 2019 thread with 400 upvotes says less about demand today than a 2024 thread with 40, so the date sits next to every count.
+
 ## Output Format
 
 Create `signals.md` following the artifact contract in `contracts/signals.md`.
@@ -72,7 +84,7 @@ Required sections:
 
 Keyword-volume lookups, Reddit threads, YouTube comments, Facebook Groups and Product Hunt launches are independent searches, so fan them out to sub-agents running in parallel and reconcile what they return into one trends table rather than walking the platforms one after another. Three subreddits repeating the same complaint is enough evidence for the community section and a fourth is diminishing returns, so the remaining search budget goes to the keywords whose trend direction is still ambiguous. Every volume figure in `signals.md` carries its provenance: sourced when a page states it, estimated when derived from a proxy keyword, unverified when only a forum post claims it, and a keyword whose volume could not be confirmed says so in its row instead of being rounded into a confident number.
 
-The interesting finding is usually the non-obvious one, such as the adjacent community that turns out to hold the real buyer or the long-tail term growing while the category term stays flat, so a search that only confirms the founder's framing has not finished. `signals.md` is read by problem-segment when it ranks segments and by scorecard-generator, which lifts the 1-10 signal score straight into its Demand Signals dimension, so an unlabeled guess here propagates into the composite and a score without traceable evidence is worth less than a lower score with sources. Lead with the demand verdict in the summary, whether real and growing demand showed up, ahead of the keyword tables that support it.
+The interesting finding is usually the non-obvious one, such as the adjacent community that turns out to hold the real buyer or the long-tail term growing while the category term stays flat, so a search that only confirms the founder's framing has not finished. `signals.md` is read by problem-segment when it ranks segments and by scorecard-generator, which lifts the 1-10 signal score straight into its Demand Signals dimension, so an unlabeled guess here propagates into the composite. Lead with the demand verdict in the summary, whether real and growing demand showed up, ahead of the keyword tables that support it.
 
 The deliverable is `signals.md` and its sources; competitor feature teardowns and market sizing belong to later skills, so report the signals and stop there. Before you finish, re-read each key quote against its URL and confirm it says what the summary claims it says.
 

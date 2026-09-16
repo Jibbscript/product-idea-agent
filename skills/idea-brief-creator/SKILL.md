@@ -21,6 +21,12 @@ A finished `idea_brief.md` states in plain language what the product does, who i
 - Raw idea description (text, conversation, or notes)
 - Optional: target market hints, problem observations, existing research
 
+## Who reads idea_brief.md
+
+Three skills open this file before any human does. demand-signals mines the problem statement for the five to ten phrases it will search, so the words chosen here are the words that get typed into forums and search-trend tools. problem-segment splits the target-customer hypothesis into segments and can only split what has been named. competitive-landscape turns the solution hypothesis into competitor search terms, and every later artifact inherits whatever this brief asserts about who the customer is and what they suffer from.
+
+Because of that inheritance, vagueness here is not neutral. A customer described as "small businesses" hands demand-signals a keyword that returns nothing usable and hands problem-segment a segment it cannot narrow, which means the guess propagates through ten artifacts rather than getting corrected at the first one.
+
 ## What idea_brief.md Must Cover
 
 ### Core Concept
@@ -56,6 +62,12 @@ The pitch and the problem statement are both rewrites of the core concept, so ne
 ## Constraints
 
 All seven elements above appear in the brief, since each one is an input a later skill reads by name. The pitch is one sentence. Every assumption is stated so that evidence could prove it false. Every metric is measurable rather than aspirational. Where the input leaves a section unknown, the section says so explicitly instead of filling the gap with a plausible guess, because everything in the brief is a hypothesis to be tested downstream and an honest unknown is more useful than a confident guess. The finished `idea_brief.md` conforms to `contracts/idea_brief.md`.
+
+## What a strong idea_brief.md looks like
+
+The test this brief has to pass is whether a founder could repeat it out loud to a stranger and be understood: one named customer doing one nameable job, with a pain the stranger could picture. A strong brief survives that reading because each field is concrete enough to be wrong. A weak brief pairs an abstract audience with an abstract benefit ("helps teams collaborate better") and reads the same for any product in the category, so the artifacts built on it have nothing to test against.
+
+The Key Assumptions carry the same standard: each one is written so that a reader should be able to name the evidence that would falsify it. "Customers want this" fails the test; "operations managers at 50-200 person logistics firms will pay for automated audit scheduling" can be checked in five interviews. Through validation_report.md, whose opening sections restate its pitch and problem statement, the brief reads as the promise the rest of the report either kept or broke.
 
 ## Output Format
 

@@ -22,6 +22,12 @@ A finished `market_size.md` gives a TAM, SAM, and SOM for a precisely bounded ma
 - `icp.yaml` (from problem-segment) - critical for SAM calculation
 - `competitors.csv` (optional, helps validate estimates)
 
+## Who reads market_size.md
+
+gtm-channels reads the SAM to scale its channel plan, scorecard-generator maps the TAM and SAM onto the $10B and $1B bands of its Market Size dimension at 15% of the composite, and validation-report carries the figure into the section an investor turns to first. None of the three re-derives the number; they take it as given.
+
+What makes the figure usable is the method behind it. An investor discounts a TAM they cannot reconstruct, and a founder who cannot defend the multiplication in a meeting loses the room on the second question, so the arithmetic is the deliverable and the dollar figure is a by-product of it.
+
 ## What market_size.md Must Cover
 
 ### Market Boundaries
@@ -90,6 +96,12 @@ That chain fixes how the figures derive from each other, not how any one of them
 ## Constraints
 
 Every figure names its source or is labelled an estimate with the assumption that produced it. SAM is derived from TAM under the ICP constraints, and SOM from SAM under stated capture assumptions, so that SAM ≤ TAM and SOM ≤ SAM hold by construction. CAGR is stated with its period and its source. At least two credible independent sources are cited, and when they conflict both figures are reported with the conservative one carried forward. The finished `market_size.md` conforms to `contracts/market_size.md`.
+
+## What a strong market_size.md looks like
+
+Any step in the chain accepts a reader's own percentage and hands back their own number. A strong estimate does that by showing the multiplication line by line, from the industry figure through each ICP constraint to the SAM, with the bottom-up count beside it even when the two disagree, because the disagreement is where the uncertainty actually lives. "$4.2B TAM" behind one link and no method fails, which means nobody downstream can tell whether the link said $4.2B or whether $4.2B is what was left after an unstated haircut.
+
+When the top-down and bottom-up figures differ by more than 2x, the gap is the finding: report both, state which one the SAM uses, and name what would have to be true for the other to be right.
 
 ## Output Format
 

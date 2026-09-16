@@ -21,6 +21,12 @@ A finished `competitors.csv` names three to five direct competitors and two to t
 - `idea_brief.md` (from idea-brief-creator)
 - Target market/segment context
 
+## Who reads competitors.csv
+
+pricing-wtp reads price_low and price_high as the floor and ceiling of its benchmark range; solution-wedge mines the weaknesses column for the gap to wedge into; market-sizing cross-checks its TAM against competitor revenue and customer counts; and scorecard-generator inverts threat_level into its Competitive Intensity dimension. Each of them trusts the column it reads.
+
+That trust is the reason a blank cell is never neutral. A blank price column reaches an investor only through validation_report.md, by which point it has become a pricing recommendation with nothing under it; a weaknesses column that says "limited features" gives solution-wedge no gap to name.
+
 ## What competitors.csv Must Cover
 
 ### Direct Competitors
@@ -79,6 +85,12 @@ Each competitor profile is an independent research pass over one company, so pro
 ## Constraints
 
 Three to five direct competitors and two to three indirect alternatives appear as rows. Every profile field is populated or explicitly marked unknown, because a blank cell downstream reads as "not researched" while an unknown reads as "researched, not public". Pricing is recorded for every row that publishes it. Every row carries a threat_level on the 1-10 scale in the Threat Level Assessment table below. The finished `competitors.csv` conforms to `contracts/competitors.csv`.
+
+## What a strong competitors.csv looks like
+
+A positioning meeting is where this file gets used, and a founder has to be able to defend every row of it there. A strong landscape names, for each competitor, one weakness that a real customer complained about (with the review or thread it came from) rather than a weakness inferred from the feature list, and it separates direct from indirect so cleanly that a reader can tell which rows would appear on the same buyer's shortlist with no further explanation. Brand names with strengths that would fit any company in the category ("strong brand", "good UX"), beside a threat_level column filled in by feel, is the file that gets taken apart on its first row.
+
+Every row carries a URL, because the file is only as useful as the fastest way to check it, and a threat score with no page behind it is an opinion in a numeric column.
 
 ## Output Format
 
