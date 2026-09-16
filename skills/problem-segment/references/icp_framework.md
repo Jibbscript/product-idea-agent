@@ -171,7 +171,7 @@ icp:
       values:
         - "Developer experience matters"
         - "Automation over manual processes"
-        - "Open source when possible"
+        - "Open source"
 
     behaviors:
       information_sources:

@@ -60,7 +60,7 @@ Please produce the following deliverables:
 
 11. **Validation Report** (validation_report.md): Synthesize all findings into an executive report.
 
-Please be thorough and cite sources where possible.
+Cite a source for every number and every named company.
 """
 
 

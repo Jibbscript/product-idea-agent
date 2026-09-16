@@ -146,7 +146,7 @@ Calculate overall market competitiveness:
 
 ## Win/Loss Analysis Questions
 
-When possible, understand why customers choose competitors:
+Understand why customers choose competitors:
 
 ### Win Factors (Why We Win)
 - What made us stand out?
