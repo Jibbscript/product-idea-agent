@@ -12,77 +12,49 @@ allowed-tools: Read Write WebSearch WebFetch Grep
 
 Analyzes search trends, community discussions, and market interest indicators to validate demand for a product idea.
 
-## Quick Start
+## Outcome
 
-Given an idea brief, search for demand evidence:
-1. Extract 5-10 keywords from the idea
-2. Search Google Trends for interest patterns
-3. Search Reddit for pain point discussions
-4. Compile findings into `signals.md`
+`signals.md` is the evidence file that says whether real people are already searching for, complaining about, or paying to solve the problem in the idea brief. A finished one pairs a search-trend table with community evidence from the platforms where the target audience actually talks, quotes those people directly, and ends in a 1-10 signal score that the evidence above it visibly supports.
 
 ## Inputs Required
 
 - `idea_brief.md` in the project artifacts directory
 - OR direct description of the product idea
 
-## Step-by-Step Workflow
+## What signals.md Must Cover
 
-### Step 1: Extract Keywords
-Read the idea brief and identify:
-- Core problem keywords (3-5)
-- Solution keywords (2-3)
-- Audience keywords (2-3)
+### Keywords
+The vocabulary the research runs on, drawn from the idea brief: core problem keywords (3-5), solution keywords (2-3), and audience keywords (2-3). Problem keywords matter most because people search for their pain long before they search for a product category.
 
-### Step 2: Search Trends Research
-For each keyword:
-- Search "[keyword] Google Trends" or "[keyword] search volume"
-- Note monthly volume, trend direction, YoY change
-- Flag keywords with >50% YoY growth as strong signals
+### Search Trend Evidence
+For each keyword, the monthly volume, trend direction, and year-over-year change, gathered from "[keyword] Google Trends" or "[keyword] search volume" style queries. Keywords growing more than 50% year over year are strong signals and are called out as such; flat or declining interest is reported just as plainly, since a falling trend is a finding rather than a gap.
 
-### Step 3: Community Signal Mining
-Search Reddit and forums:
-- Query: "[problem] site:reddit.com"
-- Query: "[solution] frustration OR problem OR help"
-- Note: subreddit names, post counts, sentiment
+### Community Signals
+What Reddit and forums show when queried with "[problem] site:reddit.com" and "[solution] frustration OR problem OR help": subreddit names, post counts, and the sentiment of the discussion. Active communities with recurring complaints are the strongest form of demand evidence short of purchase data.
 
-### Step 4: Platform-Specific Research
-Check additional platforms relevant to the ICP:
-- YouTube: Search for tutorial/review content
-- Facebook Groups: Search for relevant communities
-- Twitter/X: Search for complaints and wishes
-- Product Hunt: Search for related products
+### Platform-Specific Evidence
+Whatever the platforms relevant to the ICP add beyond Reddit: tutorial and review content on YouTube, relevant Facebook Groups, complaints and wishes on Twitter/X, and related products on Product Hunt. Which platforms matter depends on where the audience lives, so a B2B developer tool and a consumer wellness app will draw on different mixes.
 
-### Step 5: Extract Key Quotes
-Find 3-5 direct quotes that demonstrate:
-- Pain point severity
-- Willingness to pay
-- Current workarounds
-- Frustration with alternatives
+### Representative Quotes
+Three to five direct quotes that demonstrate pain point severity, willingness to pay, current workarounds, or frustration with alternatives. Quotes are the evidence a later reader trusts most, which is why each carries its source URL and date.
 
-### Step 6: Calculate Signal Score
-Based on findings, score 1-10:
+### Signal Score
+A single 1-10 score with the scale applied as written:
 - 9-10: High volume, active communities, strong growth
 - 7-8: Good signals, engaged communities
 - 5-6: Moderate interest, niche communities
 - 3-4: Limited signals, small audiences
 - 1-2: No measurable demand
 
-### Step 7: Compile Findings
-Create `signals.md` using the artifact contract format.
+The score is a judgment on the evidence already gathered; the justification beside it points at the specific trend rows, communities, and quotes that produced it.
 
-## Workflow Checklist
+## How to Work
 
-Copy and track progress:
-```
-Demand Signals Progress:
-- [ ] Keywords extracted from idea brief
-- [ ] Google Trends data gathered
-- [ ] Reddit discussions found
-- [ ] Other platforms checked
-- [ ] Key quotes extracted
-- [ ] Signal strength scored
-- [ ] signals.md created
-```
+Keyword extraction feeds every search, so it comes first. The trends, community, and platform searches are independent of each other and their order does not matter. Quote collection happens naturally while reading community threads rather than as a separate pass. The score is the last thing written because it is a reading of everything above it, not a seventh search.
+
+## Constraints
+
+Every quote carries a source URL and a date. Every trend figure names the tool or query it came from. The signal score uses the stated 1-10 scale and is justified by the evidence above it rather than by general impressions of the market. Where a platform or query returns nothing, the file records that as insufficient data with low confidence instead of omitting the row, because an empty result is itself a signal about where demand is not. The finished `signals.md` conforms to `contracts/signals.md`.
 
 ## Output Format
 
@@ -100,7 +72,7 @@ Required sections:
 
 Keyword-volume lookups, Reddit threads, YouTube comments, Facebook Groups and Product Hunt launches are independent searches, so fan them out to sub-agents running in parallel and reconcile what they return into one trends table rather than walking the platforms one after another. Three subreddits repeating the same complaint is enough evidence for the community section and a fourth is diminishing returns, so the remaining search budget goes to the keywords whose trend direction is still ambiguous. Every volume figure in `signals.md` carries its provenance: sourced when a page states it, estimated when derived from a proxy keyword, unverified when only a forum post claims it, and a keyword whose volume could not be confirmed says so in its row instead of being rounded into a confident number.
 
-The interesting finding is usually the non-obvious one, such as the adjacent community that turns out to hold the real buyer or the long-tail term growing while the category term stays flat, so a search that only confirms the founder's framing has not finished. `signals.md` is read by problem-segment when it ranks segments and by scorecard-generator, which lifts the 1-10 signal score straight into its Demand Signals dimension, so an unlabeled guess here propagates into the composite. Lead with the demand verdict in the summary, whether real and growing demand showed up, ahead of the keyword tables that support it.
+The interesting finding is usually the non-obvious one, such as the adjacent community that turns out to hold the real buyer or the long-tail term growing while the category term stays flat, so a search that only confirms the founder's framing has not finished. `signals.md` is read by problem-segment when it ranks segments and by scorecard-generator, which lifts the 1-10 signal score straight into its Demand Signals dimension, so an unlabeled guess here propagates into the composite and a score without traceable evidence is worth less than a lower score with sources. Lead with the demand verdict in the summary, whether real and growing demand showed up, ahead of the keyword tables that support it.
 
 The deliverable is `signals.md` and its sources; competitor feature teardowns and market sizing belong to later skills, so report the signals and stop there. Before you finish, re-read each key quote against its URL and confirm it says what the summary claims it says.
 

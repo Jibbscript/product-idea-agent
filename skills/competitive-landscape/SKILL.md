@@ -12,44 +12,25 @@ allowed-tools: Read Write WebSearch WebFetch Grep
 
 Maps competitors, alternatives, and market gaps to identify differentiation opportunities.
 
-## Quick Start
+## Outcome
 
-Given an idea brief, map the competitive landscape:
-1. Search for direct competitors
-2. Identify indirect alternatives
-3. Analyze positioning and pricing
-4. Map feature coverage gaps
-5. Output `competitors.csv`
+A finished `competitors.csv` names three to five direct competitors and two to three indirect alternatives, one row each, fills every profile field on positioning, pricing, product, and threat or marks it unknown, and closes with a judgment about how crowded the market is and where a new entrant could stand apart.
 
 ## Inputs Required
 
 - `idea_brief.md` (from idea-brief-creator)
 - Target market/segment context
 
-## Step-by-Step Workflow
+## What competitors.csv Must Cover
 
-### Step 1: Identify Direct Competitors
-Search for companies solving the same problem:
-- "[problem] software"
-- "[solution type] tool"
-- "[competitor name] alternatives"
-- Check Product Hunt, G2, Capterra
+### Direct Competitors
+The companies a buyer would compare against this product in a purchasing decision: they solve the same core problem and target the same customer segment. The searches that surface them are "[problem] software", "[solution type] tool", and "[competitor name] alternatives", alongside listings on Product Hunt, G2, and Capterra. Three to five is the useful range; beyond that the profiles get thin and the intensity judgment gets no sharper.
 
-List companies that:
-- Solve the same core problem
-- Target the same customer segment
-- Would be compared in a buying decision
+### Indirect Alternatives
+The adjacent solutions customers reach for today when no direct competitor fits: a different approach to the same problem, broader tools with relevant features, professional services alternatives, and DIY/manual approaches. The status quo is often the real competitor, which is why spreadsheets and consultants belong here as rows and not as footnotes.
 
-### Step 2: Identify Indirect Alternatives
-Find adjacent solutions customers might use:
-- Different approach to same problem
-- Broader tools with relevant features
-- Professional services alternatives
-- DIY/manual approaches
-
-### Step 3: Analyze Each Competitor
-
-For each competitor, research:
+### Per-Competitor Profile
+The fields researched for every competitor and alternative, which map onto the CSV columns:
 
 **Basic Info:**
 - Company name and URL
@@ -73,58 +54,31 @@ For each competitor, research:
 - Weaknesses (2-3)
 - Technology/platform
 
-### Step 4: Assess Competitive Intensity
-
-Calculate overall competitive intensity:
-- Number of well-funded competitors
-- Market concentration (leaders vs fragmented)
-- Rate of new entrants
-- Feature parity level
-
-Score 1-10:
+### Competitive Intensity
+A single 1-10 reading of the market as a whole, informed by the number of well-funded competitors, market concentration (leaders vs fragmented), the rate of new entrants, and the level of feature parity:
 - 1-2: Blue ocean, no direct competitors
 - 3-4: Few competitors, clear gaps
 - 5-6: Moderate competition, differentiation possible
 - 7-8: Crowded, hard to differentiate
 - 9-10: Red ocean, dominated by incumbents
 
-### Step 5: Map Feature Gaps
+### Feature Gaps
+A feature matrix: the key features customers need, which competitors have each, and where coverage is thin. The interesting cells are the features everyone lacks, the features only leaders have, and emerging requirements nobody has addressed yet, because those are where a wedge can go.
 
-Create a feature matrix:
-- List key features customers need
-- Map which competitors have each feature
-- Identify underserved areas
-
-Look for:
-- Features everyone lacks
-- Features only leaders have
-- Emerging requirements not yet addressed
-
-### Step 6: Identify Differentiation Opportunities
-
-Based on gaps and weaknesses:
+### Differentiation Opportunities
+The answer, grounded in the gaps and weaknesses above, to four questions:
 - Where are competitors weak?
 - What do customers complain about?
 - What's changing in the market?
 - What's possible now that wasn't before?
 
-### Step 7: Generate Artifact
+## How to Work
 
-Create `competitors.csv` following the contract format.
+Each competitor profile is an independent research pass over one company, so profiles do not queue behind each other. Intensity, feature gaps, and differentiation are judgments over the completed set and cannot be made until the set exists. Enough is reached when a reader of the CSV could explain, for each row, why that company is or is not a threat.
 
-## Workflow Checklist
+## Constraints
 
-```
-Competitive Analysis Progress:
-- [ ] Direct competitors identified (3-5)
-- [ ] Indirect alternatives listed (2-3)
-- [ ] Basic info gathered for each
-- [ ] Pricing models documented
-- [ ] Key features mapped
-- [ ] Strengths/weaknesses analyzed
-- [ ] Threat levels assigned
-- [ ] competitors.csv created
-```
+Three to five direct competitors and two to three indirect alternatives appear as rows. Every profile field is populated or explicitly marked unknown, because a blank cell downstream reads as "not researched" while an unknown reads as "researched, not public". Pricing is recorded for every row that publishes it. Every row carries a threat_level on the 1-10 scale in the Threat Level Assessment table below. The finished `competitors.csv` conforms to `contracts/competitors.csv`.
 
 ## Output Format
 
@@ -143,7 +97,7 @@ Required columns:
 
 Each competitor's pricing page, funding history and review-site complaints are independent research, so spawn one sub-agent per competitor and let them work concurrently, then reconcile the returned rows into `competitors.csv`. Five competitors researched deeply beat fifteen researched shallowly, and how deep to go on any one of them scales with its threat level; a 3 rarely earns more than a visit to the pricing page. Funding amounts and employee counts enter the CSV only when a page states them, figures inferred from headcount patterns are marked as an estimate, and anything unverified stays labeled unverified rather than quietly filled in.
 
-Steelman the strongest incumbent before assigning its threat level, because the counter-intuitive reading, that the category is crowded precisely because customers keep paying, is worth more to a founder than a tidy list of weaknesses. `competitors.csv` is read downstream by pricing-wtp, which benchmarks against the price_low and price_high columns, and by solution-wedge, which hunts the feature gaps mapped here, so a competitor skipped now becomes a gap that was never really open. Lead with how contested the space is and who the real threat is, then the row-by-row detail.
+Steelman the strongest incumbent before assigning its threat level, because the counter-intuitive reading, that the category is crowded precisely because customers keep paying, is worth more to a founder than a tidy list of weaknesses. `competitors.csv` is read downstream by pricing-wtp, which benchmarks against the price_low and price_high columns, by solution-wedge, which hunts the feature gaps mapped here, and by scorecard-generator, which reads competitive intensity from it, so a competitor skipped now becomes a gap that was never really open. Lead with how contested the space is and who the real threat is, then the row-by-row detail.
 
 The deliverable is `competitors.csv`; choosing the positioning response to these competitors is solution-wedge's work, so map the landscape and stop there. Before you finish, verify the numbers in both price columns resolve to a live pricing page and confirm no row's threat_level contradicts its own strengths field.
 

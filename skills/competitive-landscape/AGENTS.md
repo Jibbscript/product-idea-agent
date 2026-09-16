@@ -10,7 +10,7 @@ Pipeline step 4. Finds direct competitors, indirect alternatives, and status-quo
 
 | File | Description |
 |------|-------------|
-| `SKILL.md` | 207 lines. Direct competitors → indirect alternatives → positioning and pricing → feature gaps → CSV. Tools: `Read Write WebSearch WebFetch Grep` |
+| `SKILL.md` | 169 lines. Direct competitors → indirect alternatives → positioning and pricing → feature gaps → CSV. Tools: `Read Write WebSearch WebFetch Grep` |
 | `references/analysis_framework.md` | Competitor categories, positioning map, feature-coverage matrix, threat scoring, and gap-identification method |
 
 ## Inputs / Outputs
@@ -24,7 +24,7 @@ Pipeline step 4. Finds direct competitors, indirect alternatives, and status-quo
 - CSV enum columns must use the exact values in the contract: `category` direct / indirect / alternative; `pricing_model` subscription / onetime / freemium / usage / free; `market_position` leader / challenger / niche / emerging.
 - List cells (`key_features`, `strengths`, `weaknesses`) use `;` separators. Quote any cell containing a comma.
 - Edge cases handled: zero direct competitors (red flag, dig for alternatives), too many (top 5–7 by threat), sparse info (LinkedIn, press, case studies, note limits), fast-moving market (date the research).
-- Search heuristics live in Step 1 of `SKILL.md`: Product Hunt, G2, Capterra, "[X] alternatives" queries.
+- Search heuristics live under `### Direct Competitors` in `SKILL.md`: Product Hunt, G2, Capterra, "[X] alternatives" queries.
 
 ### Testing Requirements
 - Output must parse with `python -c "import csv; list(csv.DictReader(open('competitors.csv')))"` and have the 13 contract columns.

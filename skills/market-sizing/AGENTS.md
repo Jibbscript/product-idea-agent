@@ -10,7 +10,7 @@ Pipeline step 5. Defines market boundaries, researches TAM from industry reports
 
 | File | Description |
 |------|-------------|
-| `SKILL.md` | 207 lines. Define boundaries → TAM → SAM → SOM → dynamics and confidence. Tools: `Read Write WebSearch WebFetch` |
+| `SKILL.md` | 192 lines. Define boundaries → TAM → SAM → SOM → dynamics and confidence. Tools: `Read Write WebSearch WebFetch` |
 | `references/sizing_methods.md` | Top-down, bottom-up, and value-theory methods with worked examples and when to use each |
 
 ## Inputs / Outputs
@@ -23,7 +23,7 @@ Pipeline step 5. Defines market boundaries, researches TAM from industry reports
 ### Working In This Directory
 - Every TAM/SAM/SOM figure needs a methodology label (top-down or bottom-up) and a cited source URL; `rubric.yaml` scores "market size plausibility" and "source recency" (within 2 years).
 - Edge cases handled: no market reports (bottom-up, adjacent markets, low confidence), market in flux (ranges), conflicting sources (report both, use conservative), very small market (report honestly).
-- Step 1 insists on a specific boundary statement ("B2B SaaS compliance automation for US fintech startups"). Keep that example; it anchors the fixture t2.
+- The `### Market Boundaries` section insists on a specific boundary statement ("B2B SaaS compliance automation for US fintech startups"). Keep that example; it anchors the fixture t2.
 
 ### Testing Requirements
 - Compare against `eval/fixtures/t1-energy-audit/expected_outputs/market_size.md`. Confirm SAM ≤ TAM and SOM ≤ SAM.
