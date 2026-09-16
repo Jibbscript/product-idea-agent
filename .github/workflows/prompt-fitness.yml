@@ -1,0 +1,82 @@
+name: prompt-fitness
+
+# Gates every PR into masta on the Fable 5.1 prompt-fitness benchmark
+# (eval/fable_prompt_bench.py): the skill pack's prompt surface must keep
+# its integrity (frontmatter, artifact names, contract references, links)
+# and must not regress against the base branch by more than 1.0 point.
+
+on:
+  pull_request:
+    branches: [masta]
+  push:
+    branches: [masta]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Benchmark this revision
+        run: python3 eval/fable_prompt_bench.py -v | tee head.txt
+
+      - name: Benchmark base branch
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          git worktree add /tmp/base "origin/$BASE_REF"
+          if [ -f /tmp/base/eval/fable_prompt_bench.py ]; then
+            (cd /tmp/base && python3 eval/fable_prompt_bench.py | tail -1) > base.json
+          else
+            echo '{"primary": null}' > base.json
+          fi
+          cat base.json
+
+      - name: Gate
+        env:
+          FLOOR: "85"
+          TOLERANCE: "1.0"
+        run: |
+          python3 - <<'EOF'
+          import json, os, pathlib, sys
+          head_lines = pathlib.Path("head.txt").read_text().splitlines()
+          head = json.loads(head_lines[-1])
+          integrity = [l for l in head_lines if "!!" in l]
+          base = json.loads(pathlib.Path("base.json").read_text())["primary"] if pathlib.Path("base.json").exists() else None
+          floor, tol = float(os.environ["FLOOR"]), float(os.environ["TOLERANCE"])
+          primary = head["primary"]
+          failures = []
+          if integrity:
+              failures.append("integrity failures:\n" + "\n".join(integrity))
+          if primary < floor:
+              failures.append(f"primary {primary} is below the floor {floor}")
+          if base is not None and primary < base - tol:
+              failures.append(f"primary {primary} regressed more than {tol} from base {base}")
+          summary = pathlib.Path(os.environ["GITHUB_STEP_SUMMARY"])
+          with summary.open("a") as f:
+              f.write("## Prompt-fitness benchmark\n\n")
+              f.write(f"| | primary |\n|---|---|\n| this revision | **{primary}** |\n| base | {base if base is not None else 'n/a'} |\n\n")
+              f.write("```\n" + "\n".join(head_lines[:-1]) + "\n```\n")
+              if failures:
+                  f.write("\n### Failed\n\n" + "\n".join(f"- {x}" for x in failures) + "\n")
+          if failures:
+              print("\n".join(failures), file=sys.stderr)
+              sys.exit(1)
+          print(f"ok: primary {primary} (base {base}, floor {floor})")
+          EOF
+
+      - name: Eval runners smoke test
+        run: |
+          python3 eval/runners/run_skillpack.py --list
+          python3 eval/runners/run_baseline.py --list
