@@ -71,37 +71,11 @@ Reporting progress means naming the phase, the last artifact written, and the ne
 
 ## How to Use This Skill
 
-### Full Validation Run
+A run enters the pipeline in one of three ways, and the project directory decides which. When the request is an idea and nothing is on disk, the run is a full validation: idea-brief-creator writes `idea_brief.md` and each later skill takes the previous artifact as its input until `validation_report.md` exists. Clarifying questions belong before that first step, and only when the idea is too thin to brief - a single line with no hint of who it is for or what it replaces - because that is the last point at which a wrong guess costs nothing to correct; once there is enough to write the brief, the run proceeds.
 
-Say: "Help me validate my startup idea for [description]"
+When artifacts already exist, the run resumes where Progress and Resumption places it, whether the user says "Continue validation from step X" or simply asks for the validation again, and the existing files are read rather than regenerated so that finished work is not paid for twice. A pause is the same case seen from the other side: each artifact is written to disk as its step completes, so a run stopped at any point resumes from the directory in a later session with nothing to note down. When a later finding undercuts an earlier artifact, such as a competitor found in step 4 that changes the segment chosen in step 3, the earlier file is rewritten and the steps that read it are re-run, since the pipeline only holds together while every artifact is current.
 
-I will:
-1. Start with the idea brief
-2. Guide you through each step
-3. Ask clarifying questions as needed
-4. Generate all artifacts
-5. Produce the final validation report
-
-### Partial Validation
-
-If you've already completed some steps:
-
-Say: "I already have an idea brief and demand signals. Continue from step 3."
-
-I will:
-1. Review your existing artifacts
-2. Continue from the specified step
-3. Complete the remaining workflow
-
-### Single Step
-
-If you only need one specific analysis:
-
-Say: "Just run competitive analysis for [idea]"
-
-I will:
-1. Run only that specific skill
-2. Generate the relevant artifact
+When the request names one analysis - "just run competitive analysis for this idea" - only that skill runs and only its artifact is written, with the inputs it depends on read from disk when they exist and drawn from the request when they do not.
 
 ## Working the Pipeline
 
@@ -109,7 +83,7 @@ The user is not watching each step, so reversible actions that follow from the o
 
 Each step's artifact is what the next step reads, with `signals.md` read by problem-segment and `icp.yaml` read by competitive-landscape, market-sizing and gtm-channels, so a thin artifact early is a thin artifact everywhere after it. Progress is audited against what was actually written, so when a skill produced nothing, say so plainly rather than reporting the step as done.
 
-Your final message is the founder's first look at hours of work, so the first sentence carries the verdict and the composite score, and what follows re-grounds a reader who saw none of the intermediate artifacts, spelling terms out rather than reusing shorthand built up while working. Before declaring the validation complete, re-read the artifact directory and confirm all eleven files exist and that the verdict in `scorecard.json` matches what `validation_report.md` states.
+Your final message is the founder's first look at hours of work, so the first sentence carries the verdict and the composite score, and what follows re-grounds a reader who saw none of the intermediate artifacts, spelling terms out rather than reusing shorthand built up while working. Before declaring the validation complete, re-read the artifact directory and confirm that either all eleven files exist or the final message states plainly which steps were skipped and why, and, when both exist, that the verdict in `scorecard.json` matches what `validation_report.md` states.
 
 ## What a strong validation run looks like
 
@@ -174,25 +148,6 @@ Run steps 1-4 only for initial signal validation.
 
 ### Competitive Deep Dive
 Focus on steps 3-4 (ICP + competitors) for positioning strategy.
-
-## Handling Pauses
-
-If you need to pause the validation:
-1. Note which step you're on
-2. Artifacts are saved automatically
-3. Resume by saying "Continue validation from step X"
-
-## Tips for Best Results
-
-1. **Be specific about your idea** - The more detail, the better the analysis
-
-2. **Share existing research** - If you have customer interviews, competitor notes, etc.
-
-3. **Ask questions** - If any step is unclear or you want to go deeper
-
-4. **Iterate** - It's okay to revisit earlier steps based on later findings
-
-5. **Trust the process** - Each step builds on the previous ones
 
 ## Output Summary
 
