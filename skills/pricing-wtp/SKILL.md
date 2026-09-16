@@ -64,12 +64,16 @@ Each tier specifies:
 
 Not every product needs all four; a ladder with two well-separated tiers beats one with four that blur together. The Value Ladder Framework below gives typical ranges per tier.
 
+The tiers are a ladder in the literal sense: read top to bottom, each rung carries a higher price and a larger offering than the one before it, which is the contract's validation rule and also what lets validation-report retell it as one ascending story. A rung that breaks the order is usually a different product wearing a tier label, a per-lead fee a third party pays sitting under the customer's own plans, for instance, and it belongs in a separate revenue line with its own buyer rather than as a fourth rung priced below the third. The ladder is checked for increasing price and increasing value before it is written, because the check costs nothing here and the contradiction cannot be recovered once scorecard-generator has read one number from it.
+
 ### Unit Economics
 The four numbers the ladder implies:
 - **ARPC**: Average Revenue Per Customer (monthly)
 - **Estimated CAC**: Cost to acquire a customer
 - **LTV:CAC Ratio**: Should be 3:1 or higher
 - **Payback Period**: Months to recover CAC
+
+LTV:CAC is arithmetic over fields already in the file, ARPC times gross margin times the customer lifetime the comment states, divided by the CAC listed, and the ratio appears once, in the `ltv_cac_ratio` field, with that formula and its inputs beside it. A ratio the comment works out to one value and the field reports as another, after an adjustment mentioned but never applied, hands scorecard-generator two numbers to choose from, so any adjustment goes into the inputs and the ratio is recomputed from them rather than corrected by hand at the end.
 
 ## How to Work
 
@@ -102,7 +106,7 @@ Competitor pricing pages, adjacent-category benchmarks and willingness-to-pay th
 
 Your judgment is wanted on the contrarian tier, because the price that looks too high often tests better than the safe one, and naming that possibility serves the founder more than centering the ladder on the competitor median. `pricing.yaml` is read downstream by gtm-channels, which plans around the unit economics and checks channel CAC against the ARPC set here, and by scorecard-generator's GTM Viability dimension, so an LTV:CAC ratio that was invented becomes a score someone trusts. Lead with the recommended price point and the one sentence of reasoning behind it, then the benchmarks that justify it.
 
-The deliverable is `pricing.yaml`; drafting pricing-page copy or choosing a billing provider is not part of it. Before you finish, re-read the unit economics and confirm the payback period follows from the ARPC and CAC actually listed rather than from a remembered rule of thumb.
+The deliverable is `pricing.yaml`; drafting pricing-page copy or choosing a billing provider is not part of it. Before you finish, re-read the unit economics and confirm the payback period follows from the ARPC and CAC actually listed rather than from a remembered rule of thumb, that the LTV:CAC in the field is the value its own formula produces, and that the ladder's prices still rise from the first tier to the last.
 
 ## Research Query Templates
 
