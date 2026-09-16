@@ -87,7 +87,7 @@ A cost-to-acquire estimate for each channel that carried forward, researched thr
 - "[competitor] marketing strategy"
 - "average CAC [channel] B2B/B2C"
 
-Benchmarks are adjusted for the specific situation: higher for crowded categories, lower for strong product-market fit, and varying by geography and segment. Each figure is labelled sourced or estimated.
+Benchmarks are adjusted for the specific situation: higher for crowded categories, lower for strong product-market fit, and varying by geography and segment. Each figure is labelled sourced, estimated, or unverified, because adjusting a published benchmark turns it into an estimate and the label is how the reader tells the two apart.
 
 ### Growth Loops
 The self-reinforcing mechanisms the plan relies on, of these shapes:
