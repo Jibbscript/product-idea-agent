@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# oh-my-claudecode runtime state (.omc/skills is the committable exception)
+.omc/*
+!.omc/skills/
+
+# Serena LSP tooling
+.serena/
+
+# Secrets
+.env
+
+# Eval run output
+eval/results/*
+!eval/results/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
