@@ -18,3 +18,6 @@ eval/results/*
 # Python
 __pycache__/
 *.pyc
+
+# self-improve experiment worktrees
+worktrees/
