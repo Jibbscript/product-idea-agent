@@ -140,6 +140,14 @@ Required sections:
 - Success criteria
 - Open questions
 
+## Working the Wedge
+
+Platform options, build-versus-buy components and competitor gap research are separable, so delegate them to sub-agents working concurrently while you keep shaping the P0 list yourself. The technical approach needs enough detail for a builder to start rather than an architecture document, so once the stack choice stops changing the P0 list, further design work is diminishing returns. A claimed gap in a competitor's product is only as good as its source, so gaps confirmed on a live product or pricing page are marked sourced and the rest are flagged unverified rather than scoping an MVP around a rumor.
+
+The interesting question in scoping is which beloved feature to cut, and one contrarian Won't Have with a reason attached is worth more than a longer P0 list. `mvp_spec.md` is read downstream by gtm-channels for positioning and by risk-assessment for technical risk, so a P0 item left vague resurfaces as a risk nobody can score. Lead with the wedge itself, one sentence on what gets built first and why it wins, ahead of the feature tables.
+
+The deliverable is `mvp_spec.md`; writing code, choosing a repository layout or standing up infrastructure is not part of this skill. Before you finalize, verify the draft against the ICP so that every P0 feature maps to a job the primary segment actually named.
+
 ## Research Query Templates
 
 ### Technical Research

@@ -136,6 +136,14 @@ Required fields:
 - Problem severity score with evidence
 - Secondary segments (optional, max 3)
 
+## Working the Segment
+
+Firmographics, community behavior and purchase-process research for each candidate segment are independent, so fan them out to one sub-agent per segment and compare the returned profiles side by side. The primary segment gets the deepest research, while secondary segments need only enough evidence to rank them; effort past that point is detail the later skills cannot use. The problem_severity score cites the evidence it came from, and where a segment's budget or approval process could not be confirmed the field reads unverified rather than carrying a plausible-sounding number.
+
+Your judgment matters most on the non-obvious segment: the adjacent role that feels the pain harder than the one the brief names. `icp.yaml` is read by competitive-landscape, market-sizing and gtm-channels, and both the SAM multipliers and the channel shortlist descend from whichever segment is marked primary. Lead with who the customer is and how badly it hurts them, ahead of the demographic and firmographic detail.
+
+The deliverable is `icp.yaml`; interviewing real customers or drafting outreach to them sits outside this skill. Before you finish, check the artifact against the brief: a severity score of 8 or higher with no quoted evidence behind it is the signal to go back.
+
 ## Research Query Templates
 
 ### Finding Demographics

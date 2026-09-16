@@ -139,6 +139,14 @@ Required columns:
 - market_position (leader/challenger/niche/emerging)
 - threat_level (1-10)
 
+## Working the Landscape
+
+Each competitor's pricing page, funding history and review-site complaints are independent research, so spawn one sub-agent per competitor and let them work concurrently, then reconcile the returned rows into `competitors.csv`. Five competitors researched deeply beat fifteen researched shallowly, and how deep to go on any one of them scales with its threat level; a 3 rarely earns more than a visit to the pricing page. Funding amounts and employee counts enter the CSV only when a page states them, figures inferred from headcount patterns are marked as an estimate, and anything unverified stays labeled unverified rather than quietly filled in.
+
+Steelman the strongest incumbent before assigning its threat level, because the counter-intuitive reading, that the category is crowded precisely because customers keep paying, is worth more to a founder than a tidy list of weaknesses. `competitors.csv` is read downstream by pricing-wtp, which benchmarks against the price_low and price_high columns, and by solution-wedge, which hunts the feature gaps mapped here, so a competitor skipped now becomes a gap that was never really open. Lead with how contested the space is and who the real threat is, then the row-by-row detail.
+
+The deliverable is `competitors.csv`; choosing the positioning response to these competitors is solution-wedge's work, so map the landscape and stop there. Before you finish, verify the numbers in both price columns resolve to a live pricing page and confirm no row's threat_level contradicts its own strengths field.
+
 ## Research Query Templates
 
 ### Finding Competitors

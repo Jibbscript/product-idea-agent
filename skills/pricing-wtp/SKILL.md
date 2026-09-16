@@ -116,6 +116,14 @@ Required sections:
 - WTP evidence (at least 2 sources)
 - Recommendation with rationale
 
+## Working the Price
+
+Competitor pricing pages, adjacent-category benchmarks and willingness-to-pay threads are separate lookups, so delegate them to sub-agents working in parallel and reconcile what comes back into the benchmark list. Two solid WTP data points that agree are enough evidence to set a tier, and once the tier prices stop moving as more anecdotes arrive, the extra searching is diminishing returns. A published list price is sourced, a price reconstructed from a customer's forum comment is an estimate, and enterprise pricing hidden behind a Contact Sales button stays unverified; each WTP evidence entry says which of the three it is.
+
+Your judgment is wanted on the contrarian tier, because the price that looks too high often tests better than the safe one, and naming that possibility serves the founder more than centering the ladder on the competitor median. `pricing.yaml` is read downstream by gtm-channels, which checks channel CAC against the ARPC set here, and by scorecard-generator's GTM Viability dimension, so an LTV:CAC ratio that was invented becomes a score someone trusts. Lead with the recommended price point and the one sentence of reasoning behind it, then the benchmarks that justify it.
+
+The deliverable is `pricing.yaml`; drafting pricing-page copy or choosing a billing provider is not part of it. Before you finish, re-read the unit economics and confirm the payback period follows from the ARPC and CAC actually listed rather than from a remembered rule of thumb.
+
 ## Research Query Templates
 
 ### Competitor Pricing

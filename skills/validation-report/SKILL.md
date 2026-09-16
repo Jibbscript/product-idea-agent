@@ -279,6 +279,14 @@ Create `validation_report.md` with this structure:
 - Methodology notes
 ```
 
+## Working the Report
+
+Lead with the verdict: the first sentence after the title says GO, PIVOT or NO-GO and why, ahead of any section narrative. This report ends the chain and is read by people who saw none of the work, so vocabulary built up across ten artifacts is either re-introduced here or left out. The eight section narratives are independent writing tasks over artifacts that are already final, so delegate them to sub-agents in parallel and spend your own attention on the executive summary that has to hold them together.
+
+Section depth is proportional to the verdict's drivers, so the dimensions that produced GO, PIVOT or NO-GO earn the detail, and a section with nothing decision-relevant in it can be three sentences. Every figure in the report traces to the artifact it came from, and where an artifact was missing or its number unverified the report says so instead of smoothing over the gap. The most valuable paragraph is usually the one naming what would change the verdict, and a surprising finding that contradicts the composite belongs in the summary rather than an appendix.
+
+The deliverable is `validation_report.md` assembled from the existing artifacts, so re-running research or revising a scorecard dimension mid-write is out of scope; note the gap and stop there. Before you finish, re-read the executive summary on its own: it should stand without the rest of the document and contradict nothing in the scorecard table.
+
 ## Writing Guidelines
 
 ### Tone

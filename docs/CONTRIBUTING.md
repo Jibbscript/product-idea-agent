@@ -92,6 +92,10 @@ Progress:
 
 What the skill produces and where.
 
+## Working <the skill's own domain noun>
+
+A short prose passage, renamed per skill, covering when to fan independent research out to parallel sub-agents, how each figure is marked sourced, estimated or unverified, how deep the research goes before it stops paying, what the deliverable is and what it is not, which downstream skill reads this artifact, where the model's own judgment is wanted, what the summary leads with, and the check to run before handing off.
+
 ## Edge Cases
 
 - **Missing data**: How to handle
@@ -101,6 +105,8 @@ What the skill produces and where.
 
 - [file.md](references/file.md): Description
 ```
+
+The Working passage is written in each skill's own vocabulary (its artifact, columns, scales and consumers); copying it between skills is the anti-pattern it exists to avoid.
 
 ### Skill Guidelines
 

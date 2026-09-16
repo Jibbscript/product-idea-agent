@@ -127,6 +127,14 @@ Required sections:
 - Confidence assessment
 - Sources (minimum 2 citations)
 
+## Working the Numbers
+
+The top-down industry-report search and the bottom-up customer-count build are independent derivations, so run them as parallel sub-agents and triangulate the two results instead of letting the first figure found anchor the second. Two credible independent sources are enough evidence for a TAM, and a third report restating the same syndicated figure is diminishing returns. A TAM is sourced when a named report states it and estimated when built from a customer count times an average contract value, and any multiplier in the SAM formula that could not be corroborated is marked as an assumption in the methodology line so a reader can see which factor is load-bearing.
+
+The second-order question deserves its own sentence, what would change the verdict, because a SAM that collapses if the geographic constraint is wrong matters more than another decimal place. `market_size.md` is consumed by gtm-channels for scale planning and by scorecard-generator's Market Size dimension, whose bands turn the SAM figure directly into a 1-10 score. Lead with the SAM and its confidence level in the executive summary, since that pair is what a founder acts on.
+
+The deliverable is `market_size.md` with its methodology and citations; revisiting pricing or the ICP to make the SOM look better is outside this skill. Before you finalize the file, sanity-check the arithmetic chain end to end by multiplying the stated constraints against the TAM and confirming the product equals the SAM written down.
+
 ## Research Query Templates
 
 ### Finding TAM Data

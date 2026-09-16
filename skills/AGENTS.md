@@ -42,9 +42,9 @@ Each has its own `AGENTS.md`.
 - Check the `allowed-tools` line still covers every tool the workflow steps invoke.
 
 ### Common Patterns
-- Section order in every `SKILL.md`: Quick Start → Inputs Required → Step-by-Step Workflow → Workflow Checklist → Output Format → Edge Cases → References.
+- Section order in every `SKILL.md`: Quick Start → Inputs Required → Step-by-Step Workflow → Workflow Checklist → Output Format → Working <domain> → Edge Cases → References.
 - Edge Cases always covers missing data, conflicting data, and the "too much / too little" case for that skill's domain.
-- Outputs carry a confidence level and cite sources by URL. Research skills flag anything unverifiable as low confidence rather than dropping it.
+- Outputs carry a confidence level and cite sources by URL. Research skills flag anything unverifiable as low confidence rather than dropping it. The sourced / estimated / unverified marking introduced in each skill's Working section is the same discipline applied per figure rather than per artifact.
 - Scores in artifacts use fixed scales: 1–10 for signal and dimension scores, 1–5 × 1–5 for risk severity × likelihood.
 
 ## Dependencies
