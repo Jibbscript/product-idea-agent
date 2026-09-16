@@ -56,63 +56,84 @@ Each dimension rated 1-10 on its own anchors, with the evidence recorded beside 
 
 #### Problem Severity (Weight: 20%)
 From `icp.yaml` problem_severity score:
-- 9-10: Hair-on-fire problem, active spending to solve
-- 7-8: Significant pain, some existing solutions
-- 5-6: Moderate frustration, workarounds exist
-- 3-4: Minor inconvenience
-- 1-2: Nice-to-have, not a real problem
+
+| Score | What the band means |
+|-------|---------------------|
+| 9-10 | Hair-on-fire problem, active spending to solve |
+| 7-8 | Significant pain, some existing solutions |
+| 5-6 | Moderate frustration, workarounds exist |
+| 3-4 | Minor inconvenience |
+| 1-2 | Nice-to-have, not a real problem |
 
 #### Demand Signals (Weight: 15%)
 From `signals.md` signal score:
-- 9-10: High search volume, active communities, strong growth
-- 7-8: Good signals, engaged communities
-- 5-6: Moderate interest, niche communities
-- 3-4: Limited signals, small audiences
-- 1-2: No measurable demand
+
+| Score | What the band means |
+|-------|---------------------|
+| 9-10 | High search volume, active communities, strong growth |
+| 7-8 | Good signals, engaged communities |
+| 5-6 | Moderate interest, niche communities |
+| 3-4 | Limited signals, small audiences |
+| 1-2 | No measurable demand |
 
 #### Competitive Intensity (Weight: 10%)
 From `competitors.csv`:
-- 1-2: Blue ocean, no direct competitors (good)
-- 3-4: Few competitors, clear differentiation possible
-- 5-6: Moderate competition, gaps exist
-- 7-8: Crowded market, hard to differentiate
-- 9-10: Red ocean, dominated by incumbents (bad)
+
+| Score | What the band means |
+|-------|---------------------|
+| 1-2 | Blue ocean, no direct competitors (good) |
+| 3-4 | Few competitors, clear differentiation possible |
+| 5-6 | Moderate competition, gaps exist |
+| 7-8 | Crowded market, hard to differentiate |
+| 9-10 | Red ocean, dominated by incumbents (bad) |
 
 **Note**: For this dimension, LOWER is BETTER.
 
 #### Market Size (Weight: 15%)
 From `market_size.md`:
-- 9-10: TAM > $10B, SAM > $1B
-- 7-8: TAM $1-10B, SAM $100M-1B
-- 5-6: TAM $100M-1B, SAM $10-100M
-- 3-4: TAM $10-100M, niche market
-- 1-2: TAM < $10M, very small market
+
+| Score | What the band means |
+|-------|---------------------|
+| 9-10 | TAM > $10B, SAM > $1B |
+| 7-8 | TAM $1-10B, SAM $100M-1B |
+| 5-6 | TAM $100M-1B, SAM $10-100M |
+| 3-4 | TAM $10-100M, niche market |
+| 1-2 | TAM < $10M, very small market |
 
 #### Execution Difficulty (Weight: 15%)
 From `mvp_spec.md` and `risks.md`:
-- 1-2: Simple app, proven tech, solo buildable (good)
-- 3-4: Standard complexity, small team needed
-- 5-6: Moderate complexity, some novel components
-- 7-8: Complex system, specialized skills required
-- 9-10: Frontier technology, major R&D required (bad)
+
+| Score | What the band means |
+|-------|---------------------|
+| 1-2 | Simple app, proven tech, solo buildable (good) |
+| 3-4 | Standard complexity, small team needed |
+| 5-6 | Moderate complexity, some novel components |
+| 7-8 | Complex system, specialized skills required |
+| 9-10 | Frontier technology, major R&D required (bad) |
 
 **Note**: For this dimension, LOWER is BETTER.
 
 #### GTM Viability (Weight: 15%)
 From `gtm_plan.md` and `pricing.yaml`:
-- 9-10: Clear channels, low CAC, viral potential
-- 7-8: Good channels available, reasonable CAC
-- 5-6: Some channels, moderate CAC
-- 3-4: Limited channels, high CAC
-- 1-2: No clear path to customers
+
+| Score | What the band means |
+|-------|---------------------|
+| 9-10 | Clear channels, low CAC, viral potential |
+| 7-8 | Good channels available, reasonable CAC |
+| 5-6 | Some channels, moderate CAC |
+| 3-4 | Limited channels, high CAC |
+| 1-2 | No clear path to customers |
 
 #### Timing (Weight: 10%)
 From `signals.md`, `market_size.md`, and context:
-- 9-10: Perfect timing - enabling tech just matured
-- 7-8: Good timing - market ready, trends supportive
-- 5-6: Neutral - no major headwinds or tailwinds
-- 3-4: Challenging - market not ready or shifting away
-- 1-2: Bad timing - too early or too late
+
+| Score | What the band means |
+|-------|---------------------|
+| 9-10 | Perfect timing - enabling tech just matured |
+| 7-8 | Good timing - market ready, trends supportive |
+| 5-6 | Neutral - no major headwinds or tailwinds |
+| 3-4 | Challenging - market not ready or shifting away |
+| 1-2 | Bad timing - too early or too late |
 
 ### Composite Score
 The weighted combination, computed with the arithmetic shown in the file:
@@ -133,9 +154,12 @@ Result is 0-100.
 
 ### Revenue Potential
 A band derived from market size and unit economics:
-- `$$$` ($10M+ ARR potential): Large SAM, strong economics
-- `$$` ($1M-$10M ARR potential): Medium SAM, viable economics
-- `$` ($100K-$1M ARR potential): Small SAM or challenging economics
+
+| Band | ARR potential | What it means |
+|------|---------------|---------------|
+| `$$$` | $10M+ | Large SAM, strong economics |
+| `$$` | $1M-$10M | Medium SAM, viable economics |
+| `$` | $100K-$1M | Small SAM or challenging economics |
 
 ### Recommendation
 The verdict the composite and the dimension floor together imply:

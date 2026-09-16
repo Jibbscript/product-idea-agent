@@ -127,21 +127,27 @@ The deliverable is `market_size.md` with its methodology and citations; revisiti
 ## Research Query Templates
 
 ### Finding TAM Data
-- "[industry] market size 2024"
-- "[industry] market report"
-- "[industry] TAM analysis"
-- "site:statista.com [industry]"
-- "[industry] market forecast CAGR"
+```text
+"[industry] market size 2024"
+"[industry] market report"
+"[industry] TAM analysis"
+"site:statista.com [industry]"
+"[industry] market forecast CAGR"
+```
 
 ### Finding Segment Data
-- "[segment] number of companies"
-- "[segment] industry statistics"
-- "how many [customer type] in [region]"
+```text
+"[segment] number of companies"
+"[segment] industry statistics"
+"how many [customer type] in [region]"
+```
 
 ### Validating Estimates
-- "[competitor] revenue"
-- "[competitor] customers"
-- "[industry] average deal size"
+```text
+"[competitor] revenue"
+"[competitor] customers"
+"[industry] average deal size"
+```
 
 ## Sizing Methods
 

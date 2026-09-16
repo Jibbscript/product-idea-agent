@@ -62,11 +62,14 @@ The fields researched for every competitor and alternative, which map onto the C
 
 ### Competitive Intensity
 A single 1-10 reading of the market as a whole, informed by the number of well-funded competitors, market concentration (leaders vs fragmented), the rate of new entrants, and the level of feature parity:
-- 1-2: Blue ocean, no direct competitors
-- 3-4: Few competitors, clear gaps
-- 5-6: Moderate competition, differentiation possible
-- 7-8: Crowded, hard to differentiate
-- 9-10: Red ocean, dominated by incumbents
+
+| Score | Intensity | What it means |
+|-------|-----------|---------------|
+| 1-2 | Blue ocean | No direct competitors |
+| 3-4 | Few competitors | Clear gaps |
+| 5-6 | Moderate competition | Differentiation possible |
+| 7-8 | Crowded | Hard to differentiate |
+| 9-10 | Red ocean | Dominated by incumbents |
 
 ### Feature Gaps
 A feature matrix: the key features customers need, which competitors have each, and where coverage is thin. The interesting cells are the features everyone lacks, the features only leaders have, and emerging requirements nobody has addressed yet, because those are where a wedge can go.
@@ -116,32 +119,42 @@ The deliverable is `competitors.csv`; choosing the positioning response to these
 ## Research Query Templates
 
 ### Finding Competitors
-- "[problem] software"
-- "[solution] tool 2024"
-- "best [category] tools"
-- "[competitor] alternatives"
-- "[competitor] vs"
+```text
+"[problem] software"
+"[solution] tool 2024"
+"best [category] tools"
+"[competitor] alternatives"
+"[competitor] vs"
+```
 
 ### Review Sites
-- "site:g2.com [category]"
-- "site:capterra.com [solution]"
-- "site:producthunt.com [problem]"
+```text
+"site:g2.com [category]"
+"site:capterra.com [solution]"
+"site:producthunt.com [problem]"
+```
 
 ### Pricing Research
-- "[competitor] pricing"
-- "[competitor] plans"
-- "[competitor] cost"
+```text
+"[competitor] pricing"
+"[competitor] plans"
+"[competitor] cost"
+```
 
 ### Weakness Research
-- "[competitor] review complaints"
-- "[competitor] cons reddit"
-- "[competitor] problems"
-- "[competitor] switching from"
+```text
+"[competitor] review complaints"
+"[competitor] cons reddit"
+"[competitor] problems"
+"[competitor] switching from"
+```
 
 ### Funding/Company Info
-- "[competitor] crunchbase"
-- "[competitor] funding"
-- "[competitor] linkedin employees"
+```text
+"[competitor] crunchbase"
+"[competitor] funding"
+"[competitor] linkedin employees"
+```
 
 ## Threat Level Assessment
 

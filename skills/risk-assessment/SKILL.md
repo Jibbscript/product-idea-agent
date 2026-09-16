@@ -31,14 +31,17 @@ In that count, a risk named "competition" weighs the same as one naming a specif
 
 ### Evidence From Prior Artifacts
 Where each risk came from, since every prior artifact carries its own kind of risk:
-- Idea brief: Core assumptions
-- Signals: Demand validation risks
-- ICP: Customer understanding risks
-- Competitors: Competitive risks
-- Market size: Market risks
-- Pricing: Revenue model risks
-- MVP spec: Technical risks
-- GTM: Go-to-market risks
+
+| Prior artifact | Risk kind it raises |
+|----------------|---------------------|
+| Idea brief | Core assumptions |
+| Signals | Demand validation risks |
+| ICP | Customer understanding risks |
+| Competitors | Competitive risks |
+| Market size | Market risks |
+| Pricing | Revenue model risks |
+| MVP spec | Technical risks |
+| GTM | Go-to-market risks |
 
 ### Risk Categories
 Risks surfaced under each of the five categories, or an explicit note that a category does not apply and why:
@@ -84,18 +87,24 @@ The Risk Identification Questions below are the prompts for each category.
 Every risk carries both numbers on these scales:
 
 **Severity (1-5):**
-- 1 = Negligible: Minor inconvenience
-- 2 = Low: Some rework needed
-- 3 = Medium: Significant delay or cost
-- 4 = High: Major pivot required
-- 5 = Critical: Existential threat
+
+| Score | Severity | What it means |
+|-------|----------|---------------|
+| 1 | Negligible | Minor inconvenience |
+| 2 | Low | Some rework needed |
+| 3 | Medium | Significant delay or cost |
+| 4 | High | Major pivot required |
+| 5 | Critical | Existential threat |
 
 **Likelihood (1-5):**
-- 1 = Rare: <10% chance
-- 2 = Unlikely: 10-25% chance
-- 3 = Possible: 25-50% chance
-- 4 = Likely: 50-75% chance
-- 5 = Almost Certain: >75% chance
+
+| Score | Likelihood | Probability |
+|-------|------------|-------------|
+| 1 | Rare | <10% chance |
+| 2 | Unlikely | 10-25% chance |
+| 3 | Possible | 25-50% chance |
+| 4 | Likely | 50-75% chance |
+| 5 | Almost Certain | >75% chance |
 
 **Risk Score = Severity × Likelihood**
 

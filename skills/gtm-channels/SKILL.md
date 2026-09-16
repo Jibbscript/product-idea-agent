@@ -169,24 +169,32 @@ The deliverable is `gtm_plan.md`; creating accounts, drafting ad copy or contact
 ## Research Query Templates
 
 ### Finding ICP Channels
-- "where do [customer segment] spend time online"
-- "[industry] marketing channels"
-- "[customer type] communities"
+```text
+"where do [customer segment] spend time online"
+"[industry] marketing channels"
+"[customer type] communities"
+```
 
 ### CAC Research
-- "[channel] CAC [industry]"
-- "[category] customer acquisition cost benchmark"
-- "average [channel] CPC [industry]"
+```text
+"[channel] CAC [industry]"
+"[category] customer acquisition cost benchmark"
+"average [channel] CPC [industry]"
+```
 
 ### Competitor GTM
-- "how [competitor] acquired customers"
-- "[competitor] marketing strategy"
-- "[competitor] growth case study"
+```text
+"how [competitor] acquired customers"
+"[competitor] marketing strategy"
+"[competitor] growth case study"
+```
 
 ### Channel Best Practices
-- "[channel] best practices [category]"
-- "how to market [product type]"
-- "[channel] for startups"
+```text
+"[channel] best practices [category]"
+"how to market [product type]"
+"[channel] for startups"
+```
 
 ## Channel Playbook Snippets
 

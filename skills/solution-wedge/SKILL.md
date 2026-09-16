@@ -138,20 +138,26 @@ The deliverable is `mvp_spec.md`; writing code, choosing a repository layout or 
 ## Research Query Templates
 
 ### Technical Research
-- "[category] tech stack 2024"
-- "[problem] API"
-- "[solution] implementation"
-- "best [technology] for [use case]"
+```text
+"[category] tech stack 2024"
+"[problem] API"
+"[solution] implementation"
+"best [technology] for [use case]"
+```
 
 ### Competitor Gap Analysis
-- "[competitor] missing features site:reddit.com"
-- "[competitor] wish list"
-- "[competitor] compared to"
+```text
+"[competitor] missing features site:reddit.com"
+"[competitor] wish list"
+"[competitor] compared to"
+```
 
 ### Market Positioning
-- "[category] positioning examples"
-- "[category] differentiation"
-- "how to position against [competitor]"
+```text
+"[category] positioning examples"
+"[category] differentiation"
+"how to position against [competitor]"
+```
 
 ## MVP Principles
 

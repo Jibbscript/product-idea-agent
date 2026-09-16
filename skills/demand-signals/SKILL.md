@@ -91,25 +91,33 @@ The deliverable is `signals.md` and its sources; competitor feature teardowns an
 ## Search Query Templates
 
 ### Google Trends
-- "[keyword] trends"
-- "[keyword] search volume stats"
-- "[keyword] interest over time"
+```text
+"[keyword] trends"
+"[keyword] search volume stats"
+"[keyword] interest over time"
+```
 
 ### Reddit Pain Points
-- "[problem] site:reddit.com"
-- "help with [problem] site:reddit.com"
-- "[alternative] sucks site:reddit.com"
-- "looking for [solution type] site:reddit.com"
+```text
+"[problem] site:reddit.com"
+"help with [problem] site:reddit.com"
+"[alternative] sucks site:reddit.com"
+"looking for [solution type] site:reddit.com"
+```
 
 ### Competitor Research
-- "[competitor name] alternative"
-- "[competitor name] vs"
-- "[competitor name] review complaints"
+```text
+"[competitor name] alternative"
+"[competitor name] vs"
+"[competitor name] review complaints"
+```
 
 ### Willingness to Pay
-- "would pay for [solution] site:reddit.com"
-- "[problem] worth paying site:reddit.com"
-- "looking to buy [solution]"
+```text
+"would pay for [solution] site:reddit.com"
+"[problem] worth paying site:reddit.com"
+"looking to buy [solution]"
+```
 
 ## Edge Cases
 

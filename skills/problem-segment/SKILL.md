@@ -142,24 +142,32 @@ The deliverable is `icp.yaml`; interviewing real customers or drafting outreach 
 ## Research Query Templates
 
 ### Finding Demographics
-- "[segment] demographics statistics"
-- "[segment] survey data"
-- "who uses [competitor]"
+```text
+"[segment] demographics statistics"
+"[segment] survey data"
+"who uses [competitor]"
+```
 
 ### Finding Pain Points
-- "[segment] biggest challenges"
-- "[role] frustrations site:reddit.com"
-- "[segment] problems with [current solution]"
+```text
+"[segment] biggest challenges"
+"[role] frustrations site:reddit.com"
+"[segment] problems with [current solution]"
+```
 
 ### Finding Information Sources
-- "best [topic] blogs for [segment]"
-- "[segment] podcasts"
-- "[role] communities"
+```text
+"best [topic] blogs for [segment]"
+"[segment] podcasts"
+"[role] communities"
+```
 
 ### Finding Purchase Behavior
-- "how [segment] buys [category]"
-- "[segment] software purchasing process"
-- "[role] decision making"
+```text
+"how [segment] buys [category]"
+"[segment] software purchasing process"
+"[role] decision making"
+```
 
 ## Edge Cases
 

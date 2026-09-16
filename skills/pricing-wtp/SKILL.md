@@ -107,27 +107,35 @@ The deliverable is `pricing.yaml`; drafting pricing-page copy or choosing a bill
 ## Research Query Templates
 
 ### Competitor Pricing
-- "[competitor] pricing"
-- "[competitor] plans"
-- "[competitor] cost"
-- "[competitor] pricing page"
-- "[competitor] how much site:reddit.com"
+```text
+"[competitor] pricing"
+"[competitor] plans"
+"[competitor] cost"
+"[competitor] pricing page"
+"[competitor] how much site:reddit.com"
+```
 
 ### Industry Benchmarks
-- "[category] software pricing benchmark"
-- "[category] average deal size"
-- "SaaS pricing best practices [category]"
+```text
+"[category] software pricing benchmark"
+"[category] average deal size"
+"SaaS pricing best practices [category]"
+```
 
 ### Willingness to Pay
-- "would pay for [solution] site:reddit.com"
-- "[solution] worth the price"
-- "[alternative] too expensive"
-- "[category] budget survey"
+```text
+"would pay for [solution] site:reddit.com"
+"[solution] worth the price"
+"[alternative] too expensive"
+"[category] budget survey"
+```
 
 ### Value-Based Pricing
-- "[problem] cost to business"
-- "[problem] ROI"
-- "[solution] saves time money"
+```text
+"[problem] cost to business"
+"[problem] ROI"
+"[solution] saves time money"
+```
 
 ## Pricing Model Options
 
