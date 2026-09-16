@@ -12,14 +12,9 @@ allowed-tools: Read Write WebSearch
 
 Defines MVP scope, technical approach, and differentiation strategy.
 
-## Quick Start
+## Outcome
 
-Given prior artifacts, define the solution:
-1. Identify critical user jobs to address
-2. Define minimum feature set for MVP
-3. Specify technical approach
-4. Articulate differentiation
-5. Output `mvp_spec.md`
+`mvp_spec.md` is a scoped first version of the product, a chosen technical approach, and a one-sentence wedge that says why this product wins against the alternatives in `competitors.csv`. A finished spec is as notable for what it leaves out as for what it includes, since everything cut from v1 is listed as cut rather than quietly dropped.
 
 ## Inputs Required
 
@@ -27,40 +22,35 @@ Given prior artifacts, define the solution:
 - `competitors.csv` (from competitive-landscape) - for gap identification
 - `icp.yaml` (from problem-segment) - for prioritization
 
-## Step-by-Step Workflow
+## Who reads mvp_spec.md
 
-### Step 1: Map User Jobs
+gtm-channels lifts the positioning statement out of this file into its messaging and reads the platform choice to know which surface the launch lands on; risk-assessment reads the technical approach and the build-versus-buy decisions to find the technical risks; and validation-report describes the product from this file alone, without going back to the brief. None of them fills in a gap this spec leaves open.
 
-From the idea brief and ICP, identify:
+That is why a platform choice left as "web or mobile, to be decided" reappears two skills later as an Execution Difficulty that scorecard-generator cannot score: risk-assessment has no stack to assess, so the dimension gets a guess.
+
+## What mvp_spec.md Must Cover
+
+### User Jobs
+The jobs the target customer is hiring the product to do, drawn from the idea brief and the ICP:
 - **Functional jobs**: Tasks the user is trying to complete
 - **Emotional jobs**: How they want to feel
 - **Social jobs**: How they want to be perceived
 
-Prioritize by:
-- Frequency (how often do they do this?)
-- Importance (how critical is it?)
-- Satisfaction with current solutions (opportunity for improvement)
+Each job is weighed by frequency (how often do they do this?), importance (how critical is it?), and satisfaction with current solutions (opportunity for improvement). The highest-priority job is the one the MVP is built around.
 
-### Step 2: Define MVP Scope
-
-For each priority job, determine:
-- Is it essential for first paying customer?
-- Can we defer it to v2?
-- Should we explicitly exclude it?
-
-Categorize features:
+### MVP Scope
+For each priority job, a decision about whether it is essential for the first paying customer, deferrable to v2, or explicitly excluded, expressed as:
 - **P0 (Must Have)**: Product doesn't work without these
 - **P1 (Should Have)**: Important but not launch-blocking
 - **Won't Have**: Explicitly out of scope for v1
 
-Apply the "breadth vs depth" test:
+The "breadth vs depth" test settles most borderline calls:
 - Breadth: Many features, basic implementation
 - Depth: Few features, exceptional implementation
 - **Recommendation**: Choose depth for MVP
 
-### Step 3: Specify Technical Approach
-
-Define the implementation strategy:
+### Technical Approach
+The implementation strategy, decided along three axes:
 
 **Platform choice:**
 - Web (desktop-first, mobile-responsive, PWA)
@@ -79,23 +69,22 @@ Define the implementation strategy:
 - What to use off-the-shelf?
 - What third-party services to integrate?
 
-### Step 4: Articulate the Wedge
+The Build vs Buy Framework under MVP Principles below is the tiebreaker: custom work goes to the differentiator, everything else is bought.
 
-Define what makes you different:
+### The Wedge
+What makes this product different, in one sentence, using the positioning statement format:
 
-**Positioning statement format:**
 For [target customer] who [need], [product name] is a [category] that [key benefit]. Unlike [alternatives], we [key differentiator].
 
-**Types of wedges:**
+The wedge is one of these types, and the spec names which:
 - **Technology wedge**: New tech enables better solution
 - **Experience wedge**: Dramatically better UX
 - **Segment wedge**: Specialized for underserved segment
 - **Price wedge**: Disruptive pricing model
 - **Distribution wedge**: Unique channel access
 
-### Step 5: Identify Competitive Advantage
-
-What's hard for competitors to copy?
+### Competitive Advantage
+What would be hard for competitors to copy once the product exists:
 - Proprietary data or algorithms
 - Network effects
 - Switching costs
@@ -103,29 +92,27 @@ What's hard for competitors to copy?
 - Brand/trust
 - Team expertise
 
-### Step 6: Define Success Criteria
+A wedge gets a product in the door; the advantage is what keeps it there, and a spec that has the first without the second says so plainly.
 
-Set measurable targets:
+### Success Criteria
+Measurable targets across three horizons:
 - **Validation metrics**: Signups, interviews, LOIs
 - **Launch metrics**: Users, revenue, retention
 - **Quality metrics**: NPS, completion rates
 
-### Step 7: Generate Artifact
+## How to Work
 
-Create `mvp_spec.md` following the contract format.
+User jobs bound the scope, so they come first. Technical approach, the wedge, and competitive advantage are three readings of the same scope and need no order among them. Success criteria follow once scope and wedge are settled, because a target only means something against a defined product. The spec is done when a founder could hand it to an engineer and a designer and get the same v1 back from both.
 
-## Workflow Checklist
+## Constraints
 
-```
-Solution Wedge Progress:
-- [ ] User jobs mapped and prioritized
-- [ ] MVP scope defined (P0, P1, Won't Have)
-- [ ] Technical approach specified
-- [ ] Differentiation articulated
-- [ ] Competitive advantage identified
-- [ ] Success criteria defined
-- [ ] mvp_spec.md created
-```
+The wedge is one sentence in the positioning format above. Everything cut from v1 is listed under Won't Have rather than omitted silently, so the reader knows it was considered. Every P0 feature ties back to a named user job. Success criteria are numeric and time-boxed. The finished `mvp_spec.md` conforms to `contracts/mvp_spec.md`.
+
+## What a strong mvp_spec.md looks like
+
+The test is whether an engineer could estimate a first sprint from it and a marketer could write a landing page from it, using the same document, without either asking a question the other would answer differently. A strong spec passes because the P0 list is short enough to ship and the Won't Have list is as specific as the P0 list; an unstated exclusion is the scope that creeps back in during the first sprint, since nobody can point to the line that ruled it out. A weak spec lists features, never says what is deliberately out, and describes the platform as a menu.
+
+The Won't Have list is the clearest evidence a reader gets that the founder knows what the product is, and it is the founder who has to live with the cut.
 
 ## Output Format
 
@@ -140,23 +127,37 @@ Required sections:
 - Success criteria
 - Open questions
 
+## Working the Wedge
+
+Platform options, build-versus-buy components and competitor gap research are separable, so delegate them to sub-agents working concurrently while you keep shaping the P0 list yourself. The technical approach needs enough detail for a builder to start rather than an architecture document, so once the stack choice stops changing the P0 list, further design work is diminishing returns. A claimed gap in a competitor's product is only as good as its source, so gaps confirmed on a live product or pricing page are marked sourced and the rest are flagged unverified rather than scoping an MVP around a rumor.
+
+The interesting question in scoping is which beloved feature to cut, and one contrarian Won't Have with a reason attached is worth more than a longer P0 list. `mvp_spec.md` is read downstream by gtm-channels for positioning and by risk-assessment for technical risk, so a P0 item left vague resurfaces as a risk nobody can score. Lead with the wedge itself, one sentence on what gets built first and why it wins, ahead of the feature tables.
+
+The deliverable is `mvp_spec.md`; writing code, choosing a repository layout or standing up infrastructure is not part of this skill. Before you finalize, verify the draft against the ICP so that every P0 feature maps to a job the primary segment actually named.
+
 ## Research Query Templates
 
 ### Technical Research
-- "[category] tech stack 2024"
-- "[problem] API"
-- "[solution] implementation"
-- "best [technology] for [use case]"
+```text
+"[category] tech stack 2024"
+"[problem] API"
+"[solution] implementation"
+"best [technology] for [use case]"
+```
 
 ### Competitor Gap Analysis
-- "[competitor] missing features site:reddit.com"
-- "[competitor] wish list"
-- "[competitor] compared to"
+```text
+"[competitor] missing features site:reddit.com"
+"[competitor] wish list"
+"[competitor] compared to"
+```
 
 ### Market Positioning
-- "[category] positioning examples"
-- "[category] differentiation"
-- "how to position against [competitor]"
+```text
+"[category] positioning examples"
+"[category] differentiation"
+"how to position against [competitor]"
+```
 
 ## MVP Principles
 

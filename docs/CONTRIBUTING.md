@@ -60,37 +60,48 @@ allowed-tools: Read Write WebSearch WebFetch
 
 Brief description.
 
-## Quick Start
+## Outcome
 
-3-5 lines showing basic usage.
+What the artifact is and what a finished one looks like.
 
 ## Inputs Required
 
 - What artifacts or information needed
 - Optional inputs
 
-## Step-by-Step Workflow
+## Who reads <artifact>
 
-### Step 1: Name
-What to do.
+Which downstream skills open this file, what each decides with it, and what vagueness here costs them.
 
-### Step 2: Name
-What to do.
+## What <artifact> Must Cover
+
+### <Domain Area>
+What this part of the artifact contains and how to judge it.
+
+### <Domain Area>
+What this part of the artifact contains and how to judge it.
 
 ...
 
-## Workflow Checklist
+## How to Work
 
-```
-Progress:
-- [ ] Step 1
-- [ ] Step 2
-- [ ] Output created
-```
+Which parts depend on which, what is independent, and what counts as enough.
+
+## Constraints
+
+The requirements the finished artifact must satisfy.
+
+## What a strong <artifact> looks like
+
+The quality bar in this skill's own terms: what a strong artifact does that a weak one does not.
 
 ## Output Format
 
 What the skill produces and where.
+
+## Working <the skill's own domain noun>
+
+A short prose passage, renamed per skill, covering when to fan independent research out to parallel sub-agents, how each figure is marked sourced, estimated or unverified, how deep the research goes before it stops paying, what the deliverable is and what it is not, which downstream skill reads this artifact, where the model's own judgment is wanted, what the summary leads with, and the check to run before handing off.
 
 ## Edge Cases
 
@@ -101,6 +112,8 @@ What the skill produces and where.
 
 - [file.md](references/file.md): Description
 ```
+
+The Working passage is written in each skill's own vocabulary (its artifact, columns, scales and consumers); copying it between skills is the anti-pattern it exists to avoid.
 
 ### Skill Guidelines
 
@@ -116,7 +129,8 @@ What the skill produces and where.
 
 #### Instructions
 - Keep SKILL.md under 500 lines
-- Use imperative mood: "Search for..." not "You should search..."
+- Behavioral sections (Outcome, Who reads <artifact>, How to Work, Constraints, What a strong <artifact> looks like) state the outcome and its constraints in prose, with the reason beside each requirement
+- Reference data (scoring scales, field lists, query templates, tables) stays structured as lists and tables
 - Include concrete examples
 - Document edge cases
 

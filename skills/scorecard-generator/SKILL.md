@@ -12,15 +12,9 @@ allowed-tools: Read Write
 
 Calculates multi-dimensional validation scores and generates opportunity scorecards.
 
-## Quick Start
+## Outcome
 
-Given all prior artifacts, generate a scorecard:
-1. Extract evidence from each artifact
-2. Score each dimension (1-10)
-3. Calculate composite score
-4. Determine revenue potential
-5. Generate recommendation
-6. Output `scorecard.json`
+`scorecard.json` carries seven dimension scores, each with the evidence that produced it, combined by fixed weights into a 0-100 composite, a revenue-potential band, and a GO / PIVOT / NO-GO recommendation with rationale and next steps.
 
 ## Inputs Required
 
@@ -35,11 +29,16 @@ Given all prior artifacts, generate a scorecard:
   - `gtm_plan.md`
   - `risks.md`
 
-## Step-by-Step Workflow
+## Who reads scorecard.json
 
-### Step 1: Gather Evidence
+validation-report lifts the verdict into the first line of the report and the dimension table into its section 7, and idea-validation-orchestrator reports the composite as the outcome of the whole run. For most readers the composite number is the validation, since the founder reads the verdict and the investor reads the table, and few of either open the nine artifacts behind them.
 
-Review each artifact and extract relevant metrics:
+The evidence string on each dimension therefore matters more than the digit next to it, because an evidence string that does not name the artifact and the figure it came from leaves the verdict unfalsifiable, and a verdict nobody can argue with is a verdict nobody trusts.
+
+## What scorecard.json Must Cover
+
+### Evidence
+The metric each artifact contributes, pulled before any scoring starts:
 
 | Artifact | Key Metrics to Extract |
 |----------|------------------------|
@@ -52,73 +51,92 @@ Review each artifact and extract relevant metrics:
 | gtm_plan.md | Channel viability |
 | risks.md | Critical risk count |
 
-### Step 2: Score Each Dimension
-
-Rate each dimension 1-10 based on evidence:
+### Dimension Scores
+Each dimension rated 1-10 on its own anchors, with the evidence recorded beside the number:
 
 #### Problem Severity (Weight: 20%)
 From `icp.yaml` problem_severity score:
-- 9-10: Hair-on-fire problem, active spending to solve
-- 7-8: Significant pain, some existing solutions
-- 5-6: Moderate frustration, workarounds exist
-- 3-4: Minor inconvenience
-- 1-2: Nice-to-have, not a real problem
+
+| Score | What the band means |
+|-------|---------------------|
+| 9-10 | Hair-on-fire problem, active spending to solve |
+| 7-8 | Significant pain, some existing solutions |
+| 5-6 | Moderate frustration, workarounds exist |
+| 3-4 | Minor inconvenience |
+| 1-2 | Nice-to-have, not a real problem |
 
 #### Demand Signals (Weight: 15%)
 From `signals.md` signal score:
-- 9-10: High search volume, active communities, strong growth
-- 7-8: Good signals, engaged communities
-- 5-6: Moderate interest, niche communities
-- 3-4: Limited signals, small audiences
-- 1-2: No measurable demand
+
+| Score | What the band means |
+|-------|---------------------|
+| 9-10 | High search volume, active communities, strong growth |
+| 7-8 | Good signals, engaged communities |
+| 5-6 | Moderate interest, niche communities |
+| 3-4 | Limited signals, small audiences |
+| 1-2 | No measurable demand |
 
 #### Competitive Intensity (Weight: 10%)
 From `competitors.csv`:
-- 1-2: Blue ocean, no direct competitors (good)
-- 3-4: Few competitors, clear differentiation possible
-- 5-6: Moderate competition, gaps exist
-- 7-8: Crowded market, hard to differentiate
-- 9-10: Red ocean, dominated by incumbents (bad)
+
+| Score | What the band means |
+|-------|---------------------|
+| 1-2 | Blue ocean, no direct competitors (good) |
+| 3-4 | Few competitors, clear differentiation possible |
+| 5-6 | Moderate competition, gaps exist |
+| 7-8 | Crowded market, hard to differentiate |
+| 9-10 | Red ocean, dominated by incumbents (bad) |
 
 **Note**: For this dimension, LOWER is BETTER.
 
 #### Market Size (Weight: 15%)
 From `market_size.md`:
-- 9-10: TAM > $10B, SAM > $1B
-- 7-8: TAM $1-10B, SAM $100M-1B
-- 5-6: TAM $100M-1B, SAM $10-100M
-- 3-4: TAM $10-100M, niche market
-- 1-2: TAM < $10M, very small market
+
+| Score | What the band means |
+|-------|---------------------|
+| 9-10 | TAM > $10B, SAM > $1B |
+| 7-8 | TAM $1-10B, SAM $100M-1B |
+| 5-6 | TAM $100M-1B, SAM $10-100M |
+| 3-4 | TAM $10-100M, niche market |
+| 1-2 | TAM < $10M, very small market |
 
 #### Execution Difficulty (Weight: 15%)
 From `mvp_spec.md` and `risks.md`:
-- 1-2: Simple app, proven tech, solo buildable (good)
-- 3-4: Standard complexity, small team needed
-- 5-6: Moderate complexity, some novel components
-- 7-8: Complex system, specialized skills required
-- 9-10: Frontier technology, major R&D required (bad)
+
+| Score | What the band means |
+|-------|---------------------|
+| 1-2 | Simple app, proven tech, solo buildable (good) |
+| 3-4 | Standard complexity, small team needed |
+| 5-6 | Moderate complexity, some novel components |
+| 7-8 | Complex system, specialized skills required |
+| 9-10 | Frontier technology, major R&D required (bad) |
 
 **Note**: For this dimension, LOWER is BETTER.
 
 #### GTM Viability (Weight: 15%)
 From `gtm_plan.md` and `pricing.yaml`:
-- 9-10: Clear channels, low CAC, viral potential
-- 7-8: Good channels available, reasonable CAC
-- 5-6: Some channels, moderate CAC
-- 3-4: Limited channels, high CAC
-- 1-2: No clear path to customers
+
+| Score | What the band means |
+|-------|---------------------|
+| 9-10 | Clear channels, low CAC, viral potential |
+| 7-8 | Good channels available, reasonable CAC |
+| 5-6 | Some channels, moderate CAC |
+| 3-4 | Limited channels, high CAC |
+| 1-2 | No clear path to customers |
 
 #### Timing (Weight: 10%)
 From `signals.md`, `market_size.md`, and context:
-- 9-10: Perfect timing - enabling tech just matured
-- 7-8: Good timing - market ready, trends supportive
-- 5-6: Neutral - no major headwinds or tailwinds
-- 3-4: Challenging - market not ready or shifting away
-- 1-2: Bad timing - too early or too late
 
-### Step 3: Calculate Composite Score
+| Score | What the band means |
+|-------|---------------------|
+| 9-10 | Perfect timing - enabling tech just matured |
+| 7-8 | Good timing - market ready, trends supportive |
+| 5-6 | Neutral - no major headwinds or tailwinds |
+| 3-4 | Challenging - market not ready or shifting away |
+| 1-2 | Bad timing - too early or too late |
 
-Apply weights and calculate:
+### Composite Score
+The weighted combination, computed with the arithmetic shown in the file:
 
 ```
 Composite = (
@@ -134,16 +152,17 @@ Composite = (
 
 Result is 0-100.
 
-### Step 4: Determine Revenue Potential
+### Revenue Potential
+A band derived from market size and unit economics:
 
-Based on market size and unit economics:
-- `$$$` ($10M+ ARR potential): Large SAM, strong economics
-- `$$` ($1M-$10M ARR potential): Medium SAM, viable economics
-- `$` ($100K-$1M ARR potential): Small SAM or challenging economics
+| Band | ARR potential | What it means |
+|------|---------------|---------------|
+| `$$$` | $10M+ | Large SAM, strong economics |
+| `$$` | $1M-$10M | Medium SAM, viable economics |
+| `$` | $100K-$1M | Small SAM or challenging economics |
 
-### Step 5: Generate Recommendation
-
-Based on composite score and risk profile:
+### Recommendation
+The verdict the composite and the dimension floor together imply:
 
 **GO** (Score ≥ 65 AND no dimension below 4):
 - Proceed with development
@@ -160,36 +179,27 @@ Based on composite score and risk profile:
 - Critical gaps in multiple areas
 - Recommend exploring different ideas
 
-### Step 6: Define Next Steps
+The dimension floor exists because a high composite can hide a single disqualifying dimension; when that happens the rationale says so rather than letting the average speak.
 
-Based on recommendation, suggest 2-3 immediate actions:
-- For GO: Focus on execution priorities
-- For PIVOT: Address specific weaknesses
-- For NO-GO: Alternative directions to explore
+### Next Steps
+Two or three immediate actions that follow from the verdict: execution priorities for GO, the specific weaknesses to address for PIVOT, alternative directions to explore for NO-GO.
 
-### Step 7: Generate Artifact
+## How to Work
 
-Create `scorecard.json` following the contract format.
+The seven dimensions are independent readings of artifacts already on disk and can be scored in any order. The only dependency chain is:
+1. All seven dimension scores, each with its evidence
+2. The composite, from the weights above
+3. The recommendation, from the composite and the dimension floor
 
-## Workflow Checklist
+Revenue potential reads market_size.md and pricing.yaml directly and does not wait on the composite.
 
-```
-Scorecard Generation Progress:
-- [ ] All artifacts gathered and reviewed
-- [ ] Evidence extracted for each dimension
-- [ ] Problem severity scored with evidence
-- [ ] Demand signals scored with evidence
-- [ ] Competitive intensity scored with evidence
-- [ ] Market size scored with evidence
-- [ ] Execution difficulty scored with evidence
-- [ ] GTM viability scored with evidence
-- [ ] Timing scored with evidence
-- [ ] Composite score calculated
-- [ ] Revenue potential determined
-- [ ] Recommendation generated
-- [ ] Next steps defined
-- [ ] scorecard.json created
-```
+## Constraints
+
+Every dimension score cites the artifact and the specific figure or line that supports it. The composite is computed from the stated weights with the arithmetic shown, so a reader can recompute it. A dimension with no evidence in any artifact is recorded as unscored with the reason, rather than given a middling default that would quietly distort the composite. The revenue band and the recommendation each carry a rationale in terms of the evidence. Next steps are concrete enough to act on this week. The finished `scorecard.json` conforms to `contracts/scorecard.json`.
+
+## What a strong scorecard.json looks like
+
+Each dimension score has to stand or fall on its own, so a reader can disagree with one of them without rejecting the whole scorecard. That takes an evidence string per dimension that points back at the artifact and the figure it came from ("Market Size 6: SAM $45M per market_size.md bottom-up estimate, confidence medium"), so that a founder who thinks the SAM is wrong knows which file to reopen and what a corrected score would do to the composite. Seven numbers, a composite and a verdict, with evidence strings that restate the scale ("moderate competition"), fall short, since there is nothing in them to disagree with. The composite is shown with its arithmetic because a 64 has to be checkable as a 64 and not a rounding that crossed the GO threshold.
 
 ## Output Format
 
@@ -201,6 +211,14 @@ Required fields:
 - composite_score and calculation_method
 - revenue_potential with indicator and range
 - recommendation with verdict, rationale, and next_steps
+
+## Working the Score
+
+Reading the nine artifacts is fast, so what is worth delegating here is the judgment rather than the file access - sub-agents can each argue one dimension's score from its own evidence in parallel while you hold the weighting consistent across all seven. Scoring is arithmetic over evidence already gathered, so effort is proportional to disagreement; dimensions where the artifacts conflict deserve the deliberation and the rest read straight off the bands. A dimension whose primary input artifact is missing but whose evidence survives in another artifact is scored with its confidence marked unverified rather than filled in from a general impression of the idea.
+
+A composite can hide a disqualifying dimension, and the counter-intuitive case of a 68 built on a Demand Signals 3 is worth saying plainly instead of reporting the verdict the formula produced. `scorecard.json` is read by validation-report, which reprints this verdict and rationale almost verbatim as its headline, so the rationale is written for a founder deciding rather than for the model that produced it, and a thin evidence field becomes an unsupported claim in the final document. Lead with the verdict and the composite; the seven dimension scores are the support, not the opening.
+
+The deliverable is `scorecard.json`; going back to re-research a dimension that scored badly is not this skill's move, and neither is adjusting the weights to reach a preferred verdict. Before writing `scorecard.json`, verify the numbers by recomputing the composite from the seven weighted scores and showing the formula with the actual values substituted.
 
 ## Scoring Calibration
 

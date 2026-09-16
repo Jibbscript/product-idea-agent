@@ -12,26 +12,25 @@ allowed-tools: Read Write
 
 Generates comprehensive validation reports synthesizing all research and analysis.
 
-## Quick Start
+## Outcome
 
-Given all prior artifacts and scorecard, generate report:
-1. Aggregate findings from all artifacts
-2. Write executive summary
-3. Structure section narratives
-4. Include key data and visualizations
-5. Add recommendations and next steps
-6. Output `validation_report.md`
+`validation_report.md` is the one document a founder or investor reads to decide, in a few minutes, whether this idea is worth pursuing. A finished report leads with the verdict and the composite score, then walks through opportunity, evidence, solution, business model, go-to-market, risks, and scorecard in a fixed order, and closes with recommendations that fit the verdict.
 
 ## Inputs Required
 
 - All prior artifacts
 - `scorecard.json` (from scorecard-generator) - required
 
-## Step-by-Step Workflow
+## Who reads validation_report.md
 
-### Step 1: Review All Artifacts
+Unlike every other artifact in the pack, this one is not consumed by another skill. It is read by a founder deciding whether to spend the next quarter on this idea, or by an investor deciding whether to take the meeting, and by nobody else in the pipeline. Both readers open it the same way: the first page gets read, the rest gets skimmed for the one number or risk that would change the decision, and the appendix gets opened only if they are already interested.
 
-Gather and review:
+That reading pattern is the reason the verdict belongs above the evidence rather than after it. A report that builds to its conclusion the way an essay does has, for this audience, buried the only line they came for.
+
+## What validation_report.md Must Cover
+
+### Evidence From All Artifacts
+The report is a synthesis, so it draws on every artifact in the chain:
 - `idea_brief.md` - The core concept
 - `signals.md` - Demand validation
 - `icp.yaml` - Customer definition
@@ -43,19 +42,17 @@ Gather and review:
 - `risks.md` - Risk assessment
 - `scorecard.json` - Validation scores
 
-### Step 2: Write Executive Summary
-
-Create a 3-5 paragraph summary covering:
+### Executive Summary
+Three to five paragraphs a reader can absorb in two minutes and come away with the essential decision, covering:
 - The idea and its core value proposition
 - Key validation findings (strongest and weakest areas)
 - Overall recommendation (GO/PIVOT/NO-GO)
 - Critical next steps
 
-This should be readable in 2 minutes and convey the essential decision.
+The verdict appears here, in the first paragraph, because many readers stop after the summary.
 
-### Step 3: Structure Main Sections
-
-Organize the report into logical sections:
+### Main Sections
+The body of the report, in this order:
 
 1. **The Opportunity**
    - Problem statement
@@ -97,26 +94,25 @@ Organize the report into logical sections:
    - Key milestones
    - Resources needed
 
-### Step 4: Add Supporting Data
-
-Include key data points:
+### Supporting Data
+The specific numbers the narrative rests on:
 - Market size figures (TAM/SAM/SOM)
 - Demand signal metrics
 - Competitor comparison highlights
 - Pricing benchmarks
 - Risk matrix summary
 
-### Step 5: Create Visualizations (Text-Based)
+A report that says "the market is large" without the TAM beside it has summarized the artifact, not synthesized it.
 
-Add text-based diagrams where helpful:
+### Text Visualizations
+Text-based diagrams where they carry more than a paragraph would:
 - Scorecard dimension chart
 - Market positioning map
 - Timeline overview
 - Artifact flow diagram
 
-### Step 6: Write Recommendations
-
-Based on the scorecard verdict:
+### Recommendations
+The closing section, shaped by the scorecard verdict:
 
 **For GO:**
 - Immediate execution priorities
@@ -134,28 +130,19 @@ Based on the scorecard verdict:
 - Alternative directions to explore
 - What would need to change to reconsider
 
-### Step 7: Generate Artifact
+## How to Work
 
-Create `validation_report.md` with professional formatting.
+Only the executive summary depends on all eight main sections, so it is written last even though it is read first. The Writing Guidelines below set the tone and length; the template under Output Format sets the structure.
 
-## Workflow Checklist
+## Constraints
 
-```
-Validation Report Progress:
-- [ ] All artifacts reviewed
-- [ ] Scorecard analyzed
-- [ ] Executive summary written
-- [ ] Opportunity section complete
-- [ ] Validation evidence section complete
-- [ ] Solution section complete
-- [ ] Business model section complete
-- [ ] Go-to-market section complete
-- [ ] Risks section complete
-- [ ] Scorecard section complete
-- [ ] Recommendations written
-- [ ] Document formatted and polished
-- [ ] validation_report.md created
-```
+The verdict and composite score appear in the executive summary and in the header, not only at the end. Every figure and claim in the report traces to a named artifact. Sections with thin underlying evidence say so instead of padding, since a reader who discovers the gap later trusts nothing else in the report. Borderline verdicts are called borderline, with the deciding factors named. The finished `validation_report.md` follows the structure shown under Output Format.
+
+## What a strong validation_report.md looks like
+
+The test this report has to pass is a five-minute read by someone who has seen none of the eleven artifacts. A strong report puts the verdict and the one number that drove it in its first three lines and lets the reader close the file there with the decision in hand; every claim in the executive summary can be traced to a named artifact, so that a reader who doubts the market figure knows to open market_size.md rather than distrust the whole document. A weak report opens with methodology, restates each artifact in order, and makes the reader hunt for the answer, which in a five-minute read is the same as not answering.
+
+The close call is where the two diverge most. A borderline verdict stated as borderline, with the deciding factor named, reads as more credible than a confident GO that the dimension table quietly contradicts, because the reader can see the table.
 
 ## Output Format
 
@@ -278,6 +265,14 @@ Create `validation_report.md` with this structure:
 - Additional data tables
 - Methodology notes
 ```
+
+## Working the Report
+
+Lead with the verdict: the first sentence after the title says GO, PIVOT or NO-GO and why, ahead of any section narrative. This report ends the chain and is read by people who saw none of the work, so vocabulary built up across ten artifacts is either re-introduced here or left out. The eight section narratives are independent writing tasks over artifacts that are already final, so delegate them to sub-agents in parallel and spend your own attention on the executive summary that has to hold them together.
+
+Section depth is proportional to the verdict's drivers, so the dimensions that produced GO, PIVOT or NO-GO earn the detail, and a section with nothing decision-relevant in it can be three sentences. Where an artifact was missing or its number unverified, the report says so instead of smoothing over the gap. The most valuable paragraph is usually the one naming what would change the verdict, and a surprising finding that contradicts the composite belongs in the summary rather than an appendix.
+
+The deliverable is `validation_report.md` assembled from the existing artifacts, so re-running research or revising a scorecard dimension mid-write is out of scope; note the gap and stop there. Before you finish, re-read the executive summary on its own: it should stand without the rest of the document and contradict nothing in the scorecard table.
 
 ## Writing Guidelines
 

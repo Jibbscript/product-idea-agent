@@ -12,14 +12,9 @@ allowed-tools: Read Write WebSearch WebFetch
 
 Researches pricing models, competitor benchmarks, and customer willingness-to-pay.
 
-## Quick Start
+## Outcome
 
-Given prior artifacts, research pricing:
-1. Analyze competitor pricing models
-2. Research pricing in adjacent markets
-3. Estimate willingness-to-pay
-4. Design value ladder
-5. Output `pricing.yaml`
+A finished `pricing.yaml` recommends a pricing model and value ladder for this product, backed by what competitors charge, what adjacent markets charge, what the product is worth to the customer, and what customers have said they will pay, and ends in unit economics (ARPC, CAC, LTV:CAC, payback).
 
 ## Inputs Required
 
@@ -27,83 +22,68 @@ Given prior artifacts, research pricing:
 - `competitors.csv` (from competitive-landscape) - for pricing benchmarks
 - `icp.yaml` (from problem-segment) - for buyer context
 
-## Step-by-Step Workflow
+## Who reads pricing.yaml
 
-### Step 1: Analyze Competitor Pricing
+scorecard-generator pulls the LTV:CAC ratio and the unit economics into its GTM Viability dimension, and validation-report presents the value ladder as the revenue story in its Business Model section. No skill between here and the report re-benchmarks a price, and the first price a founder quotes on a sales call is whatever the value ladder said, as relayed through that section.
 
-From `competitors.csv`, extract:
-- Pricing models (subscription, usage, onetime)
-- Price ranges (low to high tiers)
-- Free tier availability
-- Enterprise/custom pricing
+The LTV:CAC an investor eventually sees is this file's arithmetic carried through scorecard.json, so a tier priced on feel becomes, two artifacts later, a revenue projection nobody can trace back to a benchmark or a value calculation.
 
-Search for additional details:
-- "[competitor] pricing page"
-- "[competitor] plans comparison"
-- "[competitor] pricing reddit" (for real costs)
+## What pricing.yaml Must Cover
 
-### Step 2: Research Adjacent Markets
+### Competitor Pricing
+What `competitors.csv` already holds, extended by direct research: pricing models (subscription, usage, onetime), price ranges (low to high tiers), free tier availability, and enterprise/custom pricing. Pricing pages give the list price; "[competitor] pricing page", "[competitor] plans comparison", and "[competitor] pricing reddit" searches surface what customers actually pay after discounts and overages, and both belong in the benchmark.
 
-Look at pricing in related categories:
-- Similar solutions for different segments
-- Different solutions for same problem
-- Complementary products
+### Adjacent Market Pricing
+What related categories charge, because the buyer's sense of a fair price is anchored there: similar solutions for different segments, different solutions for the same problem, and complementary products the buyer already pays for.
 
-### Step 3: Estimate Value Delivered
-
-Calculate ROI for the customer:
+### Value Delivered
+The customer's ROI, built from three questions:
 - What's the current cost of the problem?
 - What value does your solution deliver?
 - What's the expected ROI multiple?
 
 **Pricing Rule of Thumb**: Price at 10-20% of value delivered
 
-### Step 4: Research Willingness-to-Pay
+The value figure states the assumption it rests on (hours saved, revenue recovered, headcount avoided), since the rule of thumb is only as good as the value estimate under it.
 
-Find evidence of what customers will pay:
-- Competitor customer reviews mentioning price
-- Reddit/forum discussions about pricing
-- Survey data on software spending
-- Industry benchmarks for category
+### Willingness-to-Pay Evidence
+What customers have said or shown about what they will pay: competitor customer reviews mentioning price, Reddit/forum discussions about pricing, survey data on software spending, and industry benchmarks for the category. Two independent sources is the floor; a single enthusiastic thread is an anecdote.
 
-### Step 5: Design Value Ladder
-
-Create pricing tiers:
+### Value Ladder
+The tiers the product will sell at:
 1. **Free/Lead Magnet**: Acquisition driver
 2. **Starter**: Entry-level conversion
 3. **Pro/Growth**: Core revenue tier
 4. **Enterprise**: High-value accounts
 
-For each tier, define:
+Each tier specifies:
 - Features included/excluded
 - Usage limits
 - Price point
 - Billing cycle
 
-### Step 6: Model Unit Economics
+Not every product needs all four; a ladder with two well-separated tiers beats one with four that blur together. The Value Ladder Framework below gives typical ranges per tier.
 
-Calculate:
+### Unit Economics
+The four numbers the ladder implies:
 - **ARPC**: Average Revenue Per Customer (monthly)
 - **Estimated CAC**: Cost to acquire a customer
 - **LTV:CAC Ratio**: Should be 3:1 or higher
 - **Payback Period**: Months to recover CAC
 
-### Step 7: Generate Artifact
+## How to Work
 
-Create `pricing.yaml` following the contract format.
+Competitor pricing, adjacent-market pricing, and willingness-to-pay evidence are three independent searches with no order among them. The value calculation depends only on the idea brief and the ICP. The value ladder is the synthesis of all four, and the unit economics follow from the ladder's prices, so those two are written last.
 
-## Workflow Checklist
+## Constraints
 
-```
-Pricing Research Progress:
-- [ ] Competitor pricing analyzed
-- [ ] Adjacent market pricing researched
-- [ ] Value delivered estimated
-- [ ] WTP evidence gathered
-- [ ] Value ladder designed
-- [ ] Unit economics modeled
-- [ ] pricing.yaml created
-```
+Competitor prices carry the URL and the date observed, because pricing pages change without notice. The value figure states the assumption it rests on. Every ladder tier names its price, its buyer, and what it excludes. At least two competitor benchmarks and two willingness-to-pay sources are cited. The recommendation names a pricing model from the options table below and gives its rationale in terms of the evidence gathered. The finished `pricing.yaml` conforms to `contracts/pricing.yaml`.
+
+## What a strong pricing.yaml looks like
+
+The test is whether a reader can see why Pro costs what it costs. A strong pricing file ties each tier to either a named competitor benchmark or a stated value calculation, and says which one it used; a weak one lists round numbers that feel right and a 3:1 LTV:CAC that was chosen rather than computed. The difference shows in the recommendation: "Pro at $79 because Competitor A charges $99 for a comparable tier and the ROI estimate supports 15% of $6,000 in annual value" can be argued with, while "Pro at $79" cannot.
+
+The value ladder has to survive being summarised in one paragraph of validation_report.md and one number in scorecard.json, because that compressed form is all founders ever see of it.
 
 ## Output Format
 
@@ -116,30 +96,46 @@ Required sections:
 - WTP evidence (at least 2 sources)
 - Recommendation with rationale
 
+## Working the Price
+
+Competitor pricing pages, adjacent-category benchmarks and willingness-to-pay threads are separate lookups, so delegate them to sub-agents working in parallel and reconcile what comes back into the benchmark list. Two solid WTP data points that agree are enough evidence to set a tier, and once the tier prices stop moving as more anecdotes arrive, the extra searching is diminishing returns. A published list price is sourced, a price reconstructed from a customer's forum comment is an estimate, and enterprise pricing hidden behind a Contact Sales button stays unverified; each WTP evidence entry says which of the three it is.
+
+Your judgment is wanted on the contrarian tier, because the price that looks too high often tests better than the safe one, and naming that possibility serves the founder more than centering the ladder on the competitor median. `pricing.yaml` is read downstream by gtm-channels, which plans around the unit economics and checks channel CAC against the ARPC set here, and by scorecard-generator's GTM Viability dimension, so an LTV:CAC ratio that was invented becomes a score someone trusts. Lead with the recommended price point and the one sentence of reasoning behind it, then the benchmarks that justify it.
+
+The deliverable is `pricing.yaml`; drafting pricing-page copy or choosing a billing provider is not part of it. Before you finish, re-read the unit economics and confirm the payback period follows from the ARPC and CAC actually listed rather than from a remembered rule of thumb.
+
 ## Research Query Templates
 
 ### Competitor Pricing
-- "[competitor] pricing"
-- "[competitor] plans"
-- "[competitor] cost"
-- "[competitor] pricing page"
-- "[competitor] how much site:reddit.com"
+```text
+"[competitor] pricing"
+"[competitor] plans"
+"[competitor] cost"
+"[competitor] pricing page"
+"[competitor] how much site:reddit.com"
+```
 
 ### Industry Benchmarks
-- "[category] software pricing benchmark"
-- "[category] average deal size"
-- "SaaS pricing best practices [category]"
+```text
+"[category] software pricing benchmark"
+"[category] average deal size"
+"SaaS pricing best practices [category]"
+```
 
 ### Willingness to Pay
-- "would pay for [solution] site:reddit.com"
-- "[solution] worth the price"
-- "[alternative] too expensive"
-- "[category] budget survey"
+```text
+"would pay for [solution] site:reddit.com"
+"[solution] worth the price"
+"[alternative] too expensive"
+"[category] budget survey"
+```
 
 ### Value-Based Pricing
-- "[problem] cost to business"
-- "[problem] ROI"
-- "[solution] saves time money"
+```text
+"[problem] cost to business"
+"[problem] ROI"
+"[solution] saves time money"
+```
 
 ## Pricing Model Options
 

@@ -12,37 +12,39 @@ allowed-tools: Read Write WebSearch
 
 Identifies risks, constraints, dependencies, and mitigation strategies.
 
-## Quick Start
+## Outcome
 
-Given all prior artifacts, assess risks:
-1. Identify risks across categories
-2. Score by severity and likelihood
-3. Develop mitigation strategies
-4. Document must-be-true assumptions
-5. Output `risks.md`
+`risks.md` holds every material risk to the idea, scored on severity and likelihood, with the critical ones worked through to a mitigation and a contingency, plus the assumptions that must hold, the constraints the team operates under, and the external dependencies that could fail. A finished assessment is built from the eight artifacts before it.
 
 ## Inputs Required
 
 - All prior artifacts (aggregated context)
 - Particularly: `mvp_spec.md`, `gtm_plan.md`, `competitors.csv`
 
-## Step-by-Step Workflow
+## Who reads risks.md
 
-### Step 1: Review Prior Artifacts
+scorecard-generator counts the risks scoring 15 or above and reads the technical picture, alongside mvp_spec.md, into its Execution Difficulty dimension; validation-report carries the critical risks into its Risks & Mitigations section, which is where an investor scanning for the deal-breaker goes first. Neither re-derives a score.
 
-Gather context from all prior work:
-- Idea brief: Core assumptions
-- Signals: Demand validation risks
-- ICP: Customer understanding risks
-- Competitors: Competitive risks
-- Market size: Market risks
-- Pricing: Revenue model risks
-- MVP spec: Technical risks
-- GTM: Go-to-market risks
+In that count, a risk named "competition" weighs the same as one naming a specific incumbent with a specific timeline, and the second is worth ten times as much, since the count feeds the composite either way but only the specific one gives the founder something to de-risk and the investor something to weigh. The specificity is the work.
 
-### Step 2: Identify Risks by Category
+## What risks.md Must Cover
 
-For each category, brainstorm potential risks:
+### Evidence From Prior Artifacts
+Where each risk came from, since every prior artifact carries its own kind of risk:
+
+| Prior artifact | Risk kind it raises |
+|----------------|---------------------|
+| Idea brief | Core assumptions |
+| Signals | Demand validation risks |
+| ICP | Customer understanding risks |
+| Competitors | Competitive risks |
+| Market size | Market risks |
+| Pricing | Revenue model risks |
+| MVP spec | Technical risks |
+| GTM | Go-to-market risks |
+
+### Risk Categories
+Risks surfaced under each of the five categories, or an explicit note that a category does not apply and why:
 
 **Technical Risks:**
 - Technology uncertainty
@@ -79,85 +81,61 @@ For each category, brainstorm potential risks:
 - Churn too high
 - Cash flow timing
 
-### Step 3: Score Each Risk
+The Risk Identification Questions below are the prompts for each category.
 
-For each risk, assess:
+### Risk Scoring
+Every risk carries both numbers on these scales:
 
 **Severity (1-5):**
-- 1 = Negligible: Minor inconvenience
-- 2 = Low: Some rework needed
-- 3 = Medium: Significant delay or cost
-- 4 = High: Major pivot required
-- 5 = Critical: Existential threat
+
+| Score | Severity | What it means |
+|-------|----------|---------------|
+| 1 | Negligible | Minor inconvenience |
+| 2 | Low | Some rework needed |
+| 3 | Medium | Significant delay or cost |
+| 4 | High | Major pivot required |
+| 5 | Critical | Existential threat |
 
 **Likelihood (1-5):**
-- 1 = Rare: <10% chance
-- 2 = Unlikely: 10-25% chance
-- 3 = Possible: 25-50% chance
-- 4 = Likely: 50-75% chance
-- 5 = Almost Certain: >75% chance
+
+| Score | Likelihood | Probability |
+|-------|------------|-------------|
+| 1 | Rare | <10% chance |
+| 2 | Unlikely | 10-25% chance |
+| 3 | Possible | 25-50% chance |
+| 4 | Likely | 50-75% chance |
+| 5 | Almost Certain | >75% chance |
 
 **Risk Score = Severity × Likelihood**
 
-### Step 4: Prioritize Critical Risks
+### Critical Risks
+The risks scoring 15 or higher, each written up in detail with a mitigation strategy, a contingency plan, and an owner, using the Mitigation Strategy Template below. These are the risks the validation report will lead with, so the write-up is where the depth goes.
 
-Focus on high-score risks (Score ≥ 15):
-- Document in detail
-- Develop mitigation strategy
-- Create contingency plan
-- Assign ownership
+### Must-Be-True Assumptions
+The assumptions the whole plan rests on, gathered from the idea brief, market research, technical planning, and GTM strategy, each paired with how it could be validated. An assumption with no way to test it is a risk in disguise and is scored as one.
 
-### Step 5: Document Must-Be-True Assumptions
+### Execution Constraints
+The known limits the team is working inside: budget limitations, timeline requirements, team capabilities, technology limitations, and legal/regulatory bounds. Constraints are not risks, but they decide which mitigations are affordable.
 
-List the assumptions that must hold:
-- From the idea brief
-- From market research
-- From technical planning
-- From GTM strategy
+### Dependencies
+The external things the plan cannot control (third-party APIs, platform providers, data sources, partners, regulatory approvals), each with the risk if it becomes unavailable.
 
-For each, note how it could be validated.
+## How to Work
 
-### Step 6: Identify Constraints
+The five categories are independent sweeps over the prior artifacts and can be worked in any order. The sequenced part is short:
+1. Scoring, which needs the full risk list
+2. Prioritization into critical risks, which needs the scores
+3. Mitigation write-ups, which need the critical set
 
-Document known constraints:
-- Budget limitations
-- Timeline requirements
-- Team capabilities
-- Technology limitations
-- Legal/regulatory bounds
+Assumptions, constraints, and dependencies are gathered alongside the category sweeps rather than after them.
 
-### Step 7: Map Dependencies
+## Constraints
 
-Identify external dependencies:
-- Third-party APIs
-- Platform providers
-- Data sources
-- Partners
-- Regulatory approvals
+Every one of the five categories is covered or explicitly recorded as not applicable with the reason. Every risk carries both a severity and a likelihood on the stated 1-5 scales, and the risk matrix table shows their product. Every critical risk (score of 15 or more) carries a mitigation and a contingency. Must-be-true assumptions each name a validation method. Dependencies each state what breaks if they fail. The finished `risks.md` conforms to `contracts/risks.md`.
 
-For each, note the risk if unavailable.
+## What a strong risks.md looks like
 
-### Step 8: Generate Artifact
-
-Create `risks.md` following the contract format.
-
-## Workflow Checklist
-
-```
-Risk Assessment Progress:
-- [ ] Prior artifacts reviewed
-- [ ] Technical risks identified
-- [ ] Market risks identified
-- [ ] Execution risks identified
-- [ ] Regulatory risks identified
-- [ ] Financial risks identified
-- [ ] Risks scored (severity × likelihood)
-- [ ] Critical risks detailed with mitigation
-- [ ] Must-be-true assumptions documented
-- [ ] Constraints listed
-- [ ] Dependencies mapped
-- [ ] risks.md created
-```
+The top three rows are the whole document for most of its readers, so they have to be actionable before anyone reaches the matrix. What separates a strong assessment from a weak assessment is not the matrix but the wording of each row: named concretely enough to carry an owner and an early-warning indicator, with the observation that would make the risk real spelled out ("if the two pilot customers have not signed by Day 60, the demand assumption is wrong"), rather than the five category headings listed back as the risks and scored 3 and 3 apiece. A register where everything is critical fails as well, because it ranks nothing.
 
 ## Output Format
 
@@ -169,6 +147,14 @@ Required sections:
 - Must-be-true assumptions
 - Constraints
 - Dependencies
+
+## Working the Risk Register
+
+Regulatory research, third-party dependency checks and competitor-response scenarios are independent investigations, so run them as parallel sub-agents. Detail is proportional to score, so cataloguing every low-score risk at the same length buries the ones that matter. Likelihood scores are judgments and should read as judgments, so a regulatory requirement confirmed by a named rule cites that rule while a risk resting on a market belief is marked as an assumption.
+
+The risk that matters is usually the one absent from the category list, so ask what would change the verdict if it landed next quarter and write down the second-order consequence rather than the first. `risks.md` is consumed by scorecard-generator, which counts critical risks into Execution Difficulty, and by validation-report's risk section, so a risk softened here softens the final recommendation too, and an assessment that finds nothing is a finding to be suspicious of. Lead with the risk that could end this, not with the matrix.
+
+The deliverable is `risks.md`; mitigating the risks by rescoping the MVP or rewriting the GTM plan belongs to whoever acts on the report, so record them and stop there. Before you finish, re-read the must-be-true assumptions against the earlier artifacts and confirm none was already contradicted by the demand or pricing evidence.
 
 ## Risk Identification Questions
 

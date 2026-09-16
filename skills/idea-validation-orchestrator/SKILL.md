@@ -51,89 +51,43 @@ Step 10: scorecard-generator    → scorecard.json
 Step 11: validation-report      → validation_report.md
 ```
 
-## Progress Tracker
+## Who reads the eleven artifacts
 
-Copy this checklist to track your validation progress:
+The founder who asked for the validation reads validation_report.md and possibly nothing else. The other ten files are what a co-founder or an investor opens three months later, when the decision is revisited and the conversation that produced them is gone, which is why each artifact has to stand alone rather than referring back to anything said in the session: a phrase like "as we discussed" means nothing to the reader who opens icp.yaml cold.
 
-```
-Product Validation Progress: [Idea Name]
-Started: [Date]
+## Progress and Resumption
 
-Phase 1: Discovery
-- [ ] Step 1: Create idea brief (idea-brief-creator)
-      Output: idea_brief.md
+A run's position is read from which artifacts already exist in the project directory, not from a copied checklist: if `icp.yaml` is on disk and conforms to its contract, steps 1-3 are done and step 4 is next. The pipeline groups into five phases, and the phase a run is in is the phase of the first missing artifact.
 
-- [ ] Step 2: Research demand signals (demand-signals)
-      Output: signals.md
+| Phase | Skills | Artifacts produced |
+|-------|--------|--------------------|
+| Discovery | idea-brief-creator, demand-signals | idea_brief.md, signals.md |
+| Customer & Market | problem-segment, competitive-landscape, market-sizing | icp.yaml, competitors.csv, market_size.md |
+| Strategy | pricing-wtp, solution-wedge, gtm-channels | pricing.yaml, mvp_spec.md, gtm_plan.md |
+| Assessment | risk-assessment, scorecard-generator | risks.md, scorecard.json |
+| Synthesis | validation-report | validation_report.md |
 
-Phase 2: Customer & Market
-- [ ] Step 3: Define ICP (problem-segment)
-      Output: icp.yaml
-
-- [ ] Step 4: Map competitors (competitive-landscape)
-      Output: competitors.csv
-
-- [ ] Step 5: Size market (market-sizing)
-      Output: market_size.md
-
-Phase 3: Strategy
-- [ ] Step 6: Research pricing (pricing-wtp)
-      Output: pricing.yaml
-
-- [ ] Step 7: Define MVP (solution-wedge)
-      Output: mvp_spec.md
-
-- [ ] Step 8: Plan GTM (gtm-channels)
-      Output: gtm_plan.md
-
-Phase 4: Assessment
-- [ ] Step 9: Assess risks (risk-assessment)
-      Output: risks.md
-
-- [ ] Step 10: Generate scorecard (scorecard-generator)
-      Output: scorecard.json
-
-Phase 5: Synthesis
-- [ ] Step 11: Compile report (validation-report)
-      Output: validation_report.md
-
-Validation Complete: [ ]
-Final Recommendation: [GO / PIVOT / NO-GO]
-```
+Reporting progress means naming the phase, the last artifact written, and the next skill to run; the final recommendation (GO / PIVOT / NO-GO) is reported once `scorecard.json` exists.
 
 ## How to Use This Skill
 
-### Full Validation Run
+A run enters the pipeline in one of three ways, and the project directory decides which. When the request is an idea and nothing is on disk, the run is a full validation: idea-brief-creator writes `idea_brief.md` and each later skill takes the previous artifact as its input until `validation_report.md` exists. Clarifying questions belong before that first step, and only when the idea is too thin to brief - a single line with no hint of who it is for or what it replaces - because that is the last point at which a wrong guess costs nothing to correct; once there is enough to write the brief, the run proceeds.
 
-Say: "Help me validate my startup idea for [description]"
+When artifacts already exist, the run resumes where Progress and Resumption places it, whether the user says "Continue validation from step X" or simply asks for the validation again, and the existing files are read rather than regenerated so that finished work is not paid for twice. A pause is the same case seen from the other side: each artifact is written to disk as its step completes, so a run stopped at any point resumes from the directory in a later session with nothing to note down. When a later finding undercuts an earlier artifact, such as a competitor found in step 4 that changes the segment chosen in step 3, the earlier file is rewritten and the steps that read it are re-run, since the pipeline only holds together while every artifact is current.
 
-I will:
-1. Start with the idea brief
-2. Guide you through each step
-3. Ask clarifying questions as needed
-4. Generate all artifacts
-5. Produce the final validation report
+When the request names one analysis - "just run competitive analysis for this idea" - only that skill runs and only its artifact is written, with the inputs it depends on read from disk when they exist and drawn from the request when they do not.
 
-### Partial Validation
+## Working the Pipeline
 
-If you've already completed some steps:
+The user is not watching each step, so reversible actions that follow from the original request - reading an artifact, running the next skill in the chain, redrafting a section - proceed without asking, and the user is consulted only when a decision genuinely changes the scope of the validation, such as which of two segments to treat as primary. Steps that do not depend on each other can run concurrently, so once `icp.yaml` exists, competitive-landscape and market-sizing are independent and belong in parallel sub-agents rather than a serialized pipeline. How deep each step goes scales with what is at stake: a quick feasibility check runs steps one through four shallowly, while an investment-readiness pass goes deeper on market-sizing and pricing-wtp. Not every idea needs all eleven steps, so the judgment call is where to stop; a NO-GO already obvious from `competitors.csv` is worth surfacing rather than spending two more hours confirming it.
 
-Say: "I already have an idea brief and demand signals. Continue from step 3."
+Each step's artifact is what the next step reads, with `signals.md` read by problem-segment and `icp.yaml` read by competitive-landscape, market-sizing and gtm-channels, so a thin artifact early is a thin artifact everywhere after it. Progress is audited against what was actually written, so when a skill produced nothing, say so plainly rather than reporting the step as done.
 
-I will:
-1. Review your existing artifacts
-2. Continue from the specified step
-3. Complete the remaining workflow
+Your final message is the founder's first look at hours of work, so the first sentence carries the verdict and the composite score, and what follows re-grounds a reader who saw none of the intermediate artifacts, spelling terms out rather than reusing shorthand built up while working. Before declaring the validation complete, re-read the artifact directory and confirm that either all eleven files exist or the final message states plainly which steps were skipped and why, and, when both exist, that the verdict in `scorecard.json` matches what `validation_report.md` states.
 
-### Single Step
+## What a strong validation run looks like
 
-If you only need one specific analysis:
-
-Say: "Just run competitive analysis for [idea]"
-
-I will:
-1. Run only that specific skill
-2. Generate the relevant artifact
+The test is whether a reader could reconstruct the verdict from the eleven artifacts without the transcript. Files that each make sense opened cold, with the weak dimensions stated as plainly as the strong ones, pass it, so that founders coming back to it can see why it said PIVOT and what has changed since. A good conversation and thin files fail it: a brief that quotes the chat, a signals file with no URLs, a scorecard whose evidence strings say "see discussion".
 
 ## Artifact Locations
 
@@ -195,25 +149,6 @@ Run steps 1-4 only for initial signal validation.
 ### Competitive Deep Dive
 Focus on steps 3-4 (ICP + competitors) for positioning strategy.
 
-## Handling Pauses
-
-If you need to pause the validation:
-1. Note which step you're on
-2. Artifacts are saved automatically
-3. Resume by saying "Continue validation from step X"
-
-## Tips for Best Results
-
-1. **Be specific about your idea** - The more detail, the better the analysis
-
-2. **Share existing research** - If you have customer interviews, competitor notes, etc.
-
-3. **Ask questions** - If any step is unclear or you want to go deeper
-
-4. **Iterate** - It's okay to revisit earlier steps based on later findings
-
-5. **Trust the process** - Each step builds on the previous ones
-
 ## Output Summary
 
 At the end of complete validation, you'll have:
@@ -222,7 +157,7 @@ At the end of complete validation, you'll have:
 - **GO/PIVOT/NO-GO recommendation**
 - **Actionable next steps**
 
-Ready to begin? Tell me about your idea!
+Given an idea description, the pipeline runs to completion and returns the report; the validation begins as soon as there is an idea to work from.
 
 ## References
 

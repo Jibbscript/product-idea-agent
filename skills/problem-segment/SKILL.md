@@ -12,33 +12,33 @@ allowed-tools: Read Write WebSearch WebFetch
 
 Defines ideal customer profiles and validates problem severity through research and segmentation.
 
-## Quick Start
+## Outcome
 
-Given an idea brief, define the ICP:
-1. Identify potential customer segments
-2. Research segment characteristics
-3. Assess problem severity per segment
-4. Prioritize segments by opportunity
-5. Output `icp.yaml`
+A finished `icp.yaml` names one primary customer segment, chosen on evidence from three to five candidates, with the runners-up recorded so the choice can be revisited. It carries the demographic or firmographic profile, the psychographics, the buying behaviors, and a problem-severity score whose evidence is written down next to it.
 
 ## Inputs Required
 
 - `idea_brief.md` (from idea-brief-creator)
 - `signals.md` (optional, enhances analysis)
 
-## Step-by-Step Workflow
+## Who reads icp.yaml
 
-### Step 1: Identify Potential Segments
-From the idea brief, list 3-5 potential customer segments:
+Four skills take this file as input and none of them re-interviews a customer. market-sizing turns the segment definition into the percentages of its SAM formula; pricing-wtp reads the buyer context to decide who signs the cheque and which budget line it comes from; solution-wedge ranks jobs-to-be-done against the frustrations recorded here; and gtm-channels reads the information-sources field almost literally, treating each named blog, podcast and community as a candidate channel.
+
+A segment defined loosely makes the SAM arithmetic meaningless two artifacts later, because a percentage is only a percentage of something you can name: "30% of small businesses" is not a number, "30% of US logistics firms with 50-200 employees" is.
+
+## What icp.yaml Must Cover
+
+### Candidate Segments
+Three to five potential customer segments drawn from the idea brief, each answering:
 - Who has this problem?
 - Who has it most severely?
 - Who has budget to solve it?
 
-Consider both obvious and non-obvious segments.
+The list considers both obvious and non-obvious segments, because the segment a founder first names is often the one they know rather than the one that hurts most.
 
-### Step 2: Research Segment Characteristics
-
-For each segment, gather:
+### Segment Characteristics
+The profile gathered for each candidate segment:
 
 **Demographics (B2C):**
 - Age range
@@ -54,9 +54,8 @@ For each segment, gather:
 - Role titles (decision maker, user, influencer)
 - Technology stack
 
-### Step 3: Define Psychographics
-
-For the primary segment, research:
+### Psychographics
+What the primary segment wants, what stands in their way, and what they value:
 
 **Goals:**
 - What are they trying to achieve?
@@ -73,9 +72,8 @@ For the primary segment, research:
 - What trade-offs do they make?
 - What brands/products do they trust?
 
-### Step 4: Map Behaviors
-
-Research how this segment:
+### Behaviors
+How the segment discovers products and how it buys them:
 
 **Finds information:**
 - What blogs/publications do they read?
@@ -89,40 +87,37 @@ Research how this segment:
 - What objections do they raise?
 - What's their budget/approval process?
 
-### Step 5: Assess Problem Severity
-
-Score problem severity (1-10) based on:
+### Problem Severity
+A 1-10 severity score for the segment, built from:
 - Frequency: How often does the problem occur?
 - Impact: What's the cost/consequence?
 - Urgency: How quickly must it be solved?
 - Alternatives: How bad are current solutions?
 
-Document evidence for the score.
+The evidence behind the score sits beside it in the file, since scorecard-generator reads this number directly and needs to see what supports it.
 
-### Step 6: Prioritize Segments
-
-Rank segments by opportunity:
+### Segment Prioritization
+The ranking of candidate segments by opportunity, weighing:
 - Severity of problem (highest first)
 - Ability to pay (consider budget)
 - Accessibility (can you reach them?)
 - Size (is it big enough?)
 
-### Step 7: Generate ICP Artifact
+The top-ranked segment becomes the primary; the others are kept as secondary segments rather than discarded.
 
-Create `icp.yaml` following the contract format.
+## How to Work
 
-## Workflow Checklist
+Characteristics, psychographics, and behaviors are three independent research passes over the same candidate list, and none of them waits on another. Severity scoring and prioritization need all three in hand, so prioritization is the one place order is forced.
 
-```
-Problem Segment Progress:
-- [ ] Potential segments identified (3-5)
-- [ ] Demographics/firmographics researched
-- [ ] Psychographics defined (goals, frustrations)
-- [ ] Behaviors mapped (info sources, purchase triggers)
-- [ ] Problem severity scored with evidence
-- [ ] Segments prioritized
-- [ ] icp.yaml created
-```
+## Constraints
+
+Three to five candidate segments are compared before one is chosen. Severity is scored with cited evidence rather than asserted from intuition. The primary segment is named in the file with the runners-up kept as secondary segments (up to three) so a later pivot has somewhere to go. Demographics or firmographics are filled according to whether the buyer is a person or a company; when that is unclear, both are sketched and the ambiguity is noted. The finished `icp.yaml` conforms to `contracts/icp.yaml`.
+
+## What a strong icp.yaml looks like
+
+A salesperson handed this profile should know which list to buy and which title to call first. Every field in a strong profile is specific enough to be falsified with one interview, so the founder can tell within five conversations whether the segment was wrong; a weak profile describes a demographic nobody could look up ("tech-savvy professionals who value efficiency") and survives every interview unchanged, which is the failure rather than the success.
+
+Read through validation_report.md, the profile is where investors see whether the founder knows the customer by name or only by category.
 
 ## Output Format
 
@@ -136,27 +131,43 @@ Required fields:
 - Problem severity score with evidence
 - Secondary segments (optional, max 3)
 
+## Working the Segment
+
+Firmographics, community behavior and purchase-process research for each candidate segment are independent, so fan them out to one sub-agent per segment and compare the returned profiles side by side. The primary segment gets the deepest research, a full profile, while secondary segments need only enough evidence to rank them, since a sketch of the runners-up serves the downstream skills better than equal shallow coverage of five and effort past that point is detail they cannot use. The problem_severity score cites the evidence it came from, and where a segment's budget or approval process could not be confirmed the field reads unverified rather than carrying a plausible-sounding number.
+
+Your judgment matters most on the non-obvious segment: the adjacent role that feels the pain harder than the one the brief names. `icp.yaml` is read by competitive-landscape, market-sizing and gtm-channels, and both the SAM multipliers and the channel shortlist descend from whichever segment is marked primary, so that segment is described well enough to narrow TAM to SAM and to say where those people spend time. Lead with who the customer is and how badly it hurts them, ahead of the demographic and firmographic detail.
+
+The deliverable is `icp.yaml`; interviewing real customers or drafting outreach to them sits outside this skill. Before you finish, check the artifact against the brief: a severity score of 8 or higher with no quoted evidence behind it is the signal to go back.
+
 ## Research Query Templates
 
 ### Finding Demographics
-- "[segment] demographics statistics"
-- "[segment] survey data"
-- "who uses [competitor]"
+```text
+"[segment] demographics statistics"
+"[segment] survey data"
+"who uses [competitor]"
+```
 
 ### Finding Pain Points
-- "[segment] biggest challenges"
-- "[role] frustrations site:reddit.com"
-- "[segment] problems with [current solution]"
+```text
+"[segment] biggest challenges"
+"[role] frustrations site:reddit.com"
+"[segment] problems with [current solution]"
+```
 
 ### Finding Information Sources
-- "best [topic] blogs for [segment]"
-- "[segment] podcasts"
-- "[role] communities"
+```text
+"best [topic] blogs for [segment]"
+"[segment] podcasts"
+"[role] communities"
+```
 
 ### Finding Purchase Behavior
-- "how [segment] buys [category]"
-- "[segment] software purchasing process"
-- "[role] decision making"
+```text
+"how [segment] buys [category]"
+"[segment] software purchasing process"
+"[role] decision making"
+```
 
 ## Edge Cases
 

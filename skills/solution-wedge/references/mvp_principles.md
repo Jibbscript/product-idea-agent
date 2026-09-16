@@ -89,7 +89,7 @@ You can't compete on everything at once. A wedge is:
 New technology enables a better solution.
 
 **Examples**:
-- GPT-3 enables AI writing assistants
+- Cheap large-language-model inference enables AI writing assistants
 - WebGL enables browser-based 3D
 - Edge computing enables real-time processing
 
