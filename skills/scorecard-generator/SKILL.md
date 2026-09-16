@@ -202,6 +202,14 @@ Required fields:
 - revenue_potential with indicator and range
 - recommendation with verdict, rationale, and next_steps
 
+## Working the Score
+
+Reading the nine artifacts is fast, so what is worth delegating here is the judgment rather than the file access - sub-agents can each argue one dimension's score from its own evidence in parallel while you hold the weighting consistent across all seven. Scoring is arithmetic over evidence already gathered, so effort is proportional to disagreement; dimensions where the artifacts conflict deserve the deliberation and the rest read straight off the bands. Every dimension score names the artifact line it came from, and a dimension whose input artifact is missing is scored with its confidence marked unverified rather than filled in from a general impression of the idea.
+
+A composite can hide a disqualifying dimension, and the counter-intuitive case of a 68 built on a Demand Signals 3 is worth saying plainly instead of reporting the verdict the formula produced. `scorecard.json` is read by validation-report, which reprints this verdict and rationale as its headline, so a thin evidence field becomes an unsupported claim in the final document. Lead with the verdict and the composite; the seven dimension scores are the support, not the opening.
+
+The deliverable is `scorecard.json`; going back to re-research a dimension that scored badly is not this skill's move, and neither is adjusting the weights to reach a preferred verdict. Before writing `scorecard.json`, verify the numbers by recomputing the composite from the seven weighted scores and showing the formula with the actual values substituted.
+
 ## Scoring Calibration
 
 ### Cross-Check Scores

@@ -170,6 +170,14 @@ Required sections:
 - Constraints
 - Dependencies
 
+## Working the Risk Register
+
+Regulatory research, third-party dependency checks and competitor-response scenarios are independent investigations, so run them as parallel sub-agents rather than working through the five categories in sequence. Detail is proportional to score, so risks at 15 or above earn a full mitigation and contingency, while cataloguing every low-score risk at the same length buries the ones that matter. Likelihood scores are judgments and should read as judgments, so a regulatory requirement confirmed by a named rule cites that rule while a risk resting on a market belief is marked as an assumption.
+
+The risk that matters is usually the one absent from the category list, so ask what would change the verdict if it landed next quarter and write down the second-order consequence rather than the first. `risks.md` is consumed by scorecard-generator, which counts critical risks into Execution Difficulty, and by validation-report's risk section, so a risk softened here softens the final recommendation too. Lead with the risk that could end this, not with the matrix.
+
+The deliverable is `risks.md`; mitigating the risks by rescoping the MVP or rewriting the GTM plan belongs to whoever acts on the report, so record them and stop there. Before you finish, re-read the must-be-true assumptions against the earlier artifacts and confirm none was already contradicted by the demand or pricing evidence.
+
 ## Risk Identification Questions
 
 ### Technical

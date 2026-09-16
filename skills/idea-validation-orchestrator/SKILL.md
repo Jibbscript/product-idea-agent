@@ -135,6 +135,14 @@ I will:
 1. Run only that specific skill
 2. Generate the relevant artifact
 
+## Working the Pipeline
+
+The user is not watching each step, so reversible actions that follow from the original request - reading an artifact, running the next skill in the chain, redrafting a section - proceed without asking, and the user is consulted only when a decision genuinely changes the scope of the validation, such as which of two segments to treat as primary. Steps that do not depend on each other can run concurrently, so once `icp.yaml` exists, competitive-landscape and market-sizing are independent and belong in parallel sub-agents rather than a serialized pipeline. How deep each step goes scales with what is at stake: a quick feasibility check runs steps one through four shallowly, while an investment-readiness pass goes deeper on market-sizing and pricing-wtp. Not every idea needs all eleven steps, so the judgment call is where to stop; a NO-GO already obvious from `competitors.csv` is worth surfacing rather than spending two more hours confirming it.
+
+Each step's artifact is what the next step reads, with `signals.md` read by problem-segment and `icp.yaml` read by competitive-landscape, market-sizing and gtm-channels, so a thin artifact early is a thin artifact everywhere after it. Progress is audited against what was actually written: a step counts as complete when its artifact exists on disk, and when a skill produced nothing, say so plainly rather than reporting the step as done.
+
+Your final message is the founder's first look at hours of work, so the first sentence carries the verdict and the composite score, and what follows re-grounds a reader who saw none of the intermediate artifacts, spelling terms out rather than reusing shorthand built up while working. Before declaring the validation complete, re-read the artifact directory and confirm all eleven files exist and that the verdict in `scorecard.json` matches what `validation_report.md` states.
+
 ## Artifact Locations
 
 All artifacts are saved in the current project directory:
@@ -222,7 +230,7 @@ At the end of complete validation, you'll have:
 - **GO/PIVOT/NO-GO recommendation**
 - **Actionable next steps**
 
-Ready to begin? Tell me about your idea!
+Given an idea description, the pipeline runs to completion and returns the report; the validation begins as soon as there is an idea to work from.
 
 ## References
 

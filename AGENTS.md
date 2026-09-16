@@ -59,7 +59,8 @@ Skills run in this order in the orchestrator; each emits one artifact into the u
 - After editing a skill, run at least fixture `t1-energy-audit` (the only one with a full set of expected outputs) and confirm the artifact still matches its contract.
 
 ### Common Patterns
-- Every `SKILL.md` follows the same section order: frontmatter, Quick Start, Inputs Required, Step-by-Step Workflow, Workflow Checklist, Output Format, Edge Cases, References. See `docs/CONTRIBUTING.md` for the template.
+- Every `SKILL.md` follows the same section order: frontmatter, Quick Start, Inputs Required, Step-by-Step Workflow, Workflow Checklist, Output Format, Working <domain>, Edge Cases, References. See `docs/CONTRIBUTING.md` for the template.
+- Each `SKILL.md` carries a `Working <domain>` passage giving the Fable-era working guidance for that skill: parallel sub-agent research, sourced/estimated/unverified marking, research depth, deliverable boundaries, the downstream artifact consumer, invited judgment, an outcome-first summary and a pre-handoff check, phrased in that skill's own terms rather than shared across files.
 - Frontmatter `allowed-tools` is space-delimited and restricts what the skill may call. Research skills get `WebSearch WebFetch`; synthesis skills (`scorecard-generator`, `validation-report`) get only `Read Write`.
 - Skills cite sources with URLs and mark confidence (High / Medium / Low). Missing data is reported as such rather than invented.
 - Reference files are loaded on demand via `{baseDir}`-relative links at the end of each `SKILL.md`.

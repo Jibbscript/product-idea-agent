@@ -167,6 +167,14 @@ Required sections:
 - Growth loops
 - 90-day milestones
 
+## Working the Channel Mix
+
+CAC benchmarks, community mapping and competitor go-to-market teardowns are independent lookups, so fan out one sub-agent per channel under consideration and reconcile their estimates into the channel table. Depth belongs to the top two or three channels, while the rest of the list needs only enough evidence to justify not choosing it; research past that is spend the plan cannot use. CAC is the easiest number in this plan to invent, so a benchmark from a published report is sourced, a figure derived from a competitor's spend is an estimate, and a channel with neither carries unverified beside its number.
+
+Your judgment is what separates a channel list from a plan, so name the one channel that is non-obvious for this ICP and say what would change your mind about the primary. `gtm_plan.md` is read by risk-assessment for go-to-market risk and by scorecard-generator's GTM Viability dimension, so a channel listed without conviction becomes a score that overstates the path to customers. Lead with the primary channel and the first ninety days, then the evaluation that got you there.
+
+The deliverable is `gtm_plan.md`; creating accounts, drafting ad copy or contacting communities is outside it. Before you finish, re-read the channel table against `pricing.yaml`: a CAC that exceeds a year of ARPC is arithmetic to catch here rather than after launch.
+
 ## Research Query Templates
 
 ### Finding ICP Channels

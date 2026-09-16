@@ -106,6 +106,14 @@ Required sections:
 - Created date
 - Status (set to "Draft")
 
+## Working the Brief
+
+When the raw idea arrives with links, notes or a call transcript, hand the reading to sub-agents in parallel and keep composing the brief while they report back. The brief is finished once each of the seven fields holds one testable claim, and more research here is diminishing returns, because demand-signals and problem-segment are the steps that test those claims against real evidence. The brief separates what the founder said from what you inferred, so an inference is marked as an inference; an assumption written as though it were established fact is exactly the failure this separation exists to prevent.
+
+The most valuable thing you can add is the non-obvious reframing, the sharper problem hiding behind the one the founder described. `idea_brief.md` is read by every other skill in this pack, so a vague target customer here becomes a vague ICP, a vague market boundary and a vague scorecard. The one-line pitch is the headline and opens the brief, so a reader who stops after it still knows what is being built and for whom.
+
+The deliverable is the drafted brief, so only ask the user when a gap genuinely blocks it, such as who hurts today and what they do instead, and draft the pitch, assumptions and metrics without asking. Before writing `idea_brief.md`, re-read the assumptions and confirm each one is falsifiable by a later step; anything that cannot be tested belongs in the problem statement instead.
+
 ## Edge Cases
 
 **Vague idea input:**
