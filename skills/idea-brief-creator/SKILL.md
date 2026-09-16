@@ -12,84 +12,50 @@ allowed-tools: Read Write Edit
 
 Creates structured idea briefs that serve as the foundation for product validation workflows.
 
-## Quick Start
+## Outcome
 
-Transform a raw idea into a structured brief:
-1. Gather the initial concept from the user
-2. Ask clarifying questions to fill gaps
-3. Structure into the idea brief format
-4. Output `idea_brief.md`
+A finished `idea_brief.md` states in plain language what the product does, who it is for, and what problem it solves, then commits to a one-sentence pitch, a short problem statement, a target-customer hypothesis, a solution hypothesis, the assumptions the idea depends on, and the metrics that would show it is working.
 
 ## Inputs Required
 
 - Raw idea description (text, conversation, or notes)
 - Optional: target market hints, problem observations, existing research
 
-## Step-by-Step Workflow
+## What idea_brief.md Must Cover
 
-### Step 1: Extract Core Concept
-From the user's input, identify:
+### Core Concept
+The brief opens with the three facts the rest of the pipeline hangs on:
 - What the product/service does
 - Who it's for (initial hypothesis)
 - What problem it solves
 
-If any of these are unclear, ask clarifying questions.
+When any of these is unclear from the user's input, a clarifying question is worth more than a guess, because every downstream skill inherits whatever is written here.
 
-### Step 2: Craft One-Line Pitch
-Create a single sentence that captures:
-- The value delivered
-- The target customer
-- The key differentiator (if known)
+### One-Line Pitch
+A single sentence carrying the value delivered, the target customer, and the key differentiator when one is known. The pattern "[Product] helps [customer] [achieve outcome] by [method]." fits most ideas; the test of a good pitch is that a stranger could repeat it back after hearing it once.
 
-Format: "[Product] helps [customer] [achieve outcome] by [method]."
+### Problem Statement
+Two or three sentences that describe the pain point clearly, explain why existing solutions fall short, and hint at how severe and how frequent the problem is. Severity and frequency matter here because demand-signals and problem-segment will later test exactly those claims.
 
-### Step 3: Define Problem Statement
-Write 2-3 sentences that:
-- Describe the pain point clearly
-- Explain why existing solutions fall short
-- Hint at the severity/frequency of the problem
+### Target Customer
+The initial hypothesis about who has this problem most acutely, with whatever demographic or firmographic hints and behavioral indicators the input supports. This is a starting point for problem-segment, not a final ICP, so a narrow guess that can be tested beats a broad one that cannot.
 
-### Step 4: Identify Target Customer
-Capture initial hypothesis about:
-- Who has this problem most acutely
-- Demographic or firmographic hints
-- Behavioral indicators
+### Solution Hypothesis
+How the product solves the problem, its key capabilities or features at a high level, and why this approach might work where others have not. The reasoning matters as much as the feature list, since it is what solution-wedge will later sharpen into a wedge.
 
-### Step 5: Document Solution Hypothesis
-Describe:
-- How the product solves the problem
-- Key capabilities or features (high-level)
-- Why this approach might work
+### Key Assumptions
+Three to five assumptions that must be true for the idea to succeed, spanning the customer (do they have this problem?), the solution (will this solve it?), the market (will they pay?), and execution (can we build it?). Each is phrased so that research could show it to be false; an assumption nobody could disprove is not carrying any risk and does not belong on the list.
 
-### Step 6: List Key Assumptions
-Identify 3-5 assumptions that must be true for success:
-- About the customer (do they have this problem?)
-- About the solution (will this solve it?)
-- About the market (will they pay?)
-- About execution (can we build it?)
+### Success Metrics
+Two or three measurable outcomes, split between validation-phase metrics (signups, interviews, LOIs) and launch-phase metrics (users, revenue, retention). A metric earns its place when a number attached to it would change what the founder does next.
 
-### Step 7: Define Success Metrics
-Suggest 2-3 measurable outcomes:
-- Validation-phase metrics (signups, interviews, LOIs)
-- Launch-phase metrics (users, revenue, retention)
+## How to Work
 
-### Step 8: Generate Artifact
-Create `idea_brief.md` following the contract format.
+The pitch and the problem statement are both rewrites of the core concept, so neither can be finished until the concept is settled. The target customer, the assumptions, and the metrics each draw on the concept independently and need no particular order among themselves.
 
-## Workflow Checklist
+## Constraints
 
-Copy and track progress:
-```
-Idea Brief Progress:
-- [ ] Core concept extracted
-- [ ] One-line pitch crafted
-- [ ] Problem statement defined
-- [ ] Target customer identified
-- [ ] Solution hypothesis documented
-- [ ] Key assumptions listed
-- [ ] Success metrics defined
-- [ ] idea_brief.md created
-```
+All seven elements above appear in the brief, since each one is an input a later skill reads by name. The pitch is one sentence. Every assumption is stated so that evidence could prove it false. Every metric is measurable rather than aspirational. Where the input leaves a section unknown, the section says so explicitly instead of filling the gap with a plausible guess, because everything in the brief is a hypothesis to be tested downstream and an honest unknown is more useful than a confident guess. The finished `idea_brief.md` conforms to `contracts/idea_brief.md`.
 
 ## Output Format
 
@@ -108,9 +74,9 @@ Required sections:
 
 ## Working the Brief
 
-When the raw idea arrives with links, notes or a call transcript, hand the reading to sub-agents in parallel and keep composing the brief while they report back. The brief is finished once each of the seven fields holds one testable claim, and more research here is diminishing returns, because demand-signals and problem-segment are the steps that test those claims against real evidence. The brief separates what the founder said from what you inferred, so an inference is marked as an inference; an assumption written as though it were established fact is exactly the failure this separation exists to prevent.
+When the raw idea arrives with links, notes or a call transcript, hand the reading to sub-agents in parallel and keep composing the brief while they report back. The brief is finished once each of the seven fields holds one testable claim that could be handed to the next skill without a follow-up question, and more research here is diminishing returns, because demand-signals and problem-segment are the steps that test those claims against real evidence. The brief separates what the founder said from what you inferred, so an inference is marked as an inference; an assumption written as though it were established fact is exactly the failure this separation exists to prevent.
 
-The most valuable thing you can add is the non-obvious reframing, the sharper problem hiding behind the one the founder described. `idea_brief.md` is read by every other skill in this pack, so a vague target customer here becomes a vague ICP, a vague market boundary and a vague scorecard. The one-line pitch is the headline and opens the brief, so a reader who stops after it still knows what is being built and for whom.
+The most valuable thing you can add is the non-obvious reframing, the sharper problem hiding behind the one the founder described. `idea_brief.md` is read by every other skill in this pack before it does its own work, so a vague target customer here becomes a vague ICP, a vague market boundary and a vague scorecard. The one-line pitch is the headline and opens the brief, so a reader who stops after it still knows what is being built and for whom.
 
 The deliverable is the drafted brief, so only ask the user when a gap genuinely blocks it, such as who hurts today and what they do instead, and draft the pitch, assumptions and metrics without asking. Before writing `idea_brief.md`, re-read the assumptions and confirm each one is falsifiable by a later step; anything that cannot be tested belongs in the problem statement instead.
 

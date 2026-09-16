@@ -12,14 +12,9 @@ allowed-tools: Read Write WebSearch WebFetch
 
 Estimates TAM/SAM/SOM market sizes with methodology and growth projections.
 
-## Quick Start
+## Outcome
 
-Given prior artifacts, size the market:
-1. Define market boundaries
-2. Research TAM from industry sources
-3. Calculate SAM based on ICP constraints
-4. Estimate realistic SOM
-5. Output `market_size.md`
+A finished `market_size.md` gives a TAM, SAM, and SOM for a precisely bounded market, each figure carrying its method, its source, and its date, with growth rates and an honest confidence rating. The numbers matter less than the chain of reasoning between them, because a reader who can follow TAM to SAM to SOM can correct any single figure that turns out wrong.
 
 ## Inputs Required
 
@@ -27,20 +22,12 @@ Given prior artifacts, size the market:
 - `icp.yaml` (from problem-segment) - critical for SAM calculation
 - `competitors.csv` (optional, helps validate estimates)
 
-## Step-by-Step Workflow
+## What market_size.md Must Cover
 
-### Step 1: Define Market Boundaries
+### Market Boundaries
+A precise statement of what market is being sized: the problem category, the customer segment, the geographic scope, and the time horizon. "B2B SaaS compliance automation for US fintech startups" is the level of specificity that works; "compliance software" is not, since every figure downstream inherits the vagueness of the boundary.
 
-Clarify what market you're sizing:
-- What problem category?
-- What customer segment?
-- What geographic scope?
-- What time horizon?
-
-Be specific: "B2B SaaS compliance automation for US fintech startups" not just "compliance software"
-
-### Step 2: Research TAM (Total Addressable Market)
-
+### TAM
 TAM = Total market if you captured 100% of the opportunity
 
 **Top-Down Approach:**
@@ -54,11 +41,12 @@ TAM = Total market if you captured 100% of the opportunity
 2. Multiply by average revenue per customer
 3. Cross-reference with top-down sources
 
-### Step 3: Calculate SAM (Serviceable Addressable Market)
+Both approaches appear when sources allow, because agreement between them is the strongest evidence a TAM figure can have and disagreement is the first thing a skeptical reader will ask about.
 
+### SAM
 SAM = Portion of TAM you can actually serve
 
-Apply constraints from your ICP:
+The ICP supplies the constraints that narrow TAM:
 - Geographic constraints (% in target regions)
 - Segment constraints (% matching ICP)
 - Technology constraints (% addressable by your approach)
@@ -67,52 +55,41 @@ Apply constraints from your ICP:
 **Formula:**
 SAM = TAM × Geographic % × Segment % × Technology % × Price %
 
-### Step 4: Estimate SOM (Serviceable Obtainable Market)
+Each percentage is stated with the assumption or source behind it, so the arithmetic can be checked and any one factor revised.
 
+### SOM
 SOM = Realistic market capture in target timeframe
 
-Consider:
-- Competitive intensity (more competitors = lower SOM)
-- Go-to-market capability
-- Brand awareness trajectory
-- Sales cycle length
+The capture assumption reflects competitive intensity (more competitors = lower SOM), go-to-market capability, brand awareness trajectory, and sales cycle length.
 
 **Typical SOM ranges:**
 - Year 1: 0.1% - 1% of SAM for startups
 - Year 3: 1% - 5% of SAM with traction
 - Year 5: 5% - 15% of SAM as established player
 
-### Step 5: Project Growth Rates
+### Growth Rates
+For each level (TAM, SAM, SOM): the CAGR with its source and period, the drivers behind the growth, and any constraints or headwinds that could slow it.
 
-For each level (TAM, SAM, SOM):
-- Document CAGR from sources
-- Note drivers of growth
-- Flag any constraints or headwinds
-
-### Step 6: Assess Confidence
-
-Rate confidence based on:
+### Confidence
+A rating of the whole estimate on this scale:
 - **High**: Multiple credible sources, recent data, validated assumptions
 - **Medium**: 2-3 sources, some assumptions, reasonable methodology
 - **Low**: Limited sources, old data, significant assumptions
 
-### Step 7: Generate Artifact
+The rating names which figure is weakest and why, since that is what a reader will want to shore up first.
 
-Create `market_size.md` following the contract format.
+## How to Work
 
-## Workflow Checklist
+Boundaries are fixed before any number is researched; a figure found for the wrong market is worse than no figure. The sizing itself is a genuine narrowing chain:
+1. TAM from industry sources
+2. SAM by applying the ICP constraints to TAM
+3. SOM by applying capture assumptions to SAM
 
-```
-Market Sizing Progress:
-- [ ] Market boundaries defined
-- [ ] TAM researched from industry sources
-- [ ] SAM calculated with ICP constraints
-- [ ] SOM estimated with realistic assumptions
-- [ ] Growth rates documented (CAGR)
-- [ ] Confidence level assessed
-- [ ] Sources documented
-- [ ] market_size.md created
-```
+That chain fixes how the figures derive from each other, not how any one of them is researched, because each figure can be triangulated from several sources at once. Growth rates and the confidence judgment sit outside that chain and can be gathered alongside it. The Sizing Methods section below shows both calculation paths worked through.
+
+## Constraints
+
+Every figure names its source or is labelled an estimate with the assumption that produced it. SAM is derived from TAM under the ICP constraints, and SOM from SAM under stated capture assumptions, so that SAM ≤ TAM and SOM ≤ SAM hold by construction. CAGR is stated with its period and its source. At least two credible independent sources are cited, and when they conflict both figures are reported with the conservative one carried forward. The finished `market_size.md` conforms to `contracts/market_size.md`.
 
 ## Output Format
 
@@ -129,9 +106,9 @@ Required sections:
 
 ## Working the Numbers
 
-The top-down industry-report search and the bottom-up customer-count build are independent derivations, so run them as parallel sub-agents and triangulate the two results instead of letting the first figure found anchor the second. Two credible independent sources are enough evidence for a TAM, and a third report restating the same syndicated figure is diminishing returns. A TAM is sourced when a named report states it and estimated when built from a customer count times an average contract value, and any multiplier in the SAM formula that could not be corroborated is marked as an assumption in the methodology line so a reader can see which factor is load-bearing.
+The top-down industry-report search and the bottom-up customer-count build are independent derivations, so run them as parallel sub-agents and triangulate the two results instead of letting the first figure found anchor the second. Enough evidence for a TAM is two sources that agree without sharing a syndicated origin; a third report restating the same figure is diminishing returns. A TAM is sourced when a named report states it and estimated when built from a customer count times an average contract value, and any multiplier in the SAM formula that could not be corroborated is marked as an assumption in the methodology line so a reader can see which factor is load-bearing.
 
-The second-order question deserves its own sentence, what would change the verdict, because a SAM that collapses if the geographic constraint is wrong matters more than another decimal place. `market_size.md` is consumed by gtm-channels for scale planning and by scorecard-generator's Market Size dimension, whose bands turn the SAM figure directly into a 1-10 score. Lead with the SAM and its confidence level in the executive summary, since that pair is what a founder acts on.
+The second-order question deserves its own sentence, what would change the verdict, because a SAM that collapses if the geographic constraint is wrong matters more than another decimal place. `market_size.md` is consumed by gtm-channels for scale planning and by scorecard-generator's Market Size dimension, whose bands turn the SAM figure directly into a 1-10 score without re-deriving anything. Lead with the SAM and its confidence level in the executive summary, since that pair is what a founder acts on.
 
 The deliverable is `market_size.md` with its methodology and citations; revisiting pricing or the ICP to make the SOM look better is outside this skill. Before you finalize the file, sanity-check the arithmetic chain end to end by multiplying the stated constraints against the TAM and confirming the product equals the SAM written down.
 

@@ -12,14 +12,9 @@ allowed-tools: Read Write WebSearch
 
 Defines MVP scope, technical approach, and differentiation strategy.
 
-## Quick Start
+## Outcome
 
-Given prior artifacts, define the solution:
-1. Identify critical user jobs to address
-2. Define minimum feature set for MVP
-3. Specify technical approach
-4. Articulate differentiation
-5. Output `mvp_spec.md`
+`mvp_spec.md` is a scoped first version of the product, a chosen technical approach, and a one-sentence wedge that says why this product wins against the alternatives in `competitors.csv`. A finished spec is as notable for what it leaves out as for what it includes, since everything cut from v1 is listed as cut rather than quietly dropped.
 
 ## Inputs Required
 
@@ -27,40 +22,29 @@ Given prior artifacts, define the solution:
 - `competitors.csv` (from competitive-landscape) - for gap identification
 - `icp.yaml` (from problem-segment) - for prioritization
 
-## Step-by-Step Workflow
+## What mvp_spec.md Must Cover
 
-### Step 1: Map User Jobs
-
-From the idea brief and ICP, identify:
+### User Jobs
+The jobs the target customer is hiring the product to do, drawn from the idea brief and the ICP:
 - **Functional jobs**: Tasks the user is trying to complete
 - **Emotional jobs**: How they want to feel
 - **Social jobs**: How they want to be perceived
 
-Prioritize by:
-- Frequency (how often do they do this?)
-- Importance (how critical is it?)
-- Satisfaction with current solutions (opportunity for improvement)
+Each job is weighed by frequency (how often do they do this?), importance (how critical is it?), and satisfaction with current solutions (opportunity for improvement). The highest-priority job is the one the MVP is built around.
 
-### Step 2: Define MVP Scope
-
-For each priority job, determine:
-- Is it essential for first paying customer?
-- Can we defer it to v2?
-- Should we explicitly exclude it?
-
-Categorize features:
+### MVP Scope
+For each priority job, a decision about whether it is essential for the first paying customer, deferrable to v2, or explicitly excluded, expressed as:
 - **P0 (Must Have)**: Product doesn't work without these
 - **P1 (Should Have)**: Important but not launch-blocking
 - **Won't Have**: Explicitly out of scope for v1
 
-Apply the "breadth vs depth" test:
+The "breadth vs depth" test settles most borderline calls:
 - Breadth: Many features, basic implementation
 - Depth: Few features, exceptional implementation
 - **Recommendation**: Choose depth for MVP
 
-### Step 3: Specify Technical Approach
-
-Define the implementation strategy:
+### Technical Approach
+The implementation strategy, decided along three axes:
 
 **Platform choice:**
 - Web (desktop-first, mobile-responsive, PWA)
@@ -79,23 +63,22 @@ Define the implementation strategy:
 - What to use off-the-shelf?
 - What third-party services to integrate?
 
-### Step 4: Articulate the Wedge
+The Build vs Buy Framework under MVP Principles below is the tiebreaker: custom work goes to the differentiator, everything else is bought.
 
-Define what makes you different:
+### The Wedge
+What makes this product different, in one sentence, using the positioning statement format:
 
-**Positioning statement format:**
 For [target customer] who [need], [product name] is a [category] that [key benefit]. Unlike [alternatives], we [key differentiator].
 
-**Types of wedges:**
+The wedge is one of these types, and the spec names which:
 - **Technology wedge**: New tech enables better solution
 - **Experience wedge**: Dramatically better UX
 - **Segment wedge**: Specialized for underserved segment
 - **Price wedge**: Disruptive pricing model
 - **Distribution wedge**: Unique channel access
 
-### Step 5: Identify Competitive Advantage
-
-What's hard for competitors to copy?
+### Competitive Advantage
+What would be hard for competitors to copy once the product exists:
 - Proprietary data or algorithms
 - Network effects
 - Switching costs
@@ -103,29 +86,21 @@ What's hard for competitors to copy?
 - Brand/trust
 - Team expertise
 
-### Step 6: Define Success Criteria
+A wedge gets a product in the door; the advantage is what keeps it there, and a spec that has the first without the second says so plainly.
 
-Set measurable targets:
+### Success Criteria
+Measurable targets across three horizons:
 - **Validation metrics**: Signups, interviews, LOIs
 - **Launch metrics**: Users, revenue, retention
 - **Quality metrics**: NPS, completion rates
 
-### Step 7: Generate Artifact
+## How to Work
 
-Create `mvp_spec.md` following the contract format.
+User jobs bound the scope, so they come first. Technical approach, the wedge, and competitive advantage are three readings of the same scope and need no order among them. Success criteria follow once scope and wedge are settled, because a target only means something against a defined product. The spec is done when a founder could hand it to an engineer and a designer and get the same v1 back from both.
 
-## Workflow Checklist
+## Constraints
 
-```
-Solution Wedge Progress:
-- [ ] User jobs mapped and prioritized
-- [ ] MVP scope defined (P0, P1, Won't Have)
-- [ ] Technical approach specified
-- [ ] Differentiation articulated
-- [ ] Competitive advantage identified
-- [ ] Success criteria defined
-- [ ] mvp_spec.md created
-```
+The wedge is one sentence in the positioning format above. Everything cut from v1 is listed under Won't Have rather than omitted silently, so the reader knows it was considered. Every P0 feature ties back to a named user job. Success criteria are numeric and time-boxed. The finished `mvp_spec.md` conforms to `contracts/mvp_spec.md`.
 
 ## Output Format
 

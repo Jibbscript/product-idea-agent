@@ -60,33 +60,32 @@ allowed-tools: Read Write WebSearch WebFetch
 
 Brief description.
 
-## Quick Start
+## Outcome
 
-3-5 lines showing basic usage.
+What the artifact is and what a finished one looks like.
 
 ## Inputs Required
 
 - What artifacts or information needed
 - Optional inputs
 
-## Step-by-Step Workflow
+## What <artifact> Must Cover
 
-### Step 1: Name
-What to do.
+### <Domain Area>
+What this part of the artifact contains and how to judge it.
 
-### Step 2: Name
-What to do.
+### <Domain Area>
+What this part of the artifact contains and how to judge it.
 
 ...
 
-## Workflow Checklist
+## How to Work
 
-```
-Progress:
-- [ ] Step 1
-- [ ] Step 2
-- [ ] Output created
-```
+Which parts depend on which, what is independent, and what counts as enough.
+
+## Constraints
+
+The requirements the finished artifact must satisfy.
 
 ## Output Format
 
@@ -122,7 +121,8 @@ The Working passage is written in each skill's own vocabulary (its artifact, col
 
 #### Instructions
 - Keep SKILL.md under 500 lines
-- Use imperative mood: "Search for..." not "You should search..."
+- Behavioral sections (Outcome, How to Work, Constraints) state the outcome and its constraints in prose, with the reason beside each requirement
+- Reference data (scoring scales, field lists, query templates, tables) stays structured as lists and tables
 - Include concrete examples
 - Document edge cases
 

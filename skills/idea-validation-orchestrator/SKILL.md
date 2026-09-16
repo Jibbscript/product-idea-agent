@@ -51,55 +51,19 @@ Step 10: scorecard-generator    → scorecard.json
 Step 11: validation-report      → validation_report.md
 ```
 
-## Progress Tracker
+## Progress and Resumption
 
-Copy this checklist to track your validation progress:
+A run's position is read from which artifacts already exist in the project directory, not from a copied checklist: if `icp.yaml` is on disk and conforms to its contract, steps 1-3 are done and step 4 is next. The pipeline groups into five phases, and the phase a run is in is the phase of the first missing artifact.
 
-```
-Product Validation Progress: [Idea Name]
-Started: [Date]
+| Phase | Skills | Artifacts produced |
+|-------|--------|--------------------|
+| Discovery | idea-brief-creator, demand-signals | idea_brief.md, signals.md |
+| Customer & Market | problem-segment, competitive-landscape, market-sizing | icp.yaml, competitors.csv, market_size.md |
+| Strategy | pricing-wtp, solution-wedge, gtm-channels | pricing.yaml, mvp_spec.md, gtm_plan.md |
+| Assessment | risk-assessment, scorecard-generator | risks.md, scorecard.json |
+| Synthesis | validation-report | validation_report.md |
 
-Phase 1: Discovery
-- [ ] Step 1: Create idea brief (idea-brief-creator)
-      Output: idea_brief.md
-
-- [ ] Step 2: Research demand signals (demand-signals)
-      Output: signals.md
-
-Phase 2: Customer & Market
-- [ ] Step 3: Define ICP (problem-segment)
-      Output: icp.yaml
-
-- [ ] Step 4: Map competitors (competitive-landscape)
-      Output: competitors.csv
-
-- [ ] Step 5: Size market (market-sizing)
-      Output: market_size.md
-
-Phase 3: Strategy
-- [ ] Step 6: Research pricing (pricing-wtp)
-      Output: pricing.yaml
-
-- [ ] Step 7: Define MVP (solution-wedge)
-      Output: mvp_spec.md
-
-- [ ] Step 8: Plan GTM (gtm-channels)
-      Output: gtm_plan.md
-
-Phase 4: Assessment
-- [ ] Step 9: Assess risks (risk-assessment)
-      Output: risks.md
-
-- [ ] Step 10: Generate scorecard (scorecard-generator)
-      Output: scorecard.json
-
-Phase 5: Synthesis
-- [ ] Step 11: Compile report (validation-report)
-      Output: validation_report.md
-
-Validation Complete: [ ]
-Final Recommendation: [GO / PIVOT / NO-GO]
-```
+Reporting progress means naming the phase, the last artifact written, and the next skill to run; the final recommendation (GO / PIVOT / NO-GO) is reported once `scorecard.json` exists.
 
 ## How to Use This Skill
 
@@ -139,7 +103,7 @@ I will:
 
 The user is not watching each step, so reversible actions that follow from the original request - reading an artifact, running the next skill in the chain, redrafting a section - proceed without asking, and the user is consulted only when a decision genuinely changes the scope of the validation, such as which of two segments to treat as primary. Steps that do not depend on each other can run concurrently, so once `icp.yaml` exists, competitive-landscape and market-sizing are independent and belong in parallel sub-agents rather than a serialized pipeline. How deep each step goes scales with what is at stake: a quick feasibility check runs steps one through four shallowly, while an investment-readiness pass goes deeper on market-sizing and pricing-wtp. Not every idea needs all eleven steps, so the judgment call is where to stop; a NO-GO already obvious from `competitors.csv` is worth surfacing rather than spending two more hours confirming it.
 
-Each step's artifact is what the next step reads, with `signals.md` read by problem-segment and `icp.yaml` read by competitive-landscape, market-sizing and gtm-channels, so a thin artifact early is a thin artifact everywhere after it. Progress is audited against what was actually written: a step counts as complete when its artifact exists on disk, and when a skill produced nothing, say so plainly rather than reporting the step as done.
+Each step's artifact is what the next step reads, with `signals.md` read by problem-segment and `icp.yaml` read by competitive-landscape, market-sizing and gtm-channels, so a thin artifact early is a thin artifact everywhere after it. Progress is audited against what was actually written, so when a skill produced nothing, say so plainly rather than reporting the step as done.
 
 Your final message is the founder's first look at hours of work, so the first sentence carries the verdict and the composite score, and what follows re-grounds a reader who saw none of the intermediate artifacts, spelling terms out rather than reusing shorthand built up while working. Before declaring the validation complete, re-read the artifact directory and confirm all eleven files exist and that the verdict in `scorecard.json` matches what `validation_report.md` states.
 

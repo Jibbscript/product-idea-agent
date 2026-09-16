@@ -12,15 +12,9 @@ allowed-tools: Read Write
 
 Calculates multi-dimensional validation scores and generates opportunity scorecards.
 
-## Quick Start
+## Outcome
 
-Given all prior artifacts, generate a scorecard:
-1. Extract evidence from each artifact
-2. Score each dimension (1-10)
-3. Calculate composite score
-4. Determine revenue potential
-5. Generate recommendation
-6. Output `scorecard.json`
+`scorecard.json` carries seven dimension scores, each with the evidence that produced it, combined by fixed weights into a 0-100 composite, a revenue-potential band, and a GO / PIVOT / NO-GO recommendation with rationale and next steps. A finished scorecard is auditable: a reader can open any prior artifact, find the number the score cites, and see why it landed where it did.
 
 ## Inputs Required
 
@@ -35,11 +29,10 @@ Given all prior artifacts, generate a scorecard:
   - `gtm_plan.md`
   - `risks.md`
 
-## Step-by-Step Workflow
+## What scorecard.json Must Cover
 
-### Step 1: Gather Evidence
-
-Review each artifact and extract relevant metrics:
+### Evidence
+The metric each artifact contributes, pulled before any scoring starts:
 
 | Artifact | Key Metrics to Extract |
 |----------|------------------------|
@@ -52,9 +45,8 @@ Review each artifact and extract relevant metrics:
 | gtm_plan.md | Channel viability |
 | risks.md | Critical risk count |
 
-### Step 2: Score Each Dimension
-
-Rate each dimension 1-10 based on evidence:
+### Dimension Scores
+Each dimension rated 1-10 on its own anchors, with the evidence recorded beside the number:
 
 #### Problem Severity (Weight: 20%)
 From `icp.yaml` problem_severity score:
@@ -116,9 +108,8 @@ From `signals.md`, `market_size.md`, and context:
 - 3-4: Challenging - market not ready or shifting away
 - 1-2: Bad timing - too early or too late
 
-### Step 3: Calculate Composite Score
-
-Apply weights and calculate:
+### Composite Score
+The weighted combination, computed with the arithmetic shown in the file:
 
 ```
 Composite = (
@@ -134,16 +125,14 @@ Composite = (
 
 Result is 0-100.
 
-### Step 4: Determine Revenue Potential
-
-Based on market size and unit economics:
+### Revenue Potential
+A band derived from market size and unit economics:
 - `$$$` ($10M+ ARR potential): Large SAM, strong economics
 - `$$` ($1M-$10M ARR potential): Medium SAM, viable economics
 - `$` ($100K-$1M ARR potential): Small SAM or challenging economics
 
-### Step 5: Generate Recommendation
-
-Based on composite score and risk profile:
+### Recommendation
+The verdict the composite and the dimension floor together imply:
 
 **GO** (Score ≥ 65 AND no dimension below 4):
 - Proceed with development
@@ -160,36 +149,23 @@ Based on composite score and risk profile:
 - Critical gaps in multiple areas
 - Recommend exploring different ideas
 
-### Step 6: Define Next Steps
+The dimension floor exists because a high composite can hide a single disqualifying dimension; when that happens the rationale says so rather than letting the average speak.
 
-Based on recommendation, suggest 2-3 immediate actions:
-- For GO: Focus on execution priorities
-- For PIVOT: Address specific weaknesses
-- For NO-GO: Alternative directions to explore
+### Next Steps
+Two or three immediate actions that follow from the verdict: execution priorities for GO, the specific weaknesses to address for PIVOT, alternative directions to explore for NO-GO.
 
-### Step 7: Generate Artifact
+## How to Work
 
-Create `scorecard.json` following the contract format.
+The seven dimensions are independent readings of artifacts already on disk and can be scored in any order. The only dependency chain is:
+1. All seven dimension scores, each with its evidence
+2. The composite, from the weights above
+3. The recommendation, from the composite and the dimension floor
 
-## Workflow Checklist
+Revenue potential reads market_size.md and pricing.yaml directly and does not wait on the composite.
 
-```
-Scorecard Generation Progress:
-- [ ] All artifacts gathered and reviewed
-- [ ] Evidence extracted for each dimension
-- [ ] Problem severity scored with evidence
-- [ ] Demand signals scored with evidence
-- [ ] Competitive intensity scored with evidence
-- [ ] Market size scored with evidence
-- [ ] Execution difficulty scored with evidence
-- [ ] GTM viability scored with evidence
-- [ ] Timing scored with evidence
-- [ ] Composite score calculated
-- [ ] Revenue potential determined
-- [ ] Recommendation generated
-- [ ] Next steps defined
-- [ ] scorecard.json created
-```
+## Constraints
+
+Every dimension score cites the artifact and the specific figure or line that supports it. The composite is computed from the stated weights with the arithmetic shown, so a reader can recompute it. A dimension with no evidence in any artifact is recorded as unscored with the reason, rather than given a middling default that would quietly distort the composite. The revenue band and the recommendation each carry a rationale in terms of the evidence. Next steps are concrete enough to act on this week. The finished `scorecard.json` conforms to `contracts/scorecard.json`.
 
 ## Output Format
 
@@ -204,9 +180,9 @@ Required fields:
 
 ## Working the Score
 
-Reading the nine artifacts is fast, so what is worth delegating here is the judgment rather than the file access - sub-agents can each argue one dimension's score from its own evidence in parallel while you hold the weighting consistent across all seven. Scoring is arithmetic over evidence already gathered, so effort is proportional to disagreement; dimensions where the artifacts conflict deserve the deliberation and the rest read straight off the bands. Every dimension score names the artifact line it came from, and a dimension whose input artifact is missing is scored with its confidence marked unverified rather than filled in from a general impression of the idea.
+Reading the nine artifacts is fast, so what is worth delegating here is the judgment rather than the file access - sub-agents can each argue one dimension's score from its own evidence in parallel while you hold the weighting consistent across all seven. Scoring is arithmetic over evidence already gathered, so effort is proportional to disagreement; dimensions where the artifacts conflict deserve the deliberation and the rest read straight off the bands. A dimension whose primary input artifact is missing but whose evidence survives in another artifact is scored with its confidence marked unverified rather than filled in from a general impression of the idea.
 
-A composite can hide a disqualifying dimension, and the counter-intuitive case of a 68 built on a Demand Signals 3 is worth saying plainly instead of reporting the verdict the formula produced. `scorecard.json` is read by validation-report, which reprints this verdict and rationale as its headline, so a thin evidence field becomes an unsupported claim in the final document. Lead with the verdict and the composite; the seven dimension scores are the support, not the opening.
+A composite can hide a disqualifying dimension, and the counter-intuitive case of a 68 built on a Demand Signals 3 is worth saying plainly instead of reporting the verdict the formula produced. `scorecard.json` is read by validation-report, which reprints this verdict and rationale almost verbatim as its headline, so the rationale is written for a founder deciding rather than for the model that produced it, and a thin evidence field becomes an unsupported claim in the final document. Lead with the verdict and the composite; the seven dimension scores are the support, not the opening.
 
 The deliverable is `scorecard.json`; going back to re-research a dimension that scored badly is not this skill's move, and neither is adjusting the weights to reach a preferred verdict. Before writing `scorecard.json`, verify the numbers by recomputing the composite from the seven weighted scores and showing the formula with the actual values substituted.
 

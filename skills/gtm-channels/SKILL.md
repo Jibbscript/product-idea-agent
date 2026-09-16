@@ -12,14 +12,9 @@ allowed-tools: Read Write WebSearch WebFetch
 
 Identifies acquisition channels, growth strategies, and launch plans.
 
-## Quick Start
+## Outcome
 
-Given prior artifacts, plan the GTM:
-1. Research where ICP spends time
-2. Identify viable acquisition channels
-3. Estimate CAC per channel
-4. Design growth loops
-5. Output `gtm_plan.md`
+`gtm_plan.md` is a plan for reaching the ICP that names one primary channel, ranks the supporting ones, estimates what a customer costs to acquire through each, and lays out a launch sequence with 90-day milestones. The most common weakness is a plan that lists five channels as equals; the useful plan commits.
 
 ## Inputs Required
 
@@ -28,19 +23,17 @@ Given prior artifacts, plan the GTM:
 - `market_size.md` (from market-sizing) - for scale planning
 - `mvp_spec.md` (from solution-wedge) - for positioning
 
-## Step-by-Step Workflow
+## What gtm_plan.md Must Cover
 
-### Step 1: Map Customer Presence
-
-From the ICP, identify where target customers:
+### Customer Presence
+Where the ICP actually is, which decides which channels are even candidates. The map covers where target customers:
 - **Discover products**: Search engines, social media, word of mouth
 - **Consume content**: Blogs, podcasts, newsletters, YouTube
 - **Engage professionally**: LinkedIn, conferences, communities
 - **Make purchases**: Direct, through marketplaces, via partners
 
-### Step 2: Identify Channel Options
-
-For each channel category, list options:
+### Channel Options
+The candidate channels, drawn from this catalogue and filtered by customer presence:
 
 **Content Channels:**
 - SEO / Organic search
@@ -73,31 +66,25 @@ For each channel category, list options:
 - Freemium conversion
 - Marketplace listings
 
-### Step 3: Evaluate Each Channel
-
-Score channels on:
+### Channel Evaluation
+Each candidate scored on four criteria:
 - **ICP Presence**: Are your customers there? (1-5)
 - **CAC Efficiency**: Cost to acquire? (1-5, lower is better)
 - **Scalability**: Can it grow? (1-5)
 - **Team Fit**: Do you have expertise? (1-5)
 
-Prioritize top 3-5 channels.
+The top 3-5 channels carry forward, with one named as primary.
 
-### Step 4: Estimate CAC Per Channel
-
-Research typical CAC for your category:
+### CAC Per Channel
+A cost-to-acquire estimate for each channel that carried forward, researched through:
 - "[channel] customer acquisition cost [category]"
 - "[competitor] marketing strategy"
 - "average CAC [channel] B2B/B2C"
 
-Adjust for your specific situation:
-- Higher for crowded categories
-- Lower for strong product-market fit
-- Varies by geography and segment
+Benchmarks are adjusted for the specific situation: higher for crowded categories, lower for strong product-market fit, and varying by geography and segment. Each figure is labelled sourced or estimated.
 
-### Step 5: Design Growth Loops
-
-Identify self-reinforcing growth mechanisms:
+### Growth Loops
+The self-reinforcing mechanisms the plan relies on, of these shapes:
 
 **Viral Loop:**
 User → Invites Friends → Friends Become Users → Repeat
@@ -111,7 +98,10 @@ Revenue → Reinvest in Ads → More Users → More Revenue
 **Sales Loop:**
 Customer → Case Study → Credibility → More Customers
 
-### Step 6: Plan Launch Sequence
+A plan without a loop is a plan that buys every customer; the loop is what makes growth compound.
+
+### Launch Sequence
+The plan's launch plays, in the order they happen in the market:
 
 **Pre-Launch (4-8 weeks before):**
 - Waitlist building
@@ -131,30 +121,19 @@ Customer → Case Study → Credibility → More Customers
 - Channel optimization
 - Scale what works
 
-### Step 7: Define 90-Day Milestones
-
-Set measurable targets:
+### 90-Day Milestones
+Dated, measurable targets:
 - Day 30: [specific metric]
 - Day 60: [specific metric]
 - Day 90: [specific metric]
 
-### Step 8: Generate Artifact
+## How to Work
 
-Create `gtm_plan.md` following the contract format.
+Customer presence determines which channels are even candidates, so it is mapped before channels are evaluated. Evaluation and CAC estimation are two passes over the same candidate list and can be done together. Growth loops depend on the product and the primary channel. The launch sequence and milestones are written once a primary channel is chosen, because a launch plan for an undecided channel is a list of options, not a plan.
 
-## Workflow Checklist
+## Constraints
 
-```
-GTM Planning Progress:
-- [ ] Customer presence mapped
-- [ ] Channel options identified
-- [ ] Channels evaluated and prioritized
-- [ ] CAC estimated per channel
-- [ ] Growth loops designed
-- [ ] Launch sequence planned
-- [ ] 90-day milestones defined
-- [ ] gtm_plan.md created
-```
+The plan names one primary channel rather than ranking five equally. Every CAC figure is labelled sourced, estimated, or unverified and carries its source when it has one. The 90-day milestones are dated and measurable. The channel table covers 3-5 channels and the top 2-3 get a deep dive, matching the sections the contract expects. The finished `gtm_plan.md` conforms to `contracts/gtm_plan.md`.
 
 ## Output Format
 
@@ -171,7 +150,7 @@ Required sections:
 
 CAC benchmarks, community mapping and competitor go-to-market teardowns are independent lookups, so fan out one sub-agent per channel under consideration and reconcile their estimates into the channel table. Depth belongs to the top two or three channels, while the rest of the list needs only enough evidence to justify not choosing it; research past that is spend the plan cannot use. CAC is the easiest number in this plan to invent, so a benchmark from a published report is sourced, a figure derived from a competitor's spend is an estimate, and a channel with neither carries unverified beside its number.
 
-Your judgment is what separates a channel list from a plan, so name the one channel that is non-obvious for this ICP and say what would change your mind about the primary. `gtm_plan.md` is read by risk-assessment for go-to-market risk and by scorecard-generator's GTM Viability dimension, so a channel listed without conviction becomes a score that overstates the path to customers. Lead with the primary channel and the first ninety days, then the evaluation that got you there.
+Your judgment is what separates a channel list from a plan, so name the one channel that is non-obvious for this ICP and say what would change your mind about the primary. `gtm_plan.md` is read by risk-assessment, which needs to see where the plan could fail, and by scorecard-generator's GTM Viability dimension, so a channel listed without conviction becomes a score that overstates the path to customers. Lead with the primary channel and the first ninety days, then the evaluation that got you there.
 
 The deliverable is `gtm_plan.md`; creating accounts, drafting ad copy or contacting communities is outside it. Before you finish, re-read the channel table against `pricing.yaml`: a CAC that exceeds a year of ARPC is arithmetic to catch here rather than after launch.
 
