@@ -29,6 +29,7 @@
 - **YouTube**: "Home energy audit" returns 500K+ results, top videos have 100K-500K views
 - **Facebook Groups**: Multiple home improvement groups with 100K+ members discuss energy efficiency
 - **Home Depot Community**: Active forum discussions about insulation and energy savings
+- **Library energy-lending programs**: Public libraries lend clip-on thermal cameras, mostly FLIR ONE units, for 1-2 weeks. Arlington (VA) Public Library's first 4 cameras (April 2016) drew an 8-month waitlist within a week, so it added 19 more; Fairfax County (VA) launched 50+ loaner cameras in April 2017; Montgomery County (MD) launched 8 FLIR cameras in April 2019. This is borrow demand for the kind of clip-on camera the app is built around (mostly FLIR ONE units). No national count exists, and the known programs cluster in the DC suburbs.
 
 ## Key Quotes
 
@@ -42,10 +43,14 @@
 
 ## Signal Score: 7/10
 
-Strong search volume for energy audit-related queries with positive growth trends. Active community discussions show genuine frustration with existing options. Evidence of willingness to pay for solutions, though price sensitivity is noted in frugal communities.
+Strong search volume for energy audit-related queries with positive growth trends. Active community discussions show genuine frustration with existing options. Evidence of willingness to pay for solutions, though price sensitivity is noted in frugal communities. Library waitlists for loaner thermal cameras show homeowners will borrow a clip-on camera to find leaks, and HomeBoost's BoostBox DIY assessment kit (launched October 2024) suggests the category is validated.
 
 ## Sources
 - Google Trends data (accessed 2024-12)
 - Reddit search results (accessed 2024-12)
 - YouTube search analysis (accessed 2024-12)
 - Ahrefs keyword estimates (via third-party reports)
+- Arlington Public Library energy lending library, https://www.urbanlibraries.org/innovations/energy-lending-library (accessed 2024-12)
+- Fairfax County thermal camera loans, https://www.fairfaxcounty.gov/news/see-your-way-savings-thermal-cameras-loan-library-branches (accessed 2024-12)
+- Montgomery County library thermal camera loans, https://www.montgomerycountymd.gov/news/montgomery-county-library-users-can-borrow-thermal-imaging-cameras-help-monitor-energy-use-their-homes (accessed 2024-12)
+- HomeBoost BoostBox launch (category validation), https://cleantechnica.com/2024/11/05/homeboost-turns-your-smartphone-into-a-home-energy-audit-device/ (accessed 2024-12)

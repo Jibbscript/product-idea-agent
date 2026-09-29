@@ -32,8 +32,8 @@ graders:
     type: tool_used
     tool: Skill
     input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?validation-report"'
-  # The seeded scorecard.json records GO / 71: a Recommendation or Verdict line must reach GO before any PIVOT or NO-GO, and a Composite line must state 71.
+  # The seeded scorecard.json records GO / 65: a Recommendation or Verdict line must reach GO before any PIVOT or NO-GO, and the first number on a Composite line must be 65 (not the GO threshold).
   - name: verdict-matches-scorecard
     type: regex
     target: { source: file, path: validation_report.md }
-    pattern: '^(?=[\s\S]*(?:Recommendation|Verdict)\b(?:(?!PIVOT|NO-GO)[^\n])*?\bGO\b)(?=[\s\S]*Composite[^\n]*\b71\b)'
+    pattern: '^(?=[\s\S]*(?:Recommendation|Verdict)\b(?:(?!PIVOT|NO-GO)[^\n])*?\bGO\b)(?=[\s\S]*Composite[^\n\d]*65\b)'

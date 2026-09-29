@@ -61,7 +61,7 @@ Build from unit economics and customer counts.
 Step 1: Count Potential Customers
 US homeowners = 85 million households
 Homes built before 2000 = 60% → 51 million
-With smartphones capable of thermal = 30% → 15.3 million
+Own, borrow or would buy a clip-on thermal camera = 30% → 15.3 million
 
 Step 2: Apply Willingness Filters
 Concerned about energy costs = 40% → 6.1 million

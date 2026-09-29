@@ -14,43 +14,43 @@
       "score": 7,
       "max": 10,
       "weight": 0.15,
-      "evidence": "22K monthly searches for 'home energy audit'; 4.2M member r/homeimprovement community actively discussing; +25-45% YoY growth on key terms"
+      "evidence": "signals.md: 22K monthly searches for 'home energy audit'; 4.2M member r/homeimprovement community actively discussing; +25-45% YoY growth on key terms; library energy-lending waitlists (Arlington's first 4 loaner cameras drew an 8-month waitlist) show borrow demand for clip-on thermal cameras"
     },
     "competitive_intensity": {
-      "score": 4,
+      "score": 6,
       "max": 10,
       "weight": 0.10,
-      "evidence": "FLIR and Seek require hardware ($200-400); professional auditors expensive ($300-500); no smartphone-native competitor",
+      "evidence": "competitors.csv / gtm_plan.md: HomeBoost BoostBox ($99 DIY kit with a thermal camera that plugs into an iPhone, launched Oct 2024) is a direct competitor with a head start; FLIR's own app and FLIR-approved home-energy apps (Home Boost, HouseRater); Seek (Nano has no third-party SDK, only Seek's own app); professional auditors expensive ($300-500)",
       "note": "Lower score = better (less competition)"
     },
     "market_size": {
-      "score": 7,
+      "score": 6,
       "max": 10,
       "weight": 0.15,
-      "evidence": "TAM $4.5B home energy management; SAM $750M for DIY smartphone segment; 15% CAGR"
+      "evidence": "market_size.md: TAM $4.5B home energy management; SAM narrows to about $236M (estimate) because activation needs a clip-on thermal camera the homeowner owns, buys or borrows; 15% CAGR"
     },
     "execution_difficulty": {
       "score": 5,
       "max": 10,
       "weight": 0.15,
-      "evidence": "Technical: thermal sensor accuracy unknown; ML model training needed; contractor marketplace is complex",
+      "evidence": "mvp_spec.md / risks.md: the free FLIR Mobile SDK gives real radiometric (per-pixel temperature) data, removing the sensor-feasibility risk; AI labelling of thermal images is custom-built core IP and needs ML model training; FLIR's pre-release app approval is a gate; the app must support iOS and Android; contractor marketplace is complex",
       "note": "Lower score = better (easier to execute)"
     },
     "gtm_viability": {
-      "score": 8,
+      "score": 7,
       "max": 10,
       "weight": 0.15,
-      "evidence": "Clear channels: SEO/content ($8-12 CAC), YouTube, App Store; ICP actively searching; r/homeimprovement is accessible"
+      "evidence": "gtm_plan.md: clear channels: SEO/content ($8-12 CAC), YouTube, App Store, plus library energy-lending programs; ICP actively searching; r/homeimprovement is accessible; but owning or borrowing a camera gates activation"
     },
     "timing": {
-      "score": 8,
+      "score": 7,
       "max": 10,
       "weight": 0.10,
-      "evidence": "iPhone 15 Pro thermal sensor just released (new capability); energy costs at multi-year highs; DIY trend continues post-pandemic"
+      "evidence": "market_size.md: sub-$200 FLIR ONE Gen 3 ($199.99 list, $149.99 on sale Nov-Dec 2024) and a FLIR ONE for USB-C iPhones (Dec 2024); library lending programs; energy costs at multi-year highs; DIY trend continues post-pandemic; risks.md: but HomeBoost moved first (Oct 2024)"
     }
   },
 
-  "composite_score": 71,
+  "composite_score": 65,
   "max_composite": 100,
   "calculation_method": "weighted_average",
 
@@ -62,11 +62,12 @@
 
   "recommendation": {
     "verdict": "GO",
-    "rationale": "Strong demand signals, clear differentiation opportunity, favorable timing with new smartphone thermal capabilities, and accessible GTM channels. Technical risk around sensor accuracy is manageable with early prototyping.",
+    "rationale": "A borderline GO: the composite of 65 sits exactly on the GO threshold, carried by solid demand signals, accessible GTM channels and a FLIR Mobile SDK that removes the sensor-feasibility risk. The deciding factors are HomeBoost's head start with its $99 BoostBox kit and whether enough homeowners can own, buy or borrow a supported FLIR ONE camera.",
     "next_steps": [
-      "Build prototype to validate iPhone thermal sensor accuracy for air leak detection",
+      "Apply to the FLIR developer program for Mobile SDK access and pre-release app approval",
+      "Build a FLIR ONE Gen 3 prototype to validate AI detection of air leaks and insulation gaps from radiometric frames",
       "Create landing page to test pricing and waitlist interest",
-      "Begin content creation for SEO foundation"
+      "Begin content creation for SEO foundation, and contact library lending programs about partnerships"
     ]
   }
 }

@@ -35,13 +35,14 @@ icp:
         - "Reddit r/homeimprovement, r/HomeOwners"
         - "Home Depot and Lowe's website/apps"
         - "Local utility company resources"
+        - "Local library energy lending / library-of-things programs that loan FLIR ONE thermal cameras"
       purchase_triggers:
         - "Unexpectedly high heating/cooling bill"
         - "Preparing home for sale"
         - "Noticeable drafts or temperature inconsistencies"
         - "Friend/neighbor discusses energy improvements"
       objections:
-        - "Will the phone sensor really be accurate enough?"
+        - "Do I have to buy a $149.99-$199.99 clip-on thermal camera, and is an 80x60 FLIR ONE image good enough?"
         - "Can I actually interpret the results myself?"
         - "Is this worth it for a one-time audit?"
 

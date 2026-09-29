@@ -1,7 +1,7 @@
 {
   "name": "product-idea-agent",
   "displayName": "Product Idea Agent",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Validates a startup or product idea end to end: twelve skills research demand, customer, competitors, market size, pricing, MVP, go-to-market and risk, then score the idea and write a GO / PIVOT / NO-GO validation report.",
   "author": {
     "name": "Gibran Iqbal",

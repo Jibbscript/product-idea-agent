@@ -10,7 +10,7 @@ Five test ideas chosen to span the verdict range. Each fixture directory has the
 
 | Directory | Idea | Expected composite | Expected verdict | Expected outputs |
 |-----------|------|-------------------|------------------|------------------|
-| `t1-energy-audit/` | Phone thermal camera for DIY home energy audits, freemium + contractor referrals | 70–85 | GO | all 11 artifacts |
+| `t1-energy-audit/` | Clip-on phone thermal camera + AI for DIY home energy audits, freemium + contractor referrals | 60–75 | GO (borderline, 65) | all 11 artifacts |
 | `t2-fintech-compliance/` | Automated SOC 2 for seed-stage fintech (vs Vanta / Drata / Secureframe) | 55–70 | PIVOT | `scorecard.json` only |
 | `t3-synth-collectors/` | Curated marketplace + community for vintage synth collectors | 50–65 | PIVOT | `scorecard.json` only |
 | `t4-data-pipeline/` | No-code monitoring for data pipelines (Airflow, dbt, Fivetran) | 60–75 | GO or PIVOT | `scorecard.json` only |

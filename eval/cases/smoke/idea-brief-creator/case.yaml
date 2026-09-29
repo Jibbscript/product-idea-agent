@@ -4,7 +4,7 @@ description: A request that never names the skill should route to product-idea-a
 tags: [smoke]
 execution:
   prompt: >-
-    I keep coming back to a rough idea: a phone app that uses the thermal sensor in newer iPhones to show homeowners where their house leaks heat. Can you help me turn it into a proper structured brief, with the problem, the customer and the assumptions I'd need to test spelled out?
+    I keep coming back to a rough idea: a phone app that works with a clip-on thermal camera to show homeowners where their house leaks heat. Can you help me turn it into a proper structured brief, with the problem, the customer and the assumptions I'd need to test spelled out?
   max_turns: 2
   timeout_seconds: 300
   allowed_tools: [Read, Glob, Grep, Skill]

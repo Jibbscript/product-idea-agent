@@ -33,7 +33,7 @@ Entry point for a full validation. Runs the 11 skills in order, grouped into fiv
 - The Complete Workflow diagram names each step as `product-idea-agent:<skill>` so a same-named skill from another plugin is never chosen; the bare names must still appear (the benchmark checks all eleven).
 
 ### Testing Requirements
-- Run `eval/fixtures/t1-energy-audit/input.md` end to end and confirm all 11 files listed under Artifact Locations exist and the scorecard verdict is GO within 70–85.
+- Run `eval/fixtures/t1-energy-audit/input.md` end to end and confirm all 11 files listed under Artifact Locations exist and the scorecard composite is within 60–75. The fixture's own scorecard is a borderline GO at 65, so a PIVOT that names the same deciding factors (camera access, HomeBoost's head start) is a defensible result.
 
 ### Common Patterns
 - Resume phrasing users are told to use: "Continue validation from step X". Keep that string; `docs/USAGE.md` documents it.

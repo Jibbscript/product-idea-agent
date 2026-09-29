@@ -2,11 +2,17 @@ pricing:
   version: "1.0"
 
   competitor_benchmarks:
-    - competitor: "FLIR ONE Pro"
+    - competitor: "FLIR ONE Gen 3 / FLIR ONE Pro (clip-on thermal camera)"
       model: "onetime"
-      low: 200
+      low: 150
       high: 400
-      notes: "One-time hardware purchase; high upfront cost barrier"
+      notes: "One-time clip-on hardware purchase (FLIR ONE Gen 3 $199.99 list / $149.99 on sale; FLIR ONE Pro $399.99); FLIR ONE Gen 3 is the entry camera our app supports (the Pro is not on the supported list), so a high upfront cost barrier for users who do not already own or borrow one"
+
+    - competitor: "HomeBoost BoostBox"
+      model: "onetime"
+      low: 99
+      high: 99
+      notes: "$99 DIY home energy assessment kit launched Oct 2024 (iPhone plug-in thermal camera, blacklight, ~30-minute guided app scan with upgrade and rebate report); cheaper all-in than buying a FLIR ONE"
 
     - competitor: "Professional Energy Auditors"
       model: "onetime"
@@ -28,7 +34,7 @@ pricing:
 
   value_ladder:
     - tier: "Free"
-      offering: "Basic thermal scan with 3 rooms per month, generic tips"
+      offering: "No-camera guided draft check (visual checklist plus incense / smoke-pencil walkthrough), plus 3 thermal room scans per month with a supported camera, generic tips"
       price: 0
       purpose: "acquisition"
 
@@ -46,7 +52,7 @@ pricing:
 
   unit_economics:
     target_arpc: 4.50  # $30/year ÷ 12 months + referral revenue
-    estimated_cac: 15  # App store + content marketing
+    estimated_cac: 15  # App store + content marketing; excludes the clip-on camera cost the user bears
     ltv_cac_ratio: 4.8  # Based on 24-month retention
     payback_months: 3.5
     gross_margin: 0.85  # Software margins
@@ -63,5 +69,8 @@ pricing:
     model: "freemium"
     entry_price: 30
     rationale: "Annual subscription at $30 positions below professional audit cost
-      ($300-500) and hardware alternatives ($200-400) while capturing recurring
-      revenue. Contractor referrals provide additional revenue per engaged user."
+      ($300-500) and HomeBoost's $99 kit while capturing recurring revenue. Users
+      bring their own clip-on camera (FLIR ONE Gen 3 $149.99-$199.99, owned or
+      borrowed from a library lending program), so the price covers the software
+      layer only; for homeowners with no camera access, HomeBoost's kit is the
+      cheaper path. Contractor referrals provide additional revenue per engaged user."

@@ -10,6 +10,7 @@
 | YouTube Tutorials | $10-15 | Medium | 3 |
 | Home Improvement Influencers | $15-25 | Medium | 4 |
 | Reddit Community | $3-8 | Low-Medium | 5 |
+| Library Lending Programs | Not estimated | Low | 6 |
 
 ### Channel Details
 
@@ -31,6 +32,15 @@
 - **Metrics**: Views, subscribers, app downloads from links
 - **Budget**: $3,000/month for production + influencer partnerships
 
+#### Library Lending Programs
+- **Why**: Activation needs a clip-on thermal camera, and library "energy lending" programs lend clip-on thermal cameras, mostly FLIR ONE units, for 1-2 weeks. Borrow demand is real: Arlington (VA) Public Library's first 4 cameras drew an 8-month waitlist within a week, so it added 19 more; Fairfax County (VA) launched 50+ loaner cameras in 2017; Montgomery County (MD) launched 8 FLIR cameras in 2019. Borrowers already hold a camera, so they need no kit purchase. Volume is Low because no national count of programs exists and the known ones cluster in the DC suburbs
+- **Tactics**:
+  - Start with Arlington, Fairfax County and Montgomery County
+  - Put a QR-code card in each loaner kit that opens the app's guided room-by-room scan
+  - Give librarians a one-page guide to running a scan inside the 1-2 week loan window
+- **Metrics**: Downloads from library QR codes, thermal scans completed during a loan, conversion to Home Plan after the camera is returned
+- **Budget**: No separate line; kit cards and librarian outreach come out of the PR/Outreach budget
+
 ## Launch Strategy
 
 ### Pre-Launch (4 weeks before)
@@ -38,9 +48,12 @@
 - Seed content on r/homeimprovement, r/HomeOwners
 - Reach out to home improvement bloggers for reviews
 - Create tutorial video content for launch day
+- Submit the app for FLIR's pre-release review, which the FLIR Mobile SDK requires before public release
+- Line up the first library lending programs
 
 ### Launch
-- App Store launch with ASO optimization
+- App Store launch with ASO optimization (Google Play once the Android version ships)
+- Listing in FLIR's approved app gallery
 - Product Hunt submission
 - Email waitlist with exclusive early access
 - Press outreach to home/tech publications
@@ -55,7 +68,7 @@
 ## Growth Loops
 
 ### Referral Loop
-User completes audit → Shares savings results on social → Friends see potential savings → Download app → Repeat
+User completes audit → Shares savings results on social → Friends see potential savings → Download app → Run the no-camera draft check, or scan with a FLIR ONE they own, buy or borrow → Repeat
 
 ### Content Loop
 Publish energy saving content → SEO traffic → App downloads → User success stories → New content ideas → More SEO traffic
@@ -67,6 +80,10 @@ Publish energy saving content → SEO traffic → App downloads → User success
 **Home Improvement Retailers**: Co-marketing opportunities with Home Depot, Lowe's for seasonal energy campaigns
 
 **Contractor Networks**: Revenue share for qualified leads; contractors recommend app to customers
+
+**Library Energy-Lending Programs**: Arlington (VA) Public Library, Fairfax County (VA) and Montgomery County (MD) lend clip-on thermal cameras, mostly FLIR ONE units; the app becomes the guided scan borrowers use during the loan
+
+**FLIR**: Join the FLIR developer program (the Mobile SDK is free but needs approval) and get listed in FLIR's approved app gallery. The gallery already lists Home Boost and HouseRater, so a listing brings parity with them, not an edge
 
 ## 90-Day Milestones
 

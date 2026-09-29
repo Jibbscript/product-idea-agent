@@ -8,7 +8,7 @@ Reference examples showing properly structured idea briefs.
 # Idea Brief: Home Energy Leak Mapper
 
 ## One-Line Pitch
-Home Energy Leak Mapper helps homeowners reduce energy bills by 20% by using smartphone thermal scanning to identify insulation gaps and air leaks.
+Home Energy Leak Mapper helps homeowners cut energy bills by 20% by using a clip-on phone thermal camera to find insulation gaps and air leaks.
 
 ## Problem Statement
 Homeowners waste $200-500/year on energy bills due to poor insulation and air leaks they can't see. Professional energy audits cost $300-500 and require scheduling weeks in advance. DIY thermal cameras cost $200+ and require expertise to interpret.
@@ -21,17 +21,17 @@ Homeowners aged 35-55 in US suburban areas with:
 - Concerned about both cost savings and environmental impact
 
 ## Solution Hypothesis
-Use the existing thermal sensor in newer smartphones (iPhone 15 Pro+) combined with AI interpretation to provide instant, actionable energy audit results. The app guides users room-by-room, identifies issues, explains severity, and connects them with local contractors for fixes.
+Pair an affordable clip-on phone thermal camera (such as a FLIR ONE, which homeowners can buy, already own, or borrow from a library) with AI interpretation to provide instant, actionable energy audit results. The app guides users room-by-room, identifies issues, explains severity, and connects them with local contractors for fixes.
 
 Key capabilities:
-- Smartphone thermal scanning (no additional hardware)
+- Thermal scanning with a clip-on phone camera the homeowner owns or borrows
 - AI-powered issue detection and severity scoring
 - Room-by-room guided audit workflow
 - Cost savings calculator
 - Contractor matching marketplace
 
 ## Key Assumptions
-1. Smartphone thermal sensors are accurate enough to detect meaningful heat loss
+1. Clip-on phone thermal cameras are accurate enough to detect meaningful heat loss
 2. Homeowners will complete a 30-minute DIY audit process
 3. Users will pay $30/year for app subscription (vs $0 for free alternative)
 4. Contractor referrals will provide sustainable revenue at 10% commission

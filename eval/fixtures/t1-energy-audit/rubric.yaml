@@ -83,12 +83,13 @@ dimensions:
 
 # Expected score ranges for this test case
 expectations:
-  composite_score_range: [70, 85]
+  composite_score_range: [60, 75]
   recommendation: "GO"
   key_signals:
     - "Strong demand signals from r/homeimprovement"
     - "Gap between DIY and professional solutions"
-    - "Timing favorable with smartphone thermal sensors"
+    - "Affordable clip-on thermal cameras and library lending programs"
   key_risks:
-    - "Technical: smartphone sensor accuracy"
+    - "Hardware: homeowners must own, buy or borrow a clip-on thermal camera"
+    - "Competition: HomeBoost BoostBox launched first"
     - "Market: adoption of DIY energy audits"

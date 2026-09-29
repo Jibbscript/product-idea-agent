@@ -26,7 +26,7 @@ Pipeline step 9. Reads every prior artifact, identifies risks by category (techn
 - Must-be-true assumptions should trace back to Key Assumptions in `idea_brief.md` and Open Questions in `mvp_spec.md`.
 
 ### Testing Requirements
-- Compare against `eval/fixtures/t1-energy-audit/expected_outputs/risks.md`. Confirm the fixture rubric's `key_risks` (sensor accuracy, DIY adoption) are present for t1.
+- Compare against `eval/fixtures/t1-energy-audit/expected_outputs/risks.md`. Confirm the fixture rubric's `key_risks` (camera access, HomeBoost competition, DIY adoption) are present for t1.
 
 ### Common Patterns
 - Risk matrix rows are one line each; mitigation column is an action, not a hope.
