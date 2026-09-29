@@ -1,0 +1,14 @@
+{
+  "name": "jibbscript",
+  "description": "Claude Code plugins by Jibbscript.",
+  "owner": {
+    "name": "Gibran Iqbal",
+    "url": "https://github.com/Jibbscript"
+  },
+  "plugins": [
+    {
+      "name": "product-idea-agent",
+      "source": "./"
+    }
+  ]
+}

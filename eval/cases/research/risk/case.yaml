@@ -1,0 +1,30 @@
+schema_version: "1.1"
+name: research-risk
+description: Risk phase of the t1 fixture, seeded with its earlier artifacts; run with --scaffold and --allow-tools Write Edit WebSearch WebFetch.
+tags: [research]
+runs: 1
+context:
+  scaffold_script: seed.sh
+execution:
+  prompt: >-
+    Every artifact from validating my home energy audit app so far is in the current directory. Assess the risks, constraints and dependencies and save them as risks.md in the current directory, and stop once that file is written.
+  max_turns: 200
+  timeout_seconds: 3600
+  allowed_tools: [Read, Glob, Grep, Skill, Agent, TodoWrite, Write, Edit, WebSearch, WebFetch]
+graders:
+  - name: risks-written
+    type: file_exists
+    path: risks.md
+  - name: risks-contract-shape
+    type: regex
+    target: { source: file, path: risks.md }
+    flags: i
+    pattern: '^(?=[\s\S]*#+ *Risk Matrix)(?=[\s\S]*#+ *Critical Risks)(?=[\s\S]*#+ *Must-Be-True Assumptions)(?=[\s\S]*#+ *Dependencies)'
+  - name: searched-the-web
+    type: tool_used
+    tool: WebSearch
+    min: 1
+  - name: risk-assessment-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?risk-assessment"'

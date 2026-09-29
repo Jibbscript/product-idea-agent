@@ -1,9 +1,11 @@
 name: prompt-fitness
 
-# Gates every PR into masta on the Fable 5.1 prompt-fitness benchmark
-# (eval/fable_prompt_bench.py): the skill pack's prompt surface must keep
-# its integrity (frontmatter, artifact names, contract references, links)
-# and must not regress against the base branch by more than 1.0 point.
+# Gates every PR into masta on two free checks: `claude plugin validate
+# --strict` (manifests, marketplace, component paths, skill frontmatter) and
+# the Fable 5.1 prompt-fitness benchmark (eval/fable_prompt_bench.py), whose
+# prompt surface must keep its integrity (frontmatter, artifact names,
+# plugin-root contract references, pack name, links) and must not regress
+# against the base branch by more than 1.0 point. Neither calls a model.
 
 on:
   pull_request:
@@ -26,6 +28,26 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Claude Code (pinned)
+        run: npm install -g @anthropic-ai/claude-code@2.1.284
+
+      # A marketplace run reads only the manifests, so the plugin manifest is
+      # validated on its own as well to cover the skills' frontmatter.
+      - name: Validate plugin
+        env:
+          DISABLE_AUTOUPDATER: "1"
+        run: |
+          claude --version
+          claude plugin validate . --strict
+          claude plugin validate .claude-plugin/plugin.json --strict
+
+      - name: Benchmark integrity tests
+        run: python3 -m unittest eval/test_fable_prompt_bench.py
 
       - name: Benchmark this revision
         run: python3 eval/fable_prompt_bench.py -v | tee head.txt

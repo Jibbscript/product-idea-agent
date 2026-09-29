@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: smoke-risk-assessment
+description: A request that never names the skill should route to product-idea-agent:risk-assessment.
+tags: [smoke]
+execution:
+  prompt: >-
+    What could go wrong with building a phone thermal-camera app for home energy audits? I want the biggest risks and dependencies laid out before I commit to it.
+  max_turns: 4
+  timeout_seconds: 300
+  allowed_tools: [Read, Glob, Grep, Skill]
+graders:
+  - name: skill-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?risk-assessment"'

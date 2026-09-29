@@ -131,7 +131,7 @@ Assumptions, constraints, and dependencies are gathered alongside the category s
 
 ## Constraints
 
-Every one of the five categories is covered or explicitly recorded as not applicable with the reason. Every risk carries both a severity and a likelihood on the stated 1-5 scales, and the risk matrix table shows their product. Every critical risk (score of 15 or more) carries a mitigation and a contingency. Must-be-true assumptions each name a validation method. Dependencies each state what breaks if they fail. The finished `risks.md` conforms to `contracts/risks.md`.
+Every one of the five categories is covered or explicitly recorded as not applicable with the reason. Every risk carries both a severity and a likelihood on the stated 1-5 scales, and the risk matrix table shows their product. Every critical risk (score of 15 or more) carries a mitigation and a contingency. Must-be-true assumptions each name a validation method. Dependencies each state what breaks if they fail. The finished `risks.md` conforms to `${CLAUDE_PLUGIN_ROOT}/contracts/risks.md`.
 
 ## What a strong risks.md looks like
 
@@ -139,7 +139,7 @@ The top three rows are the whole document for most of its readers, so they have 
 
 ## Output Format
 
-Create `risks.md` following the artifact contract in `contracts/risks.md`.
+Create `risks.md` following the artifact contract in `${CLAUDE_PLUGIN_ROOT}/contracts/risks.md`.
 
 Required sections:
 - Risk matrix table (all risks with scores)

@@ -1,0 +1,41 @@
+schema_version: "1.1"
+name: offline-validation-report
+description: Writes the report from the t1 fixture's artifacts and scorecard with no web access; run with --scaffold and --allow-tools Write WebSearch WebFetch.
+tags: [offline]
+context:
+  scaffold_script: seed.sh
+execution:
+  prompt: >-
+    The validation of my home energy audit app idea is finished, and every artifact from it, scorecard.json included, is in the current directory. Compile the final validation report and save it as validation_report.md in the current directory.
+  max_turns: 40
+  timeout_seconds: 1200
+  allowed_tools: [Read, Glob, Grep, Skill, Write, WebSearch, WebFetch]
+graders:
+  - name: validation-report-written
+    type: file_exists
+    path: validation_report.md
+  - name: validation-report-contract-shape
+    type: regex
+    target: { source: file, path: validation_report.md }
+    pattern: '^(?=[\s\S]*#+ *Executive Summary)(?=[\s\S]*#+[^\n]*Scorecard)(?=[\s\S]*#+[^\n]*Recommendation)(?=[\s\S]*\b(GO|PIVOT|NO-GO)\b)'
+  - name: no-websearch
+    type: tool_used
+    tool: WebSearch
+    min: 0
+    max: 0
+  - name: no-webfetch
+    type: tool_used
+    tool: WebFetch
+    min: 0
+    max: 0
+  - name: validation-report-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?validation-report"'
+  - name: verdict-matches-scorecard
+    type: llm
+    focus: { source: file, path: validation_report.md }
+    criteria: >-
+      The scorecard.json this report was built from recommends GO with a composite score of 75 out of 100.
+      PASS if the report's recommendation is GO and the composite score it states is 75.
+      FAIL if it recommends PIVOT or NO-GO, states no recommendation, or states a different composite score.

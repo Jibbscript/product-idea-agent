@@ -32,6 +32,7 @@ These directories have no AGENTS.md of their own; this file covers them.
 - Adding a fixture: create `t<N>-<slug>/input.md` (that file alone makes it discoverable), a `rubric.yaml`, and at minimum `expected_outputs/scorecard.json`. Copy the rubric from `t1-energy-audit/` and change only the `expectations:` block.
 - Expected outputs must conform to `contracts/`. `t1-energy-audit/expected_outputs/` is the de facto worked example of every contract; when a contract changes, update it.
 - The `expectations` block is documentation for a human reviewer. The current scorer ignores it.
+- `t1-energy-audit/input.md` and `expected_outputs/` also seed the plugin eval cases (`../cases/*/*/seed.sh`). They are the single source for those workspaces; don't copy them into cases.
 - `.DS_Store` files are macOS noise.
 
 ### Testing Requirements

@@ -10,7 +10,7 @@ Pipeline step 10. Pure synthesis, no web access. Pulls evidence from the nine pr
 
 | File | Description |
 |------|-------------|
-| `SKILL.md` | 246 lines. Gather evidence → score each dimension → composite → revenue potential → recommendation. Tools: `Read Write` |
+| `SKILL.md` | 246 lines. Gather evidence → score each dimension → composite → revenue potential → recommendation. Tools: `Read Write` pre-approved; `disallowed-tools: WebSearch WebFetch` removes web access |
 | `references/scoring_model.md` | Weight rationale per dimension, scoring anchors (what a 3 vs 7 vs 9 looks like), verdict thresholds, revenue indicator bands |
 
 ## Inputs / Outputs

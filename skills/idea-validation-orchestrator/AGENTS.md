@@ -29,7 +29,8 @@ Entry point for a full validation. Runs the 11 skills in order, grouped into fiv
 - This file is the source of truth for step numbering. `README.md`, `docs/USAGE.md`, `eval/runners/run_skillpack.py` (`SKILLPACK_PROMPT`), and `references/workflow_guide.md` all repeat the list; update them together.
 - Adding or reordering a skill: edit the ASCII pipeline diagram, the Progress and Resumption phase table, the Validation Timeline table, and the Artifact Locations tree, all in `SKILL.md`.
 - Artifacts are written flat into `./` of the user's project. There is no artifacts subdirectory; do not introduce one without updating every skill's Inputs section.
-- The eval skill-pack prompt invokes this skill by name, so renaming it breaks `run_skillpack.py`.
+- The eval skill-pack prompt and the `smoke`/`full` eval cases invoke this skill by name, so renaming it breaks `run_skillpack.py` and `eval/cases/`.
+- The Complete Workflow diagram names each step as `product-idea-agent:<skill>` so a same-named skill from another plugin is never chosen; the bare names must still appear (the benchmark checks all eleven).
 
 ### Testing Requirements
 - Run `eval/fixtures/t1-energy-audit/input.md` end to end and confirm all 11 files listed under Artifact Locations exist and the scorecard verdict is GO within 70–85.

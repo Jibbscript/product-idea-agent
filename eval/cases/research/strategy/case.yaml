@@ -1,0 +1,54 @@
+schema_version: "1.1"
+name: research-strategy
+description: Strategy phase of the t1 fixture, seeded with its earlier artifacts; run with --scaffold and --allow-tools Write Edit WebSearch WebFetch.
+tags: [research]
+runs: 1
+context:
+  scaffold_script: seed.sh
+execution:
+  prompt: >-
+    The brief, demand signals, customer profile, competitor map and market sizing for my home energy audit app are in the current directory. Work out pricing in pricing.yaml, the MVP in mvp_spec.md and the go-to-market plan in gtm_plan.md, all in the current directory, and stop once those three files are written.
+  max_turns: 200
+  timeout_seconds: 3600
+  allowed_tools: [Read, Glob, Grep, Skill, Agent, TodoWrite, Write, Edit, WebSearch, WebFetch]
+graders:
+  - name: pricing-written
+    type: file_exists
+    path: pricing.yaml
+  - name: pricing-contract-shape
+    type: regex
+    target: { source: file, path: pricing.yaml }
+    flags: m
+    pattern: '^(?=[\s\S]*^pricing:)(?=[\s\S]*^ +competitor_benchmarks:)(?=[\s\S]*^ +value_ladder:)(?=[\s\S]*^ +unit_economics:)(?=[\s\S]*^ +ltv_cac_ratio:)(?=[\s\S]*^ +wtp_evidence:)(?=[\s\S]*^ +recommendation:)'
+  - name: mvp-spec-written
+    type: file_exists
+    path: mvp_spec.md
+  - name: mvp-spec-contract-shape
+    type: regex
+    target: { source: file, path: mvp_spec.md }
+    flags: i
+    pattern: '^(?=[\s\S]*#+ *MVP Scope)(?=[\s\S]*Must Have)(?=[\s\S]*Won''?t Have)(?=[\s\S]*#+ *Technical Approach)(?=[\s\S]*#+ *Differentiation)(?=[\s\S]*#+ *Success Criteria)'
+  - name: gtm-plan-written
+    type: file_exists
+    path: gtm_plan.md
+  - name: gtm-plan-contract-shape
+    type: regex
+    target: { source: file, path: gtm_plan.md }
+    flags: i
+    pattern: '^(?=[\s\S]*#+ *Channel Strategy)(?=[\s\S]*#+ *Launch Strategy)(?=[\s\S]*#+ *90-Day Milestones)'
+  - name: searched-the-web
+    type: tool_used
+    tool: WebSearch
+    min: 1
+  - name: pricing-wtp-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?pricing-wtp"'
+  - name: solution-wedge-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?solution-wedge"'
+  - name: gtm-channels-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?gtm-channels"'

@@ -106,7 +106,7 @@ User jobs bound the scope, so they come first. Technical approach, the wedge, an
 
 ## Constraints
 
-The wedge is one sentence in the positioning format above. Everything cut from v1 is listed under Won't Have rather than omitted silently, so the reader knows it was considered. Every P0 feature ties back to a named user job. Success criteria are numeric and time-boxed. The finished `mvp_spec.md` conforms to `contracts/mvp_spec.md`.
+The wedge is one sentence in the positioning format above. Everything cut from v1 is listed under Won't Have rather than omitted silently, so the reader knows it was considered. Every P0 feature ties back to a named user job. Success criteria are numeric and time-boxed. The finished `mvp_spec.md` conforms to `${CLAUDE_PLUGIN_ROOT}/contracts/mvp_spec.md`.
 
 ## What a strong mvp_spec.md looks like
 
@@ -116,7 +116,7 @@ The Won't Have list is the clearest evidence a reader gets that the founder know
 
 ## Output Format
 
-Create `mvp_spec.md` following the artifact contract in `contracts/mvp_spec.md`.
+Create `mvp_spec.md` following the artifact contract in `${CLAUDE_PLUGIN_ROOT}/contracts/mvp_spec.md`.
 
 Required sections:
 - Product vision (north star)

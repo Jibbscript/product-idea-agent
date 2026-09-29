@@ -1,6 +1,7 @@
 ---
 name: idea-brief-creator
 description: Creates or refines a structured startup/product idea brief from initial concept. Use when starting product validation, capturing a new idea, structuring an opportunity hypothesis, or when asked to help with a startup idea.
+argument-hint: "[idea description]"
 license: Apache-2.0
 metadata:
   author: product-idea-agent
@@ -61,7 +62,7 @@ The pitch and the problem statement are both rewrites of the core concept, so ne
 
 ## Constraints
 
-All seven elements above appear in the brief, since each one is an input a later skill reads by name. The pitch is one sentence. Every assumption is stated so that evidence could prove it false. Every metric is measurable rather than aspirational. Where the input leaves a section unknown, the section says so explicitly instead of filling the gap with a plausible guess, because everything in the brief is a hypothesis to be tested downstream and an honest unknown is more useful than a confident guess. The finished `idea_brief.md` conforms to `contracts/idea_brief.md`.
+All seven elements above appear in the brief, since each one is an input a later skill reads by name. The pitch is one sentence. Every assumption is stated so that evidence could prove it false. Every metric is measurable rather than aspirational. Where the input leaves a section unknown, the section says so explicitly instead of filling the gap with a plausible guess, because everything in the brief is a hypothesis to be tested downstream and an honest unknown is more useful than a confident guess. The finished `idea_brief.md` conforms to `${CLAUDE_PLUGIN_ROOT}/contracts/idea_brief.md`.
 
 ## What a strong idea_brief.md looks like
 
@@ -71,7 +72,7 @@ The Key Assumptions carry the same standard: each one is written so that a reade
 
 ## Output Format
 
-Create `idea_brief.md` in the project directory following the contract at `contracts/idea_brief.md`.
+Create `idea_brief.md` in the project directory following the contract at `${CLAUDE_PLUGIN_ROOT}/contracts/idea_brief.md`.
 
 Required sections:
 - Working Title

@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: smoke-idea-brief-creator
+description: A request that never names the skill should route to product-idea-agent:idea-brief-creator.
+tags: [smoke]
+execution:
+  prompt: >-
+    I keep coming back to a rough idea: a phone app that uses the thermal sensor in newer iPhones to show homeowners where their house leaks heat. Can you help me turn it into a proper structured brief, with the problem, the customer and the assumptions I'd need to test spelled out?
+  max_turns: 4
+  timeout_seconds: 300
+  allowed_tools: [Read, Glob, Grep, Skill]
+graders:
+  - name: skill-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?idea-brief-creator"'

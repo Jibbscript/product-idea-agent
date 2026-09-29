@@ -29,7 +29,8 @@ There is no contract file for `validation_report.md`; its template lives in `ski
 ## For AI Agents
 
 ### Working In This Directory
-- A contract change is never local. Update the producer skill's Output Format, every consumer's Inputs Required, `eval/fixtures/t1-energy-audit/expected_outputs/<artifact>`, and the blueprint's section 7 if you want the design doc to stay honest.
+- Contracts ship inside the plugin. Skills read them as `${CLAUDE_PLUGIN_ROOT}/contracts/<file>`, so renaming or removing a file here breaks every skill that names it (the benchmark flags it).
+- A contract change is never local. Update the producer skill's Output Format, every consumer's Inputs Required, `eval/fixtures/t1-energy-audit/expected_outputs/<artifact>`, the structural regexes in `eval/cases/*/*/case.yaml`, bump the plugin `version`, and the blueprint's section 7 if you want the design doc to stay honest.
 - Keep enum values in sync with the skills that emit them: `competitors.csv` `category` (direct / indirect / alternative), `pricing_model` (subscription / onetime / freemium / usage / free), `market_position` (leader / challenger / niche / emerging).
 - CSV rows use semicolons inside a cell for lists (`key_features`, `strengths`, `weaknesses`) so commas stay as delimiters.
 - `scorecard.json` is the only machine-validated artifact (the eval runner parses it as JSON and checks key overlap). Keep it valid JSON Schema.

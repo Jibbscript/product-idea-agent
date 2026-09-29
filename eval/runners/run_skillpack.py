@@ -39,7 +39,7 @@ You have access to the Product Idea Agent skill pack for comprehensive product v
 
 ## Your Task
 
-Use the `idea-validation-orchestrator` skill to run a complete product validation. This will guide you through all 11 validation steps:
+Use the `product-idea-agent:idea-validation-orchestrator` skill to run a complete product validation. This will guide you through all 11 validation steps:
 
 1. Create idea brief
 2. Research demand signals
@@ -150,10 +150,10 @@ def run_skillpack_evaluation(fixture_id: str, output_dir: Optional[Path] = None)
     print(f"Prompt saved to: {prompt_path}")
     print()
     print("Next steps:")
-    print("1. Ensure skills are installed: cp -r skills/* ~/.claude/skills/")
+    print(f"1. Load the plugin: claude --plugin-dir {SKILLS_DIR.parent}  (or install product-idea-agent@jibbscript)")
     print("2. Run the prompt in Claude Code")
-    print("3. Save the generated artifacts to: {output_dir}/generated/")
-    print("4. Run scoring with: python run_skillpack.py --score --dir {output_dir}")
+    print(f"3. Save the generated artifacts to: {output_dir}/generated/")
+    print(f"4. Run scoring with: python run_skillpack.py --score --dir {output_dir}")
 
     return info
 

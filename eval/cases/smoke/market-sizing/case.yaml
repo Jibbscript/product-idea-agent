@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: smoke-market-sizing
+description: A request that never names the skill should route to product-idea-agent:market-sizing.
+tags: [smoke]
+execution:
+  prompt: >-
+    How big is the opportunity for a DIY home energy audit app in the US? I need TAM, SAM and SOM figures I can defend in front of investors.
+  max_turns: 4
+  timeout_seconds: 300
+  allowed_tools: [Read, Glob, Grep, Skill]
+graders:
+  - name: skill-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?market-sizing"'

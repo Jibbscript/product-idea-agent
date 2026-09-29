@@ -10,7 +10,7 @@ Pipeline step 11 and the final deliverable. Pure synthesis, no web access. Reads
 
 | File | Description |
 |------|-------------|
-| `SKILL.md` | 318 lines, the longest skill. Review artifacts → executive summary → section narratives → data and visuals → recommendations. Tools: `Read Write` |
+| `SKILL.md` | 318 lines, the longest skill. Review artifacts → executive summary → section narratives → data and visuals → recommendations. Tools: `Read Write` pre-approved; `disallowed-tools: WebSearch WebFetch` removes web access |
 | `references/report_template.md` | 408-line full report template, section by section. This is the de facto contract for `validation_report.md`; there is no file for it under `contracts/` |
 
 ## Inputs / Outputs

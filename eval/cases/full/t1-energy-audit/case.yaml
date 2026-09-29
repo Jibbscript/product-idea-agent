@@ -1,0 +1,107 @@
+schema_version: "1.1"
+name: full-t1-energy-audit
+description: End-to-end t1 validation against the no-plugin baseline; reported, not a gate. Run with --scaffold and --allow-tools Write Edit WebSearch WebFetch.
+tags: [full]
+runs: 1
+context:
+  scaffold_script: seed.sh
+execution:
+  prompt: >-
+    The product idea I want validated is described in input.md in the current directory. Validate it end to end and save the eleven artifacts in the current directory: idea_brief.md, signals.md, icp.yaml, competitors.csv, market_size.md, pricing.yaml, mvp_spec.md, gtm_plan.md, risks.md, scorecard.json and validation_report.md.
+  max_turns: 200
+  timeout_seconds: 3600
+  allowed_tools: [Read, Glob, Grep, Skill, Agent, TodoWrite, Write, Edit, WebSearch, WebFetch]
+graders:
+  - name: idea-brief-written
+    type: file_exists
+    path: idea_brief.md
+  - name: idea-brief-contract-shape
+    type: regex
+    target: { source: file, path: idea_brief.md }
+    flags: i
+    pattern: '^(?=[\s\S]*#+ *One-Line Pitch)(?=[\s\S]*#+ *Problem Statement)(?=[\s\S]*#+ *Target Customer)(?=[\s\S]*#+ *Solution Hypothesis)(?=[\s\S]*#+ *Key Assumptions)(?=[\s\S]*#+ *Success Metrics)'
+  - name: signals-written
+    type: file_exists
+    path: signals.md
+  - name: signals-contract-shape
+    type: regex
+    target: { source: file, path: signals.md }
+    flags: i
+    pattern: '^(?=[\s\S]*#+ *Summary)(?=[\s\S]*#+ *Search Trends)(?=[\s\S]*#+ *Community Signals)(?=[\s\S]*#+ *Key Quotes)(?=[\s\S]*#+ *Signal Score:? *\d)(?=[\s\S]*#+ *Sources)'
+  - name: icp-written
+    type: file_exists
+    path: icp.yaml
+  - name: icp-contract-shape
+    type: regex
+    target: { source: file, path: icp.yaml }
+    flags: m
+    pattern: '^(?=[\s\S]*^icp:)(?=[\s\S]*^ +primary_segment:)(?=[\s\S]*^ +psychographics:)(?=[\s\S]*^ +problem_severity: *\d)(?=[\s\S]*^ +problem_evidence:)'
+  - name: competitors-written
+    type: file_exists
+    path: competitors.csv
+  - name: competitors-contract-shape
+    type: regex
+    target: { source: file, path: competitors.csv }
+    pattern: '^(?=name,url,category,pricing_model,price_low,price_high,founded,funding,key_features,strengths,weaknesses,market_position,threat_level\r?\n)(?=[\s\S]*,\"?direct\"?,)'
+  - name: market-size-written
+    type: file_exists
+    path: market_size.md
+  - name: market-size-contract-shape
+    type: regex
+    target: { source: file, path: market_size.md }
+    flags: i
+    pattern: '^(?=[\s\S]*#+ *Executive Summary)(?=[\s\S]*#+ *TAM)(?=[\s\S]*#+ *SAM)(?=[\s\S]*#+ *SOM)(?=[\s\S]*#+ *Sources)'
+  - name: pricing-written
+    type: file_exists
+    path: pricing.yaml
+  - name: pricing-contract-shape
+    type: regex
+    target: { source: file, path: pricing.yaml }
+    flags: m
+    pattern: '^(?=[\s\S]*^pricing:)(?=[\s\S]*^ +competitor_benchmarks:)(?=[\s\S]*^ +value_ladder:)(?=[\s\S]*^ +unit_economics:)(?=[\s\S]*^ +ltv_cac_ratio:)(?=[\s\S]*^ +wtp_evidence:)(?=[\s\S]*^ +recommendation:)'
+  - name: mvp-spec-written
+    type: file_exists
+    path: mvp_spec.md
+  - name: mvp-spec-contract-shape
+    type: regex
+    target: { source: file, path: mvp_spec.md }
+    flags: i
+    pattern: '^(?=[\s\S]*#+ *MVP Scope)(?=[\s\S]*Must Have)(?=[\s\S]*Won''?t Have)(?=[\s\S]*#+ *Technical Approach)(?=[\s\S]*#+ *Differentiation)(?=[\s\S]*#+ *Success Criteria)'
+  - name: gtm-plan-written
+    type: file_exists
+    path: gtm_plan.md
+  - name: gtm-plan-contract-shape
+    type: regex
+    target: { source: file, path: gtm_plan.md }
+    flags: i
+    pattern: '^(?=[\s\S]*#+ *Channel Strategy)(?=[\s\S]*#+ *Launch Strategy)(?=[\s\S]*#+ *90-Day Milestones)'
+  - name: risks-written
+    type: file_exists
+    path: risks.md
+  - name: risks-contract-shape
+    type: regex
+    target: { source: file, path: risks.md }
+    flags: i
+    pattern: '^(?=[\s\S]*#+ *Risk Matrix)(?=[\s\S]*#+ *Critical Risks)(?=[\s\S]*#+ *Must-Be-True Assumptions)(?=[\s\S]*#+ *Dependencies)'
+  - name: scorecard-written
+    type: file_exists
+    path: scorecard.json
+  - name: scorecard-contract-shape
+    type: regex
+    target: { source: file, path: scorecard.json }
+    pattern: '^(?=[\s\S]*\"problem_severity\")(?=[\s\S]*\"demand_signals\")(?=[\s\S]*\"competitive_intensity\")(?=[\s\S]*\"market_size\")(?=[\s\S]*\"execution_difficulty\")(?=[\s\S]*\"gtm_viability\")(?=[\s\S]*\"timing\")(?=[\s\S]*\"composite_score\"\s*:\s*\d)(?=[\s\S]*\"verdict\"\s*:\s*\"(GO|PIVOT|NO-GO)\")'
+  - name: validation-report-written
+    type: file_exists
+    path: validation_report.md
+  - name: validation-report-contract-shape
+    type: regex
+    target: { source: file, path: validation_report.md }
+    pattern: '^(?=[\s\S]*#+ *Executive Summary)(?=[\s\S]*#+[^\n]*Scorecard)(?=[\s\S]*#+[^\n]*Recommendation)(?=[\s\S]*\b(GO|PIVOT|NO-GO)\b)'
+  - name: searched-the-web
+    type: tool_used
+    tool: WebSearch
+    min: 1
+  - name: idea-validation-orchestrator-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?idea-validation-orchestrator"'

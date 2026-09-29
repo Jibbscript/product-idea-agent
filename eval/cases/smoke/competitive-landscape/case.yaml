@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: smoke-competitive-landscape
+description: A request that never names the skill should route to product-idea-agent:competitive-landscape.
+tags: [smoke]
+execution:
+  prompt: >-
+    Who already helps homeowners find air leaks and insulation gaps, and where are they weak? I'm thinking about building a phone-based thermal scanning app for DIY energy audits.
+  max_turns: 4
+  timeout_seconds: 300
+  allowed_tools: [Read, Glob, Grep, Skill]
+graders:
+  - name: skill-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?competitive-landscape"'

@@ -32,6 +32,19 @@ Before building a new skill:
 
 ## Skill Development Guide
 
+### Plugin Layout
+
+The repository root is both the plugin root and the marketplace root:
+
+```
+.claude-plugin/
+├── plugin.json        # name, version (the single source of truth), experimental.evals
+└── marketplace.json   # marketplace "jibbscript", one entry with source "./" and no version
+skills/<skill>/        # auto-discovered, one directory per skill
+contracts/             # artifact schemas, shipped inside the plugin
+eval/cases/            # claude plugin eval suite
+```
+
 ### Skill Structure
 
 Each skill must have:
@@ -97,7 +110,7 @@ The quality bar in this skill's own terms: what a strong artifact does that a we
 
 ## Output Format
 
-What the skill produces and where.
+Create `<artifact>` following the artifact contract in `${CLAUDE_PLUGIN_ROOT}/contracts/<artifact>`.
 
 ## Working <the skill's own domain noun>
 
@@ -135,13 +148,21 @@ The Working passage is written in each skill's own vocabulary (its artifact, col
 - Document edge cases
 
 #### Tools
-- Only request tools actually needed
-- Common tools: Read, Write, WebSearch, WebFetch, Grep
+The two tool fields do different things, and new skills need both understood:
+
+- `allowed-tools` **pre-approves** the listed tools for the turn that invokes the skill, so they run without a permission prompt. It does not restrict anything: every other tool stays callable under the user's permission settings. List only what the skill uses. Research skills pre-approve `WebSearch WebFetch` so an unattended validation doesn't stall on prompts.
+- `disallowed-tools` **removes** the listed tools while the skill is active. `scorecard-generator` and `validation-report` set `disallowed-tools: WebSearch WebFetch`, which is what makes "synthesis reads only the artifacts" an enforced rule. A new skill that must not reach the web does the same.
+
+Both accept a space- or comma-separated string or a YAML list; this pack uses space-separated strings. The benchmark requires `Read` and `Write` in `allowed-tools`, since every skill reads its inputs and writes its artifact.
+
+#### Contracts and references
+- Reference an artifact contract only as `${CLAUDE_PLUGIN_ROOT}/contracts/<artifact>`. Claude Code substitutes the plugin's install path when a plugin skill loads; a bare `contracts/...` path resolves against the founder's project directory, where no contracts exist. The benchmark fails on any other form and on a contract file that doesn't exist.
+- Link skill-local references relatively, `[file.md](references/file.md)`; they resolve against the skill's own directory.
+- Artifacts are written to the current project directory, never under `${CLAUDE_PLUGIN_ROOT}`, which is replaced on every plugin update.
 
 #### References
 - Use for content >100 lines
 - Keep reference files under 200 lines each
-- Use relative paths with `{baseDir}`
 
 ### Artifact Contracts
 
@@ -151,13 +172,21 @@ If your skill produces a new artifact type:
 2. Document the schema clearly
 3. Include validation rules
 4. Provide example output
+5. Reference it from the producing skill as `${CLAUDE_PLUGIN_ROOT}/contracts/<artifact>`
 
 ### Testing Your Skill
 
-1. Create a test fixture in `eval/fixtures/`
-2. Include input.md, expected outputs, rubric.yaml
-3. Run the skill against your fixture
-4. Verify output matches expected format
+Load your working copy as a session-only plugin, with no install or publish step:
+
+```bash
+claude --plugin-dir .
+```
+
+Run `/reload-plugins` after each edit. Then:
+
+1. Create a test fixture in `eval/fixtures/` with `input.md`, expected outputs and `rubric.yaml`
+2. Add a routing case under `eval/cases/smoke/<skill>/` and, for a new artifact, a structural regex to the case that produces it
+3. Run the relevant eval tag (see the checklist below)
 
 ## Code Style
 
@@ -185,10 +214,32 @@ If your skill produces a new artifact type:
 
 ### Before Submitting
 
+Run the checks CI runs, plus the eval tag your change touches:
+
+```bash
+claude plugin validate . --strict
+claude plugin validate .claude-plugin/plugin.json --strict
+python3 -m unittest eval/test_fable_prompt_bench.py
+python3 eval/fable_prompt_bench.py
+```
+
+The benchmark's primary score must stay within 1.0 of the base branch, with no `!!` integrity lines. For behavior, run the tag that covers your change, for example routing after a description edit:
+
+```bash
+claude plugin eval . --tag smoke --ablation none --runs 1
+```
+
+Research and synthesis tags need `--scaffold --allow-tools Write Edit WebSearch WebFetch`; see `eval/AGENTS.md`. Evals are paid model calls, so they are not a PR gate.
+
+- [ ] `claude plugin validate` passes with `--strict` on both targets
+- [ ] Benchmark within tolerance, integrity tests pass
+- [ ] Relevant eval tag run and its result noted in the PR
+- [ ] `version` in `.claude-plugin/plugin.json` bumped for any change to skills, contracts or manifests (semver; the marketplace entry carries no version)
 - [ ] Skill follows template structure
 - [ ] SKILL.md is under 500 lines
 - [ ] Description includes capabilities AND triggers
-- [ ] All tools in allowed-tools are actually used
+- [ ] All tools in allowed-tools are actually used, and tools the skill must never call are in disallowed-tools
+- [ ] Contracts referenced as `${CLAUDE_PLUGIN_ROOT}/contracts/<artifact>`
 - [ ] No hardcoded model versions or dates
 - [ ] Reference files are focused and concise
 - [ ] Test fixture created for new skills
@@ -207,7 +258,16 @@ Include:
 1. Maintainer reviews within 1 week
 2. Address feedback
 3. Squash commits before merge
-4. Changelog updated automatically
+
+### Releasing
+
+A release is a merged version bump. Tag it so a validation run can be matched to the plugin version that produced it:
+
+```bash
+claude plugin tag --push
+```
+
+This creates `product-idea-agent--v<version>`, after checking that `plugin.json` and the marketplace entry agree. Users receive the release through `claude plugin update` or `/plugin`.
 
 ## Community
 

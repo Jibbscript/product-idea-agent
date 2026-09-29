@@ -14,6 +14,7 @@
 # Eval run output
 eval/results/*
 !eval/results/.gitkeep
+eval/cases/results/
 
 # Python
 __pycache__/

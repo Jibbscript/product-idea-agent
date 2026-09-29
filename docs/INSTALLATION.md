@@ -1,178 +1,133 @@
 # Installation Guide
 
-This guide covers installing the Product Idea Agent skill pack for use with Claude Code.
+Product Idea Agent ships as a Claude Code plugin, `product-idea-agent`, from a single-plugin marketplace named `jibbscript` that lives in this repository. Installing the plugin gives you all twelve skills under the `product-idea-agent:` namespace, together with the artifact contracts they validate against.
 
 ## Prerequisites
 
-- Claude Code CLI installed ([installation guide](https://claude.ai/docs/claude-code))
-- Claude Code account with API access
-- macOS, Linux, or Windows (WSL)
+- Claude Code, installed and signed in ([setup guide](https://code.claude.com/docs/en/setup)). The maintainers test on v2.1.283 or later.
+- No API keys. Research skills use Claude Code's built-in WebSearch and WebFetch tools.
 
-## Quick Install
+## Remove an old copy-install first
 
-Copy all skills to your Claude Code skills directory:
+Earlier versions of this pack were installed by copying `skills/*` into `~/.claude/skills/` or a project's `.claude/skills/`. Those copies are un-namespaced, and their contract references do not resolve outside the plugin, so if they stay they keep triggering beside the plugin and produce artifacts that are never checked against a contract.
 
-```bash
-# Clone or download this repository
-git clone https://github.com/Jibbscript/product-idea-agent.git
-cd product-idea-agent
-
-# Copy all skills to Claude Code
-cp -r skills/* ~/.claude/skills/
-```
-
-## Selective Install
-
-Install only the skills you need:
+List the copies this pack left behind (they carry `pack: product-idea-agent` in their frontmatter):
 
 ```bash
-# Core skills for basic validation
-cp -r skills/idea-brief-creator ~/.claude/skills/
-cp -r skills/demand-signals ~/.claude/skills/
-cp -r skills/scorecard-generator ~/.claude/skills/
-
-# Add more as needed
-cp -r skills/competitive-landscape ~/.claude/skills/
-cp -r skills/market-sizing ~/.claude/skills/
+find ~/.claude/skills .claude/skills -name SKILL.md -exec grep -l "pack: product-idea-agent" {} + 2>/dev/null
 ```
 
-## Project-Local Installation
-
-For project-specific use, install to your project's `.claude` directory:
+Then delete each listed skill directory, for example:
 
 ```bash
-# From your project root
-mkdir -p .claude/skills
-cp -r /path/to/product-idea-agent/skills/* .claude/skills/
+rm -rf ~/.claude/skills/idea-validation-orchestrator
 ```
 
-Project-local skills take precedence over global skills.
+Only remove directories the first command lists: another plugin or a personal skill of yours may use a generic name such as `risk-assessment`.
 
-## Verify Installation
+## Install
 
-Check that skills are loaded:
+In a Claude Code session:
+
+```text
+/plugin marketplace add Jibbscript/product-idea-agent
+/plugin install product-idea-agent@jibbscript
+```
+
+Or from your shell:
 
 ```bash
-# Start Claude Code
-claude
-
-# Ask Claude to list available skills
-> What product validation skills do you have?
+claude plugin marketplace add Jibbscript/product-idea-agent
 ```
-
-Claude should recognize skills like `idea-brief-creator`, `demand-signals`, etc.
-
-## Skill Dependencies
-
-The skills have dependencies on each other based on artifact flow:
-
-```
-idea-brief-creator (required first)
-    │
-    ├── demand-signals
-    ├── problem-segment
-    └── competitive-landscape
-            │
-            ├── market-sizing
-            ├── pricing-wtp
-            └── solution-wedge
-                    │
-                    └── gtm-channels
-                            │
-                            ├── risk-assessment
-                            └── scorecard-generator
-                                    │
-                                    └── validation-report
-
-idea-validation-orchestrator (runs all)
-```
-
-For full validation, install all 12 skills. For partial workflows, ensure upstream dependencies are installed.
-
-## Required Tools
-
-The skills use these Claude Code tools (included by default):
-
-| Tool | Required By | Purpose |
-|------|-------------|---------|
-| Read | All skills | Read existing artifacts |
-| Write | All skills | Create new artifacts |
-| WebSearch | Research skills | Find market data |
-| WebFetch | Research skills | Fetch web pages |
-| Grep | Some skills | Search within files |
-| Edit | Orchestrator | Modify artifacts |
-
-These tools are pre-approved in each skill's `allowed-tools` field.
-
-## Updating Skills
-
-To update to a newer version:
 
 ```bash
-# Pull latest changes
-cd product-idea-agent
-git pull
-
-# Re-copy skills (overwrites existing)
-cp -r skills/* ~/.claude/skills/
+claude plugin install product-idea-agent@jibbscript
 ```
 
-## Uninstalling
+Run `/reload-plugins` in any session that was already open.
 
-Remove all Product Idea Agent skills:
+## Verify
 
 ```bash
-# Remove all skills from this pack
-cd ~/.claude/skills
-rm -rf idea-brief-creator demand-signals problem-segment \
-       competitive-landscape market-sizing pricing-wtp \
-       solution-wedge gtm-channels risk-assessment \
-       scorecard-generator validation-report \
-       idea-validation-orchestrator
+claude plugin details product-idea-agent
 ```
+
+The component inventory lists twelve skills. In a session, typing `/product-idea-agent:` offers them in autocomplete.
+
+## Update
+
+You stay on the version you installed until the maintainer publishes a new one: a new version is a bump of `version` in `.claude-plugin/plugin.json`, so work-in-progress commits never change the skills under a running validation. To take a new version, open the **Installed** tab in `/plugin` and choose **Update now**, or run:
+
+```bash
+claude plugin update product-idea-agent@jibbscript
+```
+
+The next session loads the new version; an open session keeps the old one until `/reload-plugins`. Validations in progress resume from the artifacts already in your project directory, since the plugin never writes there itself.
+
+## Uninstall
+
+```bash
+claude plugin uninstall product-idea-agent@jibbscript
+```
+
+To forget the marketplace as well:
+
+```bash
+claude plugin marketplace remove jibbscript
+```
+
+Your artifacts stay where they were written, in your project directories.
+
+## Enable it for a team
+
+Commit this to a repository's `.claude/settings.json`, and everyone who opens the repository and trusts it is offered the same marketplace and plugin:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "jibbscript": {
+      "source": { "source": "github", "repo": "Jibbscript/product-idea-agent" }
+    }
+  },
+  "enabledPlugins": {
+    "product-idea-agent@jibbscript": true
+  }
+}
+```
+
+Organizations that restrict marketplaces can allowlist this one by repository with `{ "source": "github", "repo": "Jibbscript/product-idea-agent" }` in `strictKnownMarketplaces` in managed settings.
+
+## Load a working copy (contributors)
+
+To try local changes without installing or publishing anything, start Claude Code with the checkout as a session-only plugin:
+
+```bash
+claude --plugin-dir /path/to/product-idea-agent
+```
+
+Run `/reload-plugins` after editing a skill. See [Contributing](CONTRIBUTING.md) for the checks to run before a PR.
+
+## Tools the skills use
+
+| Tool | Skills | Purpose |
+|------|--------|---------|
+| Read, Write | All | Read upstream artifacts, write this step's artifact |
+| WebSearch, WebFetch | Research skills and the orchestrator | Market data, competitor pages, community threads |
+| Grep, Edit | A few | Search artifacts, revise an existing one |
+
+A skill's `allowed-tools` pre-approves those tools for the turn that invokes it, so a full validation runs without a permission prompt for every search; your permission settings still apply to everything else. `scorecard-generator` and `validation-report` also set `disallowed-tools: WebSearch WebFetch`, which removes web access while they run, so the verdict is built only from artifacts already on disk. See [Security](SECURITY.md).
 
 ## Troubleshooting
 
-### Skills Not Recognized
+**The skills don't appear.** Check `claude plugin list` shows `product-idea-agent@jibbscript` as enabled, then run `/reload-plugins` or start a new session.
 
-1. Check skill directory exists: `ls ~/.claude/skills/`
-2. Verify SKILL.md is present in each skill folder
-3. Restart Claude Code session
+**Two copies of a skill appear, one without the `product-idea-agent:` prefix.** That is an old copy-install; remove it as described above.
 
-### Permission Errors
+**Another plugin also has a `risk-assessment` or `market-sizing` skill.** Invoke this pack's by its namespaced name, such as `/product-idea-agent:risk-assessment`. The orchestrator already calls every step by its namespaced name.
 
-```bash
-# Ensure correct permissions
-chmod -R 755 ~/.claude/skills/
-```
+**A skill can't find its contract.** Contracts are read from `${CLAUDE_PLUGIN_ROOT}/contracts/`, which Claude Code fills in only for plugin skills. A copy of a skill outside the plugin can't resolve it; install the plugin instead.
 
-### Tool Access Denied
+## Next steps
 
-If a skill can't use required tools:
-1. Check your Claude Code permissions settings
-2. Some tools may require explicit approval for network access
-
-### Conflicts with Other Skills
-
-If skill names conflict with other installed skills:
-1. Rename the conflicting skill's directory
-2. Or use project-local installation to isolate
-
-## Environment Variables
-
-Optional environment variables for enhanced functionality:
-
-```bash
-# Copy the example file
-cp .env.example ~/.claude/.env
-
-# Edit with your values (optional)
-```
-
-See `.env.example` for available variables.
-
-## Next Steps
-
-- Read the [Usage Guide](USAGE.md) for workflow instructions
-- Try the [Quick Start](../README.md#quick-start) example
-- Run the evaluation suite to test your installation
+- [Usage Guide](USAGE.md) for running a validation
+- [Security](SECURITY.md) for how the pack handles web content and tools

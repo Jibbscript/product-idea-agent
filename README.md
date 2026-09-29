@@ -1,6 +1,6 @@
 # Product Idea Agent Skill Pack
 
-A modular skill pack for Claude Code that replicates end-to-end product idea validation. Transform raw startup concepts into actionable validation reports with demand signals, market sizing, competitive analysis, and go-to-market strategies.
+A Claude Code plugin that replicates end-to-end product idea validation. Transform raw startup concepts into actionable validation reports with demand signals, market sizing, competitive analysis, and go-to-market strategies.
 
 ## Overview
 
@@ -23,39 +23,40 @@ This skill pack provides **12 composable skills** that guide you through a compr
 
 ### Installation
 
-Copy the skills you need to your Claude Code skills directory:
+The pack is a Claude Code plugin served from this repository's marketplace. In a Claude Code session:
 
-```bash
-# Copy all skills
-cp -r skills/* ~/.claude/skills/
-
-# Or copy individual skills
-cp -r skills/idea-brief-creator ~/.claude/skills/
+```text
+/plugin marketplace add Jibbscript/product-idea-agent
+/plugin install product-idea-agent@jibbscript
 ```
+
+Update with `claude plugin update product-idea-agent@jibbscript`, remove with `claude plugin uninstall product-idea-agent@jibbscript`. If you installed an earlier version by copying `skills/*` into `~/.claude/skills/`, remove those copies first; the [Installation Guide](docs/INSTALLATION.md) shows how, along with team-wide enablement and `--plugin-dir` for local development.
 
 ### Usage
 
-Once installed, skills activate automatically based on your prompts:
+Start a full validation by passing your idea to the orchestrator:
 
-```
-"Help me validate my startup idea for an AI-powered home energy audit app"
-```
-
-Or invoke specific skills:
-
-```
-"Use the demand-signals skill to research interest in home energy auditing"
+```text
+/product-idea-agent:idea-validation-orchestrator An AI-powered app that finds home energy leaks with a phone's thermal camera
 ```
 
-For complete validation, use the orchestrator:
+Describing the idea in plain language works too; the orchestrator triggers on requests like:
 
+```text
+Help me validate my startup idea for an AI-powered home energy audit app
 ```
-"Run a full product validation on my idea using the idea-validation-orchestrator"
+
+Run or redo a single step by its namespaced command:
+
+```text
+/product-idea-agent:competitive-landscape
 ```
+
+Every artifact is written to the current project directory, and an interrupted validation resumes from the artifacts already there.
 
 ## Skill Catalog
 
-| Skill | Purpose | Output Artifact |
+| Skill (`product-idea-agent:`) | Purpose | Output Artifact |
 |-------|---------|-----------------|
 | `idea-brief-creator` | Structure raw idea into hypothesis | `idea_brief.md` |
 | `demand-signals` | Research search trends & community signals | `signals.md` |
@@ -94,12 +95,22 @@ idea_brief.md
 
 ## Evaluation
 
-The `eval/` directory contains test fixtures for validating skill quality:
+Three layers check the plugin:
 
 ```bash
-# Run evaluation suite
-python eval/runners/run_skillpack.py
+# Structure: manifests, marketplace and skill frontmatter (free, every PR)
+claude plugin validate . --strict
+claude plugin validate .claude-plugin/plugin.json --strict
+
+# Prompt surface: fitness benchmark and its integrity tests (free, every PR)
+python3 eval/fable_prompt_bench.py
+python3 -m unittest eval/test_fable_prompt_bench.py
+
+# Behavior: plugin eval suite against a no-plugin baseline (paid, on demand)
+claude plugin eval . --tag offline --scaffold --allow-tools Write WebSearch WebFetch
 ```
+
+The eval cases live in `eval/cases/` (tags `smoke`, `offline`, `research`, `full`); see [eval/AGENTS.md](eval/AGENTS.md) for which flags each tag needs.
 
 ## License
 
@@ -107,4 +118,4 @@ Apache-2.0 - See [LICENSE](LICENSE) for details.
 
 ## Acknowledgments
 
-This skill pack architecture follows the [agentskills.io](https://agentskills.io) open standard for maximum portability across Claude Code, Claude.ai, and compatible systems.
+Each skill uses the [agentskills.io](https://agentskills.io) `SKILL.md` format. The pack is distributed and supported as a Claude Code plugin, which is what lets every skill resolve its artifact contract.

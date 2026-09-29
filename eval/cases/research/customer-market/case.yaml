@@ -1,0 +1,53 @@
+schema_version: "1.1"
+name: research-customer-market
+description: Customer & Market phase of the t1 fixture, seeded with its earlier artifacts; run with --scaffold and --allow-tools Write Edit WebSearch WebFetch.
+tags: [research]
+runs: 1
+context:
+  scaffold_script: seed.sh
+execution:
+  prompt: >-
+    The idea brief and demand signals for my home energy audit app are in the current directory. Define the ideal customer in icp.yaml, map the competitors in competitors.csv, and size the market in market_size.md, all in the current directory, and stop once those three files are written.
+  max_turns: 200
+  timeout_seconds: 3600
+  allowed_tools: [Read, Glob, Grep, Skill, Agent, TodoWrite, Write, Edit, WebSearch, WebFetch]
+graders:
+  - name: icp-written
+    type: file_exists
+    path: icp.yaml
+  - name: icp-contract-shape
+    type: regex
+    target: { source: file, path: icp.yaml }
+    flags: m
+    pattern: '^(?=[\s\S]*^icp:)(?=[\s\S]*^ +primary_segment:)(?=[\s\S]*^ +psychographics:)(?=[\s\S]*^ +problem_severity: *\d)(?=[\s\S]*^ +problem_evidence:)'
+  - name: competitors-written
+    type: file_exists
+    path: competitors.csv
+  - name: competitors-contract-shape
+    type: regex
+    target: { source: file, path: competitors.csv }
+    pattern: '^(?=name,url,category,pricing_model,price_low,price_high,founded,funding,key_features,strengths,weaknesses,market_position,threat_level\r?\n)(?=[\s\S]*,\"?direct\"?,)'
+  - name: market-size-written
+    type: file_exists
+    path: market_size.md
+  - name: market-size-contract-shape
+    type: regex
+    target: { source: file, path: market_size.md }
+    flags: i
+    pattern: '^(?=[\s\S]*#+ *Executive Summary)(?=[\s\S]*#+ *TAM)(?=[\s\S]*#+ *SAM)(?=[\s\S]*#+ *SOM)(?=[\s\S]*#+ *Sources)'
+  - name: searched-the-web
+    type: tool_used
+    tool: WebSearch
+    min: 1
+  - name: problem-segment-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?problem-segment"'
+  - name: competitive-landscape-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?competitive-landscape"'
+  - name: market-sizing-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?market-sizing"'

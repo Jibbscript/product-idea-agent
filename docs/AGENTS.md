@@ -10,10 +10,10 @@ Human-facing guides for installing, using, extending, and securing the skill pac
 
 | File | Description |
 |------|-------------|
-| `INSTALLATION.md` | Copy `skills/*` to `~/.claude/skills/`; selective install by skill; prerequisites and troubleshooting |
-| `USAGE.md` | How to trigger the full orchestrator, a single skill, or resume mid-pipeline; prompt examples per skill |
-| `CONTRIBUTING.md` | Skill directory layout, the canonical `SKILL.md` section template, naming and description rules, PR process |
-| `SECURITY.md` | Risk categories (credential exposure, prompt injection from fetched web content, data handling) and mitigations |
+| `INSTALLATION.md` | Removing old copy-installs, marketplace add / install / update / uninstall, team enablement via `.claude/settings.json`, `--plugin-dir`, troubleshooting |
+| `USAGE.md` | Namespaced commands (`/product-idea-agent:<skill>`), the orchestrator taking the idea as an argument, single-step runs, resuming; prompt examples per skill |
+| `CONTRIBUTING.md` | Plugin layout, the canonical `SKILL.md` section template, `allowed-tools` vs `disallowed-tools`, the `${CLAUDE_PLUGIN_ROOT}/contracts/` reference form, pre-PR checklist, releasing |
+| `SECURITY.md` | Risk categories (credential exposure, prompt injection from fetched web content, data handling), tool-field semantics, and mitigations |
 
 ## For AI Agents
 
@@ -27,7 +27,8 @@ Human-facing guides for installing, using, extending, and securing the skill pac
 
 ### Common Patterns
 - Prompts users would type are shown in blockquotes or fenced blocks prefixed with `>`.
-- Skill names are always backticked kebab-case matching the directory under `skills/`.
+- Skill names are always backticked kebab-case matching the directory under `skills/`; commands a user types carry the `product-idea-agent:` namespace.
+- Never document copy-installing `skills/*`; the plugin is the only supported install.
 
 ## Dependencies
 

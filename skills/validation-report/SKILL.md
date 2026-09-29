@@ -6,6 +6,7 @@ metadata:
   author: product-idea-agent
   pack: product-idea-agent
 allowed-tools: Read Write
+disallowed-tools: WebSearch WebFetch
 ---
 
 # Validation Report Generator

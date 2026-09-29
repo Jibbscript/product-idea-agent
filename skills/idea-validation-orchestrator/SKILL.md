@@ -1,6 +1,7 @@
 ---
 name: idea-validation-orchestrator
 description: Orchestrates full product idea validation workflow from initial concept to final report. Use when running complete validation, coordinating multiple validation steps, or when unsure which specific validation skill to use.
+argument-hint: "[idea description]"
 license: Apache-2.0
 metadata:
   author: product-idea-agent
@@ -25,30 +26,30 @@ Or specify a starting point:
 
 ## Complete Workflow
 
-The full validation pipeline consists of 11 steps:
+The full validation pipeline consists of 11 steps, each invoked by its plugin identity, `product-idea-agent:<skill>`, because the bare names are generic enough that another installed plugin can ship its own risk-assessment or market-sizing, and the later steps depend on this pack's versions having written the artifacts they read:
 
 ```
-Step 1: idea-brief-creator      → idea_brief.md
+Step 1: product-idea-agent:idea-brief-creator           → idea_brief.md
     ↓
-Step 2: demand-signals          → signals.md
+Step 2: product-idea-agent:demand-signals               → signals.md
     ↓
-Step 3: problem-segment         → icp.yaml
+Step 3: product-idea-agent:problem-segment              → icp.yaml
     ↓
-Step 4: competitive-landscape   → competitors.csv
+Step 4: product-idea-agent:competitive-landscape        → competitors.csv
     ↓
-Step 5: market-sizing           → market_size.md
+Step 5: product-idea-agent:market-sizing                → market_size.md
     ↓
-Step 6: pricing-wtp             → pricing.yaml
+Step 6: product-idea-agent:pricing-wtp                  → pricing.yaml
     ↓
-Step 7: solution-wedge          → mvp_spec.md
+Step 7: product-idea-agent:solution-wedge               → mvp_spec.md
     ↓
-Step 8: gtm-channels            → gtm_plan.md
+Step 8: product-idea-agent:gtm-channels                 → gtm_plan.md
     ↓
-Step 9: risk-assessment         → risks.md
+Step 9: product-idea-agent:risk-assessment              → risks.md
     ↓
-Step 10: scorecard-generator    → scorecard.json
+Step 10: product-idea-agent:scorecard-generator         → scorecard.json
     ↓
-Step 11: validation-report      → validation_report.md
+Step 11: product-idea-agent:validation-report           → validation_report.md
 ```
 
 ## Who reads the eleven artifacts
@@ -67,7 +68,7 @@ A run's position is read from which artifacts already exist in the project direc
 | Assessment | risk-assessment, scorecard-generator | risks.md, scorecard.json |
 | Synthesis | validation-report | validation_report.md |
 
-Reporting progress means naming the phase, the last artifact written, and the next skill to run; the final recommendation (GO / PIVOT / NO-GO) is reported once `scorecard.json` exists.
+At each phase boundary the run posts a one-line status naming the phase just finished, the last artifact written, and the next skill to run, because a founder who walked away from a multi-hour run checks on it by reading the latest line, and within a phase the work continues without commentary; the final recommendation (GO / PIVOT / NO-GO) is reported once `scorecard.json` exists.
 
 ## How to Use This Skill
 
@@ -91,7 +92,7 @@ The test is whether a reader could reconstruct the verdict from the eleven artif
 
 ## Artifact Locations
 
-All artifacts are saved in the current project directory:
+All artifacts are saved in the current project directory, and none go under `${CLAUDE_PLUGIN_ROOT}`, since the plugin's own directory is replaced whenever the plugin updates and a validation written there would go with it:
 
 ```
 ./

@@ -6,26 +6,35 @@ This guide covers how to use the Product Idea Agent skill pack for product valid
 
 ### Full Validation Workflow
 
-The easiest way to run a complete validation:
+Pass your idea to the orchestrator:
+
+```
+> /product-idea-agent:idea-validation-orchestrator An AI-powered app that helps
+> homeowners identify energy leaks using their phone's thermal camera.
+```
+
+Or just describe it; a request like this triggers the orchestrator without the command:
 
 ```
 > Help me validate my startup idea: An AI-powered app that helps
 > homeowners identify energy leaks using their phone's thermal camera.
 ```
 
-Claude will automatically:
-1. Recognize this as a product validation task
-2. Use the `idea-validation-orchestrator` skill
-3. Guide you through all 11 validation steps
-4. Generate a comprehensive validation report
+Claude will:
+1. Use `product-idea-agent:idea-validation-orchestrator`
+2. Work through all 11 validation steps, posting a one-line status as each phase finishes
+3. Write every artifact to the current directory
+4. End with a message that leads with the verdict and composite score
 
 ### Single Skill Usage
 
-Use individual skills for specific tasks:
+Every skill has a namespaced command, `/product-idea-agent:<skill>`, so you can run or redo one step without the rest of the pipeline. It reads whatever upstream artifacts are already in the directory:
 
 ```
-> Use the demand-signals skill to research interest in home energy auditing
+> /product-idea-agent:demand-signals research interest in home energy auditing
 ```
+
+Plain requests also route to the right skill:
 
 ```
 > Run competitive analysis on the SOC 2 compliance automation space
@@ -34,6 +43,8 @@ Use individual skills for specific tasks:
 ```
 > Help me size the market for vintage synthesizer collectors
 ```
+
+The namespace keeps these skills apart from any other plugin's `risk-assessment` or `market-sizing`.
 
 ## The 11-Step Workflow
 
@@ -350,7 +361,7 @@ Get deeper when needed:
 
 ### Can I pause and resume?
 
-Yes. Artifacts are saved, and you can resume:
+Yes. Each artifact is saved as its step finishes, so a later session, including one after a plugin update, resumes from the files on disk instead of redoing finished steps:
 
 ```
 > Continue the validation from risk assessment

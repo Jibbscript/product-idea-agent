@@ -1,0 +1,17 @@
+{
+  "name": "product-idea-agent",
+  "displayName": "Product Idea Agent",
+  "version": "1.0.0",
+  "description": "Validates a startup or product idea end to end: twelve skills research demand, customer, competitors, market size, pricing, MVP, go-to-market and risk, then score the idea and write a GO / PIVOT / NO-GO validation report.",
+  "author": {
+    "name": "Gibran Iqbal",
+    "url": "https://github.com/Jibbscript"
+  },
+  "homepage": "https://github.com/Jibbscript/product-idea-agent",
+  "repository": "https://github.com/Jibbscript/product-idea-agent",
+  "license": "Apache-2.0",
+  "keywords": ["product-validation", "startup", "market-research", "competitive-analysis", "market-sizing", "pricing", "go-to-market"],
+  "experimental": {
+    "evals": "eval/cases"
+  }
+}

@@ -29,6 +29,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SKILLS = ROOT / "skills"
 RUNNERS = ROOT / "eval" / "runners"
+CONTRACTS = ROOT / "contracts"
+try:
+    PLUGIN_NAME = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))["name"]
+except (OSError, ValueError, KeyError):
+    PLUGIN_NAME = None  # every skill then fails the pack check with this reason in its !! line
 
 ARTIFACT = {
     "idea-brief-creator": "idea_brief.md",
@@ -101,6 +106,7 @@ FABLE_RE = {k: re.compile(v, I) for k, v in FABLE_MARKERS.items()}
 TRIGGER = re.compile(r"\b(use (this )?(skill )?when|use (it|this) (for|to)|trigger|invoke when|applies when)\b", I)
 
 FENCE = re.compile(r"^```", re.M)
+CONTRACT_REF = re.compile(r"(\$\{CLAUDE_PLUGIN_ROOT\}/)?\bcontracts/([\w.-]*)")
 
 
 def clamp(x: float, lo: float = 0.0, hi: float = 100.0) -> float:
@@ -228,8 +234,8 @@ def integrity(name: str, fm: dict, text: str, body: str, skill_dir: Path) -> lis
         fails.append("frontmatter name != dir")
     if not fm.get("description"):
         fails.append("no description")
-    if fm.get("pack") != "product-idea-agent":
-        fails.append("metadata.pack missing")
+    if fm.get("pack") != PLUGIN_NAME:
+        fails.append(f"metadata.pack {fm.get('pack')!r} != plugin name {PLUGIN_NAME!r}")
     tools = fm.get("allowed-tools", "")
     if "Read" not in tools or "Write" not in tools:
         fails.append("allowed-tools lacks Read/Write")
@@ -242,6 +248,12 @@ def integrity(name: str, fm: dict, text: str, body: str, skill_dir: Path) -> lis
         fails.append(f"does not name artifact {ARTIFACT[name]}")
     if name not in NO_CONTRACT and "contracts/" not in body:
         fails.append("no contracts/ reference")
+    # installed copies resolve contracts only through the plugin root
+    for m in CONTRACT_REF.finditer(body):
+        if not m.group(1):
+            fails.append(f"contract ref {m.group(0)} not in ${{CLAUDE_PLUGIN_ROOT}}/contracts/ form")
+        elif not (CONTRACTS / m.group(2).rstrip(".")).exists():
+            fails.append(f"contract {m.group(2)} does not exist")
     for link in re.findall(r"\]\((references/[^)]+)\)", body):
         if not (skill_dir / link).exists():
             fails.append(f"broken link {link}")

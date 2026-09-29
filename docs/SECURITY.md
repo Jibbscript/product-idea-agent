@@ -13,27 +13,17 @@ The skill pack interacts with web content and generates analysis based on extern
 **Risk**: API keys or secrets accidentally included in skills or outputs.
 
 **Mitigations**:
+- The pack needs no API keys: research runs on Claude Code's built-in WebSearch and WebFetch
 - Never hardcode credentials in skill files
-- Use environment variables for sensitive data
-- Reference `.env.example` for required variables
 - Review outputs before sharing externally
-
-**Configuration**:
-```bash
-# Use environment variables
-export SOME_API_KEY="your-key-here"
-
-# Or use .env file (git-ignored)
-echo "SOME_API_KEY=your-key" >> ~/.claude/.env
-```
 
 ### 2. Prompt Injection from Web Content
 
 **Risk**: Malicious web content could attempt to influence analysis or tool usage.
 
 **Mitigations**:
-- Skills treat all web content as untrusted
-- External content is clearly delimited in context
+- Every research skill (demand-signals, problem-segment, competitive-landscape, market-sizing, pricing-wtp, gtm-channels) states in its Working section that fetched page content is evidence to cite, never instructions to follow
+- The synthesis skills that set the verdict, scorecard-generator and validation-report, have no web access at all (`disallowed-tools: WebSearch WebFetch`), so a hostile page can reach the verdict only through an artifact you can read
 - Critical analysis should be verified manually
 - Be skeptical of unusual recommendations
 
@@ -76,11 +66,15 @@ echo "SOME_API_KEY=your-key" >> ~/.claude/.env
 
 **Risk**: Unintended actions taken without user awareness.
 
+**How the tool fields work**:
+- `allowed-tools` in a skill's frontmatter **pre-approves** tools for the turn that invokes the skill. Research skills pre-approve `WebSearch WebFetch` (and every skill `Read Write`) so a long validation doesn't stop at a prompt for each search. It does not restrict anything; tools it doesn't list follow your permission settings.
+- `disallowed-tools` **removes** tools while a skill is active. scorecard-generator and validation-report remove WebSearch and WebFetch.
+- Deny rules in your permission settings still override a skill's pre-approval.
+
 **Mitigations**:
-- Skills request explicit tool permissions
-- Write operations require user approval
-- Critical actions logged for review
-- Orchestrator provides progress visibility
+- Review the frontmatter of any skill before installing it; `claude plugin details product-idea-agent` shows the plugin's components
+- Artifacts are written only to the current project directory, where you can read every one
+- The orchestrator posts a one-line status at each phase boundary
 
 ## Safe Defaults
 
@@ -123,9 +117,7 @@ After running validation:
 
 **Credentials**:
 - [ ] No API keys in skill files
-- [ ] Use `${env:VARIABLE_NAME}` for secrets
-- [ ] Document required variables in README
-- [ ] Provide `.env.example` template
+- [ ] Document any required variables in README (the pack currently needs none)
 
 **Web Operations**:
 - [ ] Respect robots.txt directives
@@ -134,14 +126,15 @@ After running validation:
 - [ ] Don't require login or bypass authentication
 
 **Content Safety**:
-- [ ] Treat all web content as untrusted
+- [ ] State in the skill that fetched content is evidence, not instructions
+- [ ] Put `WebSearch WebFetch` in `disallowed-tools` for any skill that must not reach the web
 - [ ] Don't execute content from web sources
 - [ ] Validate content type before processing
 - [ ] Strip potentially malicious elements
 
 **Output Safety**:
 - [ ] Don't echo raw web content to outputs
-- [ ] Summarize rather than quote extensively
+- [ ] Paraphrase sources; mark any reproduced wording as a quotation with its source
 - [ ] Flag uncertain or unverifiable claims
 - [ ] Include source attribution
 
@@ -185,4 +178,4 @@ For compliance needs, consider:
 
 This security guide is reviewed quarterly. Check the repository for the latest version.
 
-Last updated: 2024-12
+Last updated: 2026-09

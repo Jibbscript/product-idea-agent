@@ -11,7 +11,7 @@ Two CLI scripts that turn a fixture into a prompt and, for the skill-pack mode, 
 | File | Description |
 |------|-------------|
 | `run_baseline.py` | Builds a no-skills prompt (`BASELINE_PROMPT`) that asks for all 11 deliverables directly. Flags: `--fixture`, `--all`, `--list`, `--output`. Writes `baseline_prompt.md` + `evaluation_info.json` into `results/baseline_<id>_<ts>/` |
-| `run_skillpack.py` | Builds a prompt (`SKILLPACK_PROMPT`) that invokes `idea-validation-orchestrator`. Same flags plus `--score --dir <run>`. Also copies `expected/` into the run dir and, on `--score`, compares `generated/` to `expected/` and writes `scores.json` |
+| `run_skillpack.py` | Builds a prompt (`SKILLPACK_PROMPT`) that invokes `product-idea-agent:idea-validation-orchestrator`, to be run with the plugin loaded (`claude --plugin-dir .`). Same flags plus `--score --dir <run>`. Also copies `expected/` into the run dir and, on `--score`, compares `generated/` to `expected/` and writes `scores.json` |
 
 ## Scoring (in `run_skillpack.py`)
 - `score_artifact()`: length ratio, word-set Jaccard, and for `.json` files a parse check plus top-level key overlap.
@@ -24,7 +24,8 @@ Two CLI scripts that turn a fixture into a prompt and, for the skill-pack mode, 
 - `load_fixture` and `list_fixtures` are copy-pasted between the two files. Change both or extract a shared module.
 - `run_baseline.py` prints a follow-up pointing at `score_results.py`, which does not exist. The skillpack scorer works on a baseline run directory since it only needs `evaluation_info.json` and `expected/`; but the baseline runner does not copy `expected/`, so you must add that step or copy it by hand first.
 - Prompt templates use `str.format`, so any literal `{` in an `input.md` would break formatting. Fixtures avoid braces.
-- `SKILLS_DIR` is defined but unused.
+- `SKILLS_DIR` is used only to print the plugin root in the next-steps message.
+- These runners are superseded by `../cases/` (`claude plugin eval`) and stay until its `full` case reproduces the t1 A/B findings; CI still smoke-tests `--list`, and the benchmark scores the `*_PROMPT` strings for cruft.
 
 ### Testing Requirements
 - `python eval/runners/run_skillpack.py --list` and `python eval/runners/run_baseline.py --list` both print five fixtures.

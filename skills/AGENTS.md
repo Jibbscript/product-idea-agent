@@ -4,14 +4,14 @@
 # skills
 
 ## Purpose
-The deliverable of this repo: 12 Claude Code skills, one directory each. Every directory holds a `SKILL.md` (the instructions Claude loads on trigger) and a `references/` folder with deeper domain material loaded on demand. Copying these directories to `~/.claude/skills/` installs them.
+The deliverable of this repo: 12 Claude Code skills, one directory each. Every directory holds a `SKILL.md` (the instructions Claude loads on trigger) and a `references/` folder with deeper domain material loaded on demand. They ship as the `product-idea-agent` plugin, where each is invoked as `product-idea-agent:<skill>`; copying the directories into a skills folder is unsupported because contract paths use `${CLAUDE_PLUGIN_ROOT}`.
 
 ## Key Files
 None at this level. `.DS_Store` is macOS noise.
 
 ## Subdirectories
 
-| Directory | Step | Reads | Writes | allowed-tools |
+| Directory | Step | Reads | Writes | allowed-tools (pre-approved) |
 |-----------|------|-------|--------|---------------|
 | `idea-brief-creator/` | 1 | raw idea text | `idea_brief.md` | Read Write Edit |
 | `demand-signals/` | 2 | `idea_brief.md` | `signals.md` | Read Write WebSearch WebFetch Grep |
@@ -22,8 +22,8 @@ None at this level. `.DS_Store` is macOS noise.
 | `solution-wedge/` | 7 | `idea_brief.md`, `competitors.csv`, `icp.yaml` | `mvp_spec.md` | Read Write WebSearch |
 | `gtm-channels/` | 8 | `idea_brief.md`, `icp.yaml`, `market_size.md`, `mvp_spec.md` | `gtm_plan.md` | Read Write WebSearch WebFetch |
 | `risk-assessment/` | 9 | all prior, esp. `mvp_spec.md`, `gtm_plan.md`, `competitors.csv` | `risks.md` | Read Write WebSearch |
-| `scorecard-generator/` | 10 | all nine prior artifacts | `scorecard.json` | Read Write |
-| `validation-report/` | 11 | all prior + `scorecard.json` | `validation_report.md` | Read Write |
+| `scorecard-generator/` | 10 | all nine prior artifacts | `scorecard.json` | Read Write; `disallowed-tools: WebSearch WebFetch` |
+| `validation-report/` | 11 | all prior + `scorecard.json` | `validation_report.md` | Read Write; `disallowed-tools: WebSearch WebFetch` |
 | `idea-validation-orchestrator/` | — | user's idea | drives steps 1–11 | Read Write WebSearch WebFetch Grep Edit |
 
 Each has its own `AGENTS.md`.
@@ -32,14 +32,16 @@ Each has its own `AGENTS.md`.
 
 ### Working In This Directory
 - Directory name, frontmatter `name`, and the skill's self-references must all match. Renaming a skill means updating the orchestrator's step list, `README.md`, `docs/USAGE.md`, and any contract that names it as producer or consumer.
-- Adding a skill: copy the section structure from `docs/CONTRIBUTING.md`, add a contract under `contracts/` if it emits a new artifact, and wire it into `idea-validation-orchestrator/SKILL.md`.
+- Adding a skill: copy the section structure from `docs/CONTRIBUTING.md`, add a contract under `contracts/` if it emits a new artifact, wire it into `idea-validation-orchestrator/SKILL.md` by its namespaced name, and add `eval/cases/smoke/<skill>/case.yaml`.
+- Contract references are always `${CLAUDE_PLUGIN_ROOT}/contracts/<artifact>`; the benchmark fails any other form or a missing file. `metadata.pack` must equal the `name` in `.claude-plugin/plugin.json`.
 - `SKILL.md` hard limit is 500 lines. Current files run 120–313 lines. Push detail down into `references/`.
 - The `description` field is what triggers the skill. It must state both what the skill does and when to use it, in third person.
 - Do not add `scripts/` or `assets/` dirs unless a skill actually needs deterministic code; none do today.
 
 ### Testing Requirements
-- Trigger the skill in Claude Code with a fixture from `eval/fixtures/*/input.md` and diff the emitted artifact against the matching `contracts/` schema.
-- Check the `allowed-tools` line still covers every tool the coverage and How to Work sections rely on.
+- `claude plugin validate .claude-plugin/plugin.json --strict` checks every skill's frontmatter.
+- Run the skill's smoke case (`claude plugin eval . --case smoke-<skill> --ablation none`) and the offline or research case covering its artifact; `eval/AGENTS.md` lists the flags.
+- Check the `allowed-tools` line still pre-approves every tool the coverage and How to Work sections rely on. It restricts nothing; use `disallowed-tools` for tools a skill must never call.
 
 ### Common Patterns
 - Section order in every `SKILL.md`: Outcome → Inputs Required → Who reads <artifact> → What <artifact> Must Cover → How to Work → Constraints → What a strong <artifact> looks like → Output Format → Working <domain> → Edge Cases → References. `idea-validation-orchestrator` documents the pipeline instead and keeps its own section order.
@@ -54,6 +56,6 @@ Each has its own `AGENTS.md`.
 - `eval/fixtures/` for realistic inputs
 
 ### External
-- Claude Code tool names in `allowed-tools`: `Read`, `Write`, `Edit`, `Grep`, `WebSearch`, `WebFetch`
+- Claude Code tool names in `allowed-tools` / `disallowed-tools`: `Read`, `Write`, `Edit`, `Grep`, `WebSearch`, `WebFetch`
 
 <!-- MANUAL: Any manually added notes below this line are preserved on regeneration -->

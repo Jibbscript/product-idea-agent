@@ -24,7 +24,7 @@ Pipeline step 2. Extracts 5–10 keywords from the idea brief, researches search
 ### Working In This Directory
 - Keywords with >50% YoY growth are flagged as strong signals; that threshold is in `SKILL.md` and `scoring_rubric.md`, change both.
 - Edge cases handled: no search data (broaden, mark low confidence), conflicting signals (report both, weight recency), rate limits (backoff, document), non-English markets (note limits).
-- The optional Google / Reddit API keys in `.env.example` are for this skill. Nothing in the workflow requires them; keep the no-key path working.
+- The skill needs no API keys; it researches with Claude Code's WebSearch and WebFetch.
 
 ### Testing Requirements
 - Run on `t1-energy-audit` and compare against `expected_outputs/signals.md`. Check every claim in Search Trends and Community Signals has a URL in Sources.

@@ -1,0 +1,42 @@
+schema_version: "1.1"
+name: research-discovery
+description: Discovery phase of the t1 fixture, seeded with its earlier artifacts; run with --scaffold and --allow-tools Write Edit WebSearch WebFetch.
+tags: [research]
+runs: 1
+context:
+  scaffold_script: seed.sh
+execution:
+  prompt: >-
+    The product idea I want validated is described in input.md in the current directory. Start with discovery: write the idea brief to idea_brief.md and research the demand for it into signals.md, both in the current directory, and stop once those two files are written.
+  max_turns: 200
+  timeout_seconds: 3600
+  allowed_tools: [Read, Glob, Grep, Skill, Agent, TodoWrite, Write, Edit, WebSearch, WebFetch]
+graders:
+  - name: idea-brief-written
+    type: file_exists
+    path: idea_brief.md
+  - name: idea-brief-contract-shape
+    type: regex
+    target: { source: file, path: idea_brief.md }
+    flags: i
+    pattern: '^(?=[\s\S]*#+ *One-Line Pitch)(?=[\s\S]*#+ *Problem Statement)(?=[\s\S]*#+ *Target Customer)(?=[\s\S]*#+ *Solution Hypothesis)(?=[\s\S]*#+ *Key Assumptions)(?=[\s\S]*#+ *Success Metrics)'
+  - name: signals-written
+    type: file_exists
+    path: signals.md
+  - name: signals-contract-shape
+    type: regex
+    target: { source: file, path: signals.md }
+    flags: i
+    pattern: '^(?=[\s\S]*#+ *Summary)(?=[\s\S]*#+ *Search Trends)(?=[\s\S]*#+ *Community Signals)(?=[\s\S]*#+ *Key Quotes)(?=[\s\S]*#+ *Signal Score:? *\d)(?=[\s\S]*#+ *Sources)'
+  - name: searched-the-web
+    type: tool_used
+    tool: WebSearch
+    min: 1
+  - name: idea-brief-creator-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?idea-brief-creator"'
+  - name: demand-signals-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?demand-signals"'

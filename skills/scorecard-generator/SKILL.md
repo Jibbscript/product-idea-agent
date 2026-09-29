@@ -6,6 +6,7 @@ metadata:
   author: product-idea-agent
   pack: product-idea-agent
 allowed-tools: Read Write
+disallowed-tools: WebSearch WebFetch
 ---
 
 # Scorecard Generator
@@ -195,7 +196,7 @@ Revenue potential reads market_size.md and pricing.yaml directly and does not wa
 
 ## Constraints
 
-Every dimension score cites the artifact and the specific figure or line that supports it. The composite is computed from the stated weights with the arithmetic shown, so a reader can recompute it. A dimension with no evidence in any artifact is recorded as unscored with the reason, rather than given a middling default that would quietly distort the composite. The revenue band and the recommendation each carry a rationale in terms of the evidence. Next steps are concrete enough to act on this week. The finished `scorecard.json` conforms to `contracts/scorecard.json`.
+Every dimension score cites the artifact and the specific figure or line that supports it. The composite is computed from the stated weights with the arithmetic shown, so a reader can recompute it. A dimension with no evidence in any artifact is recorded as unscored with the reason, rather than given a middling default that would quietly distort the composite. The revenue band and the recommendation each carry a rationale in terms of the evidence. Next steps are concrete enough to act on this week. The finished `scorecard.json` conforms to `${CLAUDE_PLUGIN_ROOT}/contracts/scorecard.json`.
 
 ## What a strong scorecard.json looks like
 
@@ -203,7 +204,7 @@ Each dimension score has to stand or fall on its own, so a reader can disagree w
 
 ## Output Format
 
-Create `scorecard.json` following the artifact contract in `contracts/scorecard.json`.
+Create `scorecard.json` following the artifact contract in `${CLAUDE_PLUGIN_ROOT}/contracts/scorecard.json`.
 
 Required fields:
 - version, idea_name, evaluated_date
