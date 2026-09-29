@@ -5,7 +5,7 @@ tags: [smoke]
 execution:
   prompt: >-
     Who feels the pain of drafty, expensive-to-heat older homes most acutely, and how badly? I need a clear picture of the ideal customer for a DIY thermal-scan home audit app.
-  max_turns: 4
+  max_turns: 2
   timeout_seconds: 300
   allowed_tools: [Read, Glob, Grep, Skill]
 graders:

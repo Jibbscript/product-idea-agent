@@ -5,7 +5,7 @@ tags: [smoke]
 execution:
   prompt: >-
     Before I build anything, is anyone actually looking for DIY home energy audit tools? I want to know what people search for and what they complain about on Reddit and forums.
-  max_turns: 4
+  max_turns: 2
   timeout_seconds: 300
   allowed_tools: [Read, Glob, Grep, Skill]
 graders:

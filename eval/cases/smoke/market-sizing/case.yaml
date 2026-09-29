@@ -5,7 +5,7 @@ tags: [smoke]
 execution:
   prompt: >-
     How big is the opportunity for a DIY home energy audit app in the US? I need TAM, SAM and SOM figures I can defend in front of investors.
-  max_turns: 4
+  max_turns: 2
   timeout_seconds: 300
   allowed_tools: [Read, Glob, Grep, Skill]
 graders:

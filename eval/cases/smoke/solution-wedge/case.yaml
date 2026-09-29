@@ -5,7 +5,7 @@ tags: [smoke]
 execution:
   prompt: >-
     Help me decide what the first version of my thermal home-audit app should include, what to leave out, and how it should stand apart from the thermal camera apps that already exist.
-  max_turns: 4
+  max_turns: 2
   timeout_seconds: 300
   allowed_tools: [Read, Glob, Grep, Skill]
 graders:

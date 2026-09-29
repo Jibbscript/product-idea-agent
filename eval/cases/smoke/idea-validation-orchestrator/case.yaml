@@ -5,7 +5,7 @@ tags: [smoke]
 execution:
   prompt: >-
     Validate my startup idea end to end, from demand and customers through pricing and go-to-market to a final recommendation: a phone app that turns the thermal sensor in newer iPhones into a DIY home energy audit tool.
-  max_turns: 4
+  max_turns: 2
   timeout_seconds: 300
   allowed_tools: [Read, Glob, Grep, Skill]
 graders:
