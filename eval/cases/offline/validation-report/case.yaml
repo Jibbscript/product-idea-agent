@@ -32,12 +32,8 @@ graders:
     type: tool_used
     tool: Skill
     input_match: '"skill"\s*:\s*"(?:product-idea-agent:)?validation-report"'
+  # The seeded scorecard.json records GO / 71: a Recommendation or Verdict line must reach GO before any PIVOT or NO-GO, and a Composite line must state 71.
   - name: verdict-matches-scorecard
-    type: llm
-    focus: { source: file, path: validation_report.md }
-    criteria: >-
-      The scorecard.json this report was built from records the verdict GO and a composite score of 75 out of 100.
-      PASS if the recommendation the report itself gives is GO and it reports the scorecard's composite as 75,
-      even when it attaches conditions or caveats, notes that 75 does not recompute from the dimension scores,
-      or describes what evidence would turn the verdict into PIVOT.
-      FAIL if the report's own recommendation is PIVOT or NO-GO, it gives no recommendation, or it never states the composite of 75.
+    type: regex
+    target: { source: file, path: validation_report.md }
+    pattern: '^(?=[\s\S]*(?:Recommendation|Verdict)\b(?:(?!PIVOT|NO-GO)[^\n])*?\bGO\b)(?=[\s\S]*Composite[^\n]*\b71\b)'

@@ -2,7 +2,7 @@
 
 **Generated**: 2024-12-26
 **Recommendation**: **GO**
-**Composite Score**: **75/100**
+**Composite Score**: **71/100**
 
 ---
 
@@ -146,7 +146,7 @@ First app leveraging iPhone's built-in thermal capabilities. No additional hardw
 | GTM Viability | 8/10 | 15% |
 | Timing | 8/10 | 10% |
 
-**Composite Score**: 75/100
+**Composite Score**: 71/100
 **Verdict**: **GO**
 
 ---

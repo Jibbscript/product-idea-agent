@@ -25,7 +25,7 @@ Every case is one `case.yaml` (schema 1.1) under `cases/<tag>/<name>/`, pairing 
 | Tag | Cases | What it checks | Run with |
 |-----|-------|----------------|----------|
 | `smoke` | 12, one per skill | A request that doesn't name the skill fires `product-idea-agent:<skill>` (`tool_used: Skill`) | `claude plugin eval . --tag smoke --ablation none` |
-| `offline` | scorecard-generator, validation-report | Artifact exists and has its contract's keys; zero WebSearch/WebFetch calls although both are granted, which tests `disallowed-tools`; report verdict matches the seeded scorecard (short `llm` grader) | `claude plugin eval . --tag offline --scaffold --allow-tools Write WebSearch WebFetch` |
+| `offline` | scorecard-generator, validation-report | Artifact exists and has its contract's keys; zero WebSearch/WebFetch calls although both are granted, which tests `disallowed-tools`; report verdict and composite match the seeded scorecard (regex on its Recommendation or Verdict and Composite lines) | `claude plugin eval . --tag offline --scaffold --allow-tools Write WebSearch WebFetch` |
 | `research` | discovery, customer-market, strategy, risk | Each phase, seeded with the fixture's earlier artifacts, writes contract-shaped artifacts and searched the web; one run per arm, each under the 3,600 s cap | `claude plugin eval . --tag research --scaffold --allow-tools Write Edit WebSearch WebFetch` |
 | `full` | t1-energy-audit | All eleven artifacts end to end against the no-plugin baseline; reported, not a gate | same flags as `research` |
 
@@ -45,7 +45,7 @@ For stable, comparable numbers pin models: `--model claude-fable-5-1` (or `claud
 - The scorer is a placeholder: per-artifact metrics are length ratio and word Jaccard, and rubric dimension scores are all set to the artifact completion rate. Rubric `criteria` are loaded but not evaluated. Do not treat `composite_score` as a quality measure yet.
 - The two runners duplicate `load_fixture` and `list_fixtures`. If you change fixture layout, change both.
 - Never commit run output under `results/` or `cases/results/`.
-- Changing a contract's required sections means updating the matching regexes in `cases/*/*/case.yaml`; changing `fixtures/t1-energy-audit/expected_outputs/` changes what the seeded cases start from (the `offline/validation-report` rubric names the seeded scorecard's GO / 75).
+- Changing a contract's required sections means updating the matching regexes in `cases/*/*/case.yaml`; changing `fixtures/t1-energy-audit/expected_outputs/` changes what the seeded cases start from (the `offline/validation-report` verdict regex names the seeded scorecard's GO / 71).
 
 ### Testing Requirements
 - `python3 -m unittest eval/test_fable_prompt_bench.py` passes, and `python3 eval/fable_prompt_bench.py` prints no `!!` lines.

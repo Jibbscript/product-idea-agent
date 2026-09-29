@@ -14,7 +14,7 @@ Five test ideas chosen to span the verdict range. Each fixture directory has the
 | `t2-fintech-compliance/` | Automated SOC 2 for seed-stage fintech (vs Vanta / Drata / Secureframe) | 55–70 | PIVOT | `scorecard.json` only |
 | `t3-synth-collectors/` | Curated marketplace + community for vintage synth collectors | 50–65 | PIVOT | `scorecard.json` only |
 | `t4-data-pipeline/` | No-code monitoring for data pipelines (Airflow, dbt, Fivetran) | 60–75 | GO or PIVOT | `scorecard.json` only |
-| `t5-plant-subscription/` | Houseplant subscription box with AI care recommendations | 55–70 | PIVOT | `scorecard.json` only |
+| `t5-plant-subscription/` | Houseplant subscription box with AI care recommendations | 50–70 | PIVOT | `scorecard.json` only |
 
 These directories have no AGENTS.md of their own; this file covers them.
 
